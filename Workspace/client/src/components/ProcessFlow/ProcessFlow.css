@@ -87,7 +87,7 @@
   transform: translateX(-50%);
   background: linear-gradient(to bottom, var(--accent), transparent);
   border-radius: 0;
-  filter: blur(4px);
+  filter: blur(8px);
   opacity: 0.6;
   transform-origin: top center;
   box-sizing: content-box;
@@ -141,12 +141,12 @@
 
 .process-flow-step-card {
   background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-glass);
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
-  transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+  transition: border-color 0.36s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.36s cubic-bezier(0.33, 1, 0.68, 1);
   min-width: 0;
 }
 
@@ -202,7 +202,7 @@
     width: 2px;
     left: 50%;
     transform: translateX(-50%);
-    filter: blur(4px);
+    filter: blur(10px);
     opacity: 0.5;
     margin: 0;
     padding: 0;

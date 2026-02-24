@@ -9,11 +9,11 @@
   border-radius: 16px;
   padding: 1.75rem 1.25rem 1.5rem;
   background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-  transition: box-shadow 120ms ease-out;
+  transition: box-shadow 340ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .pricing-glass:hover {
@@ -138,7 +138,7 @@
   color: #020617;
   border: none;
   cursor: pointer;
-  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+  transition: transform 320ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 320ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .pricing-cta-link:hover {

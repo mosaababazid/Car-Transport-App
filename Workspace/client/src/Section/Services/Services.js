@@ -56,7 +56,7 @@ export default function Services() {
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
+        transition={{ duration: 0.75, ease: [0.33, 1, 0.68, 1] }}
       >
         <h2 className="services-headline">Unsere Leistungen</h2>
         <p className="services-subline">
@@ -68,7 +68,7 @@ export default function Services() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.32, ease: "easeOut" }}
+          transition={{ duration: 0.65, ease: [0.33, 1, 0.68, 1] }}
         >
           <p className="services-vehicle-label">Wir transportieren:</p>
           <ul className="services-vehicle-list" aria-label="Fahrzeugkategorien">
@@ -79,7 +79,7 @@ export default function Services() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: index * 0.04, duration: 0.3, ease: "easeOut" }}
+                transition={{ delay: index * 0.06, duration: 0.58, ease: [0.33, 1, 0.68, 1] }}
               >
                 <span className="services-vehicle-icon" aria-hidden="true">
                   <item.icon size={20} strokeWidth={1.8} />
@@ -102,9 +102,9 @@ export default function Services() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{
-                  delay: index * 0.05,
-                  duration: 0.35,
-                  ease: "easeOut",
+                  delay: index * 0.12,
+                  duration: 0.75,
+                  ease: [0.33, 1, 0.68, 1],
                 }}
               >
                 <div className="services-card-icon">
