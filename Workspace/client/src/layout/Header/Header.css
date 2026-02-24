@@ -67,7 +67,7 @@
   text-decoration: none;
   padding-bottom: 0.2rem;
   border-bottom: 1px solid transparent;
-  transition: color 160ms cubic-bezier(0.22, 1, 0.36, 1), border-color 160ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: color 280ms cubic-bezier(0.4, 0, 0.2, 1), border-color 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .app-header-nav a:hover {
@@ -95,7 +95,7 @@
   box-shadow: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  transition: border-color 160ms cubic-bezier(0.22, 1, 0.36, 1), background 160ms cubic-bezier(0.22, 1, 0.36, 1), color 160ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: border-color 140ms cubic-bezier(0.4, 0, 0.2, 1), background 100ms cubic-bezier(0.4, 0, 0.2, 1), color 100ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Offset letter-spacing so label stays visually centered in pill */

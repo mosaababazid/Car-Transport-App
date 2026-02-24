@@ -23,14 +23,14 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.72, ease: [0.4, 0, 0.2, 1] }}
       >
         <motion.span
           className="hero-badge"
           initial={{ opacity: 0, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
         >
           Über 100+ Transporte monatlich in ganz Europa
         </motion.span>
@@ -39,7 +39,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: -offset }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.72, ease: [0.4, 0, 0.2, 1] }}
         >
           Professioneller Fahrzeugtransport in ganz Europa
         </motion.h1>
@@ -48,7 +48,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: offset }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.06 }}
+          transition={{ duration: 0.72, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
         >
           Sicher, zuverlässig und transparent, von Tür zu Tür. Holen Sie sich in
           Sekunden ein unverbindliches Angebot basierend auf der Strecke.
@@ -58,7 +58,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+          transition={{ duration: 0.72, ease: [0.4, 0, 0.2, 1], delay: 0.18 }}
         >
           <a href="#pricing" className="hero-primary-link" aria-label="Zum Preisrechner scrollen">
             <Button>Preis berechnen</Button>
