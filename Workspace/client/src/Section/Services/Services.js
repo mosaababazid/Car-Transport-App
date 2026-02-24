@@ -53,10 +53,10 @@ export default function Services() {
     <section id="services" className="services-section">
       <motion.div
         className="services-inner"
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.75, ease: [0.33, 1, 0.68, 1] }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <h2 className="services-headline">Unsere Leistungen</h2>
         <p className="services-subline">
@@ -65,10 +65,10 @@ export default function Services() {
 
         <motion.div
           className="services-vehicle-grid"
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.65, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <p className="services-vehicle-label">Wir transportieren:</p>
           <ul className="services-vehicle-list" aria-label="Fahrzeugkategorien">
@@ -76,10 +76,10 @@ export default function Services() {
               <motion.li
                 key={item.label}
                 className="services-vehicle-item"
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: index * 0.06, duration: 0.58, ease: [0.33, 1, 0.68, 1] }}
+                transition={{ delay: index * 0.06, duration: 0.5, ease: "easeOut" }}
               >
                 <span className="services-vehicle-icon" aria-hidden="true">
                   <item.icon size={20} strokeWidth={1.8} />
@@ -103,8 +103,8 @@ export default function Services() {
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{
                   delay: index * 0.12,
-                  duration: 0.75,
-                  ease: [0.33, 1, 0.68, 1],
+                  duration: 0.6,
+                  ease: "easeOut",
                 }}
               >
                 <div className="services-card-icon">

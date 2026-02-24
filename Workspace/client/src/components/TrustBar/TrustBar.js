@@ -33,7 +33,7 @@ export default function TrustBar() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: index * 0.1, duration: 0.65, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ delay: index * 0.05, duration: 0.5, ease: "easeOut" }}
           >
             <span className="trustbar-icon" aria-hidden="true">
               <item.icon size={20} strokeWidth={1.8} />
