@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #f9fafb;
+
+  --bg-primary: #050505;
+  --bg-elevated: #0b0d12;
+  --bg-slate: #1e293b;
+  --bg-soft: #11141b;
+  --accent: #00e0ff;
+  --accent-gold: #f5c451;
+  --text-primary: #f9fafb;
+  --text-secondary: #94a3b8;
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --glow-accent: rgba(0, 224, 255, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  overflow-x: hidden;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  color: var(--text-primary);
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(15, 23, 42, 0.85), transparent 50%),
+    radial-gradient(ellipse 100% 60% at 50% 120%, #030303, transparent 45%),
+    linear-gradient(
+      180deg,
+      #0c1220 0%,
+      #080c14 25%,
+      #060809 55%,
+      #050506 80%,
+      #030303 100%
+    );
+}
+
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 18%, rgba(0, 224, 255, 0.08), transparent 50%),
+    radial-gradient(ellipse 85% 50% at 50% 52%, rgba(0, 200, 240, 0.06), transparent 48%),
+    radial-gradient(ellipse 70% 40% at 50% 88%, rgba(56, 100, 180, 0.04), transparent 45%),
+    radial-gradient(circle at center, rgba(148, 163, 184, 0.045) 0.5px, transparent 0.5px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    14px 14px;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+  mask-image: radial-gradient(
+    ellipse 95% 90% at 50% 45%,
+    black 0%,
+    black 30%,
+    transparent 72%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 95% 90% at 50% 45%,
+    black 0%,
+    black 30%,
+    transparent 72%
+  );
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.app-shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.app-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Back-to-home link: matches .ui-button--ghost so it reads as primary nav action */
+.back-to-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.95),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  cursor: pointer;
+  transition:
+    transform 140ms ease-out,
+    box-shadow 140ms ease-out,
+    border-color 140ms ease-out;
+}
+
+.back-to-home:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 20px var(--glow-accent);
+}
+
+/* Avoid long compound words (e.g. DE) breaking layout */
+h1, h2, h3, p, span, a, button, label {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

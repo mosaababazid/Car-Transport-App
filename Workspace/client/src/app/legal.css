@@ -1,0 +1,45 @@
+.legal-main {
+  flex: 1;
+  padding: 2rem 1rem 4rem;
+}
+
+.legal-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.legal-title {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.legal-content h2 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.legal-content p,
+.legal-content ul {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: justify;
+}
+
+.legal-content ul {
+  padding-left: 1.25rem;
+}
+
+.legal-content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.legal-content a:hover {
+  text-decoration: underline;
+}

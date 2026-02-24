@@ -1,0 +1,38 @@
+.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ui-field-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.ui-field-shell {
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  background:
+    radial-gradient(circle at 0 0, rgba(30, 64, 175, 0.6), transparent 55%),
+    rgba(15, 23, 42, 0.98);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.98),
+    0 0 0 1px rgba(15, 23, 42, 0.95);
+}
+
+.ui-field-input {
+  width: 100%;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: clamp(0.85rem, 2vw, 0.9rem);
+}
+
+.ui-field-input::placeholder {
+  color: rgba(148, 163, 184, 0.7);
+}

@@ -1,0 +1,125 @@
+.join-team {
+  position: relative;
+  padding: 4rem 1.5rem 4.5rem;
+  overflow: hidden;
+}
+
+/* Distinct from main shell: angled gradient + faint stripe for CTA block “highway” */
+.join-team-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(165deg, rgba(15, 23, 42, 0.97) 0%, rgba(5, 10, 22, 0.98) 50%, rgba(0, 20, 40, 0.95) 100%),
+    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0, 224, 255, 0.06), transparent 60%),
+    repeating-linear-gradient(
+      92deg,
+      transparent,
+      transparent 120px,
+      rgba(255, 255, 255, 0.02) 120px,
+      rgba(255, 255, 255, 0.02) 121px
+    );
+  pointer-events: none;
+}
+
+.join-team-inner {
+  position: relative;
+  max-width: 36rem;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.join-team-headline {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.join-team-subline {
+  margin: 0;
+  font-size: clamp(0.9rem, 2.2vw, 1rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 28rem;
+  text-align: left;
+}
+
+.join-team-action {
+  margin: 0.25rem 0 0;
+  font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.join-team-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: linear-gradient(135deg, #0ea5e9, #00e0ff);
+  color: #020617;
+  border: none;
+  box-shadow:
+    0 4px 24px rgba(0, 224, 255, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  transition:
+    box-shadow 0.4s ease-out,
+    transform 0.2s ease-out;
+}
+
+/* Stronger glow on hover; pulse animation below respects prefers-reduced-motion */
+.join-team-cta:hover {
+  box-shadow:
+    0 0 32px rgba(0, 224, 255, 0.5),
+    0 0 64px rgba(0, 224, 255, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-team-cta:hover {
+    animation: join-team-pulse 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes join-team-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 32px rgba(0, 224, 255, 0.5),
+      0 0 64px rgba(0, 224, 255, 0.25),
+      0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  }
+  50% {
+    box-shadow:
+      0 0 48px rgba(0, 224, 255, 0.6),
+      0 0 80px rgba(0, 224, 255, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  }
+}
+
+@media (max-width: 640px) {
+  .join-team {
+    padding: 3rem 1rem 3.5rem;
+  }
+  .join-team-headline {
+    font-size: 1.35rem;
+  }
+  .join-team-cta {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
