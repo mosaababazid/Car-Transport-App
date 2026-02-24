@@ -108,7 +108,7 @@ export default function Header() {
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.12, ease: [0, 0, 0.2, 1] }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
                 <X size={20} />
               </motion.div>
@@ -118,7 +118,7 @@ export default function Header() {
                 initial={{ rotate: 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.12, ease: [0, 0, 0.2, 1] }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Menu size={20} />
               </motion.div>
@@ -134,7 +134,7 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.15, ease: [0, 0, 0.2, 1] }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
             <ul className="app-header-nav-list">
               {links.map((link, index) => (
@@ -142,7 +142,7 @@ export default function Header() {
                   key={link.href}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.18, delay: 0.04 * index, ease: [0, 0, 0.2, 1] }}
+                  transition={{ duration: 0.3, delay: 0.06 * index, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Link
                     href={link.href}

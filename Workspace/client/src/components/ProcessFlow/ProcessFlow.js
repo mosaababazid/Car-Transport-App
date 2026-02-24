@@ -85,7 +85,7 @@ export default function ProcessFlow() {
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.28, ease: [0, 0, 0.2, 1] }}
+          transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
         >
           Ablauf der Zusammenarbeit
         </motion.h2>
@@ -121,9 +121,9 @@ export default function ProcessFlow() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{
-                    duration: 0.26,
-                    delay: index * 0.03,
-                    ease: [0, 0, 0.2, 1],
+                    duration: 0.4,
+                    delay: index * 0.05,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
                 >
                   <span className="process-flow-step-number">{step.number}</span>
@@ -134,9 +134,9 @@ export default function ProcessFlow() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{
-                    duration: 0.28,
-                    delay: index * 0.025,
-                    ease: [0, 0, 0.2, 1],
+                    duration: 0.42,
+                    delay: index * 0.04,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
                 >
                   <h3 className="process-flow-step-title">{step.title}</h3>

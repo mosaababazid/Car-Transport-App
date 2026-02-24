@@ -64,7 +64,7 @@
   display: flex;
   min-width: 0;
   text-decoration: none;
-  transition: transform 110ms ease-out, box-shadow 120ms ease-out;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 200ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-primary-link:hover {
@@ -99,10 +99,10 @@
   text-decoration: none;
   background: rgba(30, 41, 59, 0.6);
   transition:
-    border-color 100ms ease-out,
-    background 100ms ease-out,
-    transform 100ms ease-out,
-    box-shadow 100ms ease-out;
+    border-color 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 160ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-secondary-link:hover {
