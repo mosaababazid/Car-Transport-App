@@ -45,7 +45,7 @@ export default function PricingCalculator() {
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.72, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
       >
         <header className="pricing-header">
           <span className="pricing-kicker">Preisrechner</span>
@@ -87,7 +87,7 @@ export default function PricingCalculator() {
               className="pricing-result"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="pricing-result-row">
                 <span className="pricing-result-label">Distanz</span>

@@ -38,7 +38,7 @@
   text-decoration: none;
   background: linear-gradient(135deg, #0ea5e9, #00e0ff);
   color: #020617;
-  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
 }
 
 .app-footer-cta:hover {
@@ -71,9 +71,7 @@
   text-decoration: none;
   padding-bottom: 0.1rem;
   border-bottom: 1px dashed rgba(148, 163, 184, 0.6);
-  transition:
-    color 280ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 120ms ease-out, border-color 120ms ease-out;
 }
 
 .app-footer-columns a:hover {
@@ -93,7 +91,7 @@
   text-decoration: none;
   padding-bottom: 0.1rem;
   border-bottom: 1px solid transparent;
-  transition: color 280ms cubic-bezier(0.4, 0, 0.2, 1), border-color 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 120ms ease-out, border-color 120ms ease-out;
 }
 
 .app-footer-legal a:hover {
@@ -122,7 +120,7 @@
   color: var(--text-secondary);
   text-decoration: none;
   border-bottom: 1px solid rgba(148, 163, 184, 0.5);
-  transition: color 280ms cubic-bezier(0.4, 0, 0.2, 1), border-color 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 120ms ease-out, border-color 120ms ease-out;
 }
 
 .app-footer-credit-link:hover {
