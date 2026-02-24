@@ -53,7 +53,7 @@ export default function Services() {
     <section id="services" className="services-section">
       <motion.div
         className="services-inner"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -65,7 +65,7 @@ export default function Services() {
 
         <motion.div
           className="services-vehicle-grid"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -76,7 +76,7 @@ export default function Services() {
               <motion.li
                 key={item.label}
                 className="services-vehicle-item"
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: index * 0.06, duration: 0.5, ease: "easeOut" }}
