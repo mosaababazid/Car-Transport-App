@@ -9,10 +9,10 @@ export default function JoinTeam() {
       <div className="join-team-bg" aria-hidden="true" />
       <motion.div
         className="join-team-inner"
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: [0, 0, 0.2, 1] }}
       >
         <h2 id="join-team-heading" className="join-team-headline">
           Mach dein Hobby zum Beruf!

@@ -13,10 +13,10 @@
   position: relative;
   overflow: visible;
   transition:
-    transform 140ms ease-out,
-    box-shadow 140ms ease-out,
-    background 140ms ease-out,
-    color 140ms ease-out;
+    transform 100ms ease-out,
+    box-shadow 100ms ease-out,
+    background 100ms ease-out,
+    color 100ms ease-out;
 }
 
 .ui-button--primary {

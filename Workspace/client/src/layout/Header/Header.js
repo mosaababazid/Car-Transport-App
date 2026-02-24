@@ -2,18 +2,31 @@
 
 import "./Header.css";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { href: "/", label: "Übersicht" },
-  { href: "/#services", label: "Leistungen" },
-  { href: "/#pricing", label: "Preis" },
-  { href: "/contact", label: "Kontakt" },
+  { href: "/", label: "Übersicht", sectionId: "hero" },
+  { href: "/#services", label: "Leistungen", sectionId: "services" },
+  { href: "/#pricing", label: "Preis", sectionId: "pricing" },
+  { href: "/contact", label: "Kontakt", sectionId: null },
 ];
+
+function scrollToSection(sectionId) {
+  if (!sectionId) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  const el = document.getElementById(sectionId);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     if (open) {
@@ -30,6 +43,28 @@ export default function Header() {
     };
   }, [open]);
 
+  // After client-side navigation to /#section, scroll to the section
+  useEffect(() => {
+    if (!isHome || typeof window === "undefined") return;
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const id = decodeURIComponent(hash);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }, [isHome, pathname]);
+
+  const handleNavClick = (e, link) => {
+    setOpen(false);
+    if (link.sectionId === null) return; // /contact – let Link navigate
+    if (!isHome) return; // different page – let Link navigate to /#section
+    e.preventDefault();
+    scrollToSection(link.sectionId);
+  };
+
   const toggleMenu = () => setOpen(!open);
 
   return (
@@ -38,16 +73,25 @@ export default function Header() {
       style={open ? { backdropFilter: "none", WebkitBackdropFilter: "none", zIndex: 99999 } : {}}
     >
       <div className="app-header-inner">
-        <div className="app-header-brand">
+        <Link
+          href="/"
+          className="app-header-brand"
+          onClick={() => setOpen(false)}
+          aria-label="AutoMove Logistik – Zur Startseite"
+        >
           <span className="app-header-mark" />
           <span className="app-header-title">AutoMove Logistik</span>
-        </div>
+        </Link>
 
         <nav className="app-header-nav app-header-nav--desktop">
           {links.map((link) => (
-            <a key={link.href} href={link.href}>
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link)}
+            >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -64,7 +108,7 @@ export default function Header() {
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.12, ease: [0, 0, 0.2, 1] }}
               >
                 <X size={20} />
               </motion.div>
@@ -74,7 +118,7 @@ export default function Header() {
                 initial={{ rotate: 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.12, ease: [0, 0, 0.2, 1] }}
               >
                 <Menu size={20} />
               </motion.div>
@@ -90,19 +134,22 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.15, ease: [0, 0, 0.2, 1] }}
           >
             <ul className="app-header-nav-list">
               {links.map((link, index) => (
                 <motion.li
                   key={link.href}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
+                  transition={{ duration: 0.18, delay: 0.04 * index, ease: [0, 0, 0.2, 1] }}
                 >
-                  <a href={link.href} onClick={() => setOpen(false)}>
+                  <Link
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link)}
+                  >
                     {link.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>

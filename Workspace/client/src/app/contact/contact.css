@@ -134,7 +134,7 @@
   text-align: center;
   background: linear-gradient(135deg, #0ea5e9, #00e0ff);
   color: #020617;
-  transition: transform 180ms ease-out, box-shadow 180ms ease-out;
+  transition: transform 110ms ease-out, box-shadow 110ms ease-out;
 }
 
 .contact-cta-link:hover {

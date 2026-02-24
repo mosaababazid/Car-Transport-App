@@ -5,6 +5,7 @@
   justify-content: center;
   padding: 2.5rem 1rem 3rem;
   background: transparent;
+  overflow-x: hidden;
 }
 
 .hero-inner {
@@ -63,7 +64,7 @@
   display: flex;
   min-width: 0;
   text-decoration: none;
-  transition: transform 180ms ease-out, box-shadow 200ms ease-out;
+  transition: transform 110ms ease-out, box-shadow 120ms ease-out;
 }
 
 .hero-primary-link:hover {
@@ -98,10 +99,10 @@
   text-decoration: none;
   background: rgba(30, 41, 59, 0.6);
   transition:
-    border-color 160ms ease-out,
-    background 160ms ease-out,
-    transform 160ms ease-out,
-    box-shadow 160ms ease-out;
+    border-color 100ms ease-out,
+    background 100ms ease-out,
+    transform 100ms ease-out,
+    box-shadow 100ms ease-out;
 }
 
 .hero-secondary-link:hover {

@@ -77,8 +77,8 @@
     0 4px 24px rgba(0, 224, 255, 0.35),
     0 0 0 1px rgba(255, 255, 255, 0.1) inset;
   transition:
-    box-shadow 0.4s ease-out,
-    transform 0.2s ease-out;
+    box-shadow 0.2s ease-out,
+    transform 0.12s ease-out;
 }
 
 /* Stronger glow on hover; pulse animation below respects prefers-reduced-motion */
@@ -91,7 +91,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .join-team-cta:hover {
-    animation: join-team-pulse 1.5s ease-in-out infinite;
+    animation: join-team-pulse 1.2s ease-out infinite;
   }
 }
 

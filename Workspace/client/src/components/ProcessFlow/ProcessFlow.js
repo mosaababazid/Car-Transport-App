@@ -72,20 +72,20 @@ export default function ProcessFlow() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end 50%"],
+    offset: ["start 0.92", "end 0.45"],
   });
 
-  const lineHeight = useTransform(scrollYProgress, (v) => `${v * 100}%`);
+  const lineHeight = useTransform(scrollYProgress, (v) => `${Math.min(1, v * 1.02) * 100}%`);
 
   return (
     <section id="process-flow" className="process-flow-section" ref={sectionRef}>
       <div className="process-flow-inner">
         <motion.h2
           className="process-flow-title"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.28, ease: [0, 0, 0.2, 1] }}
         >
           Ablauf der Zusammenarbeit
         </motion.h2>
@@ -117,26 +117,26 @@ export default function ProcessFlow() {
                 <motion.div
                   ref={index === 0 ? firstStepMarkerRef : index === STEPS.length - 1 ? lastStepMarkerRef : null}
                   className="process-flow-step-marker"
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.92 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{
-                    duration: 0.5,
-                    delay: index * 0.06,
-                    ease: "easeOut",
+                    duration: 0.26,
+                    delay: index * 0.03,
+                    ease: [0, 0, 0.2, 1],
                   }}
                 >
                   <span className="process-flow-step-number">{step.number}</span>
                 </motion.div>
                 <motion.article
                   className="process-flow-step-card"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -24 : 24 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{
-                    duration: 0.55,
-                    delay: index * 0.05,
-                    ease: "easeOut",
+                    duration: 0.28,
+                    delay: index * 0.025,
+                    ease: [0, 0, 0.2, 1],
                   }}
                 >
                   <h3 className="process-flow-step-title">{step.title}</h3>

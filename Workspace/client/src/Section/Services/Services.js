@@ -53,10 +53,10 @@ export default function Services() {
     <section id="services" className="services-section">
       <motion.div
         className="services-inner"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.32, ease: [0, 0, 0.2, 1] }}
       >
         <h2 className="services-headline">Unsere Leistungen</h2>
         <p className="services-subline">
@@ -65,10 +65,10 @@ export default function Services() {
 
         <motion.div
           className="services-vehicle-grid"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.26, ease: [0, 0, 0.2, 1] }}
         >
           <p className="services-vehicle-label">Wir transportieren:</p>
           <ul className="services-vehicle-list" aria-label="Fahrzeugkategorien">
@@ -76,10 +76,10 @@ export default function Services() {
               <motion.li
                 key={item.label}
                 className="services-vehicle-item"
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: index * 0.06, duration: 0.5, ease: "easeOut" }}
+                transition={{ delay: index * 0.03, duration: 0.24, ease: [0, 0, 0.2, 1] }}
               >
                 <span className="services-vehicle-icon" aria-hidden="true">
                   <item.icon size={20} strokeWidth={1.8} />
@@ -102,9 +102,9 @@ export default function Services() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{
-                  delay: index * 0.12,
-                  duration: 0.8,
-                  ease: "easeOut",
+                  delay: index * 0.06,
+                  duration: 0.32,
+                  ease: [0, 0, 0.2, 1],
                 }}
               >
                 <div className="services-card-icon">

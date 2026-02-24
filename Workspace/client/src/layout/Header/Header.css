@@ -1,7 +1,10 @@
 .app-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 20;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding-top: env(safe-area-inset-top, 0);
   backdrop-filter: blur(18px);
   background: linear-gradient(
     to bottom,
@@ -26,6 +29,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
 }
 
 .app-header-mark {
@@ -62,7 +67,7 @@
   text-decoration: none;
   padding-bottom: 0.2rem;
   border-bottom: 1px solid transparent;
-  transition: color 160ms ease-out, border-color 160ms ease-out;
+  transition: color 100ms ease-out, border-color 100ms ease-out;
 }
 
 .app-header-nav a:hover {
@@ -90,7 +95,7 @@
   box-shadow: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  transition: border-color 160ms, background 160ms, color 160ms;
+  transition: border-color 100ms ease-out, background 100ms ease-out, color 100ms ease-out;
 }
 
 /* Offset letter-spacing so label stays visually centered in pill */
