@@ -23,7 +23,7 @@
   align-items: flex-start;
   gap: 0.85rem;
   padding: 1.05rem 1.15rem;
-  border-radius: 12px;
+  border-radius: var(--radius-soft-sm);
   background: rgba(30, 41, 59, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -32,7 +32,7 @@
   flex-shrink: 0;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -66,7 +66,7 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  border-radius: 12px;
+  border-radius: var(--radius-soft-sm);
   background: rgba(30, 41, 59, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -109,7 +109,7 @@
 
 .services-card {
   padding: 1.35rem 1.15rem;
-  border-radius: 16px;
+  border-radius: var(--radius-soft-md);
   background: rgba(30, 41, 59, 0.5);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -127,7 +127,7 @@
 .services-card-icon {
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 0.75rem;
+  border-radius: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;

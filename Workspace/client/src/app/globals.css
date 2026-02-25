@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: dark;
   --background: #050505;
   --foreground: #f9fafb;
 
@@ -25,6 +26,12 @@
   --duration-smooth: 320ms;
   --section-pad-y: 4rem;
   --section-pad-y-lg: 5rem;
+  --radius-pill: 999px;
+  --radius-soft-sm: 14px;
+  --radius-soft-md: 18px;
+  --radius-soft-lg: 32px;
+  --shadow-float-soft: 0 18px 52px rgba(2, 6, 23, 0.34), 0 0 22px rgba(0, 224, 255, 0.06);
+  --shadow-float-soft-hover: 0 26px 68px rgba(2, 6, 23, 0.4), 0 0 30px rgba(0, 224, 255, 0.08);
 }
 
 @theme inline {
@@ -182,8 +189,8 @@ body {
   justify-content: center;
   gap: 0.4rem;
   margin-bottom: 1rem;
-  padding: 0.6rem 1.4rem;
-  border-radius: 999px;
+  padding: 0.72rem 1.35rem;
+  border-radius: var(--radius-pill);
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.16em;

@@ -133,7 +133,7 @@ export default function ContactPage() {
                   href="https://wa.me/491234567890"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-cta-link btn-primary"
+                  className="contact-cta-link btn-primary contact-cta-link--whatsapp"
                 >
                   Per WhatsApp schreiben
                 </a>

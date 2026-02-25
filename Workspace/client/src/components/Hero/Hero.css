@@ -76,15 +76,16 @@
   backdrop-filter: blur(28px) saturate(1.4);
   -webkit-backdrop-filter: blur(28px) saturate(1.4);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 24px;
-  border-top-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-radius: var(--radius-soft-lg);
+  border-top-left-radius: 18px;
+  border-bottom-right-radius: 18px;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 0 20px rgba(0, 224, 255, 0.05),
     inset -1px -1px 0 rgba(0, 0, 0, 0.15),
     0 0 0 1px rgba(0, 224, 255, 0.06),
-    0 24px 64px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(0, 224, 255, 0.04);
+    var(--shadow-float-soft),
+    0 0 26px rgba(0, 224, 255, 0.035);
   transition: box-shadow 400ms var(--ease-smooth), border-color 400ms var(--ease-smooth);
 }
 
@@ -92,10 +93,11 @@
   border-color: rgba(0, 224, 255, 0.12);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 0 24px rgba(0, 224, 255, 0.07),
     inset -1px -1px 0 rgba(0, 0, 0, 0.12),
     0 0 0 1px rgba(0, 224, 255, 0.1),
-    0 28px 72px rgba(0, 0, 0, 0.55),
-    0 0 56px rgba(0, 224, 255, 0.08);
+    var(--shadow-float-soft-hover),
+    0 0 38px rgba(0, 224, 255, 0.06);
 }
 
 .hero-glass-content {
@@ -169,7 +171,7 @@
   justify-content: center;
   min-width: 0;
   min-height: 2.75rem;
-  padding: 0.6rem 1.4rem;
+  padding: 0.72rem 1.35rem;
   font-size: 0.82rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -201,7 +203,7 @@
   }
   .hero-secondary-link {
     min-width: 0;
-    padding: 0.7rem 1rem;
+    padding: 0.72rem 1.35rem;
     text-align: center;
   }
 }
