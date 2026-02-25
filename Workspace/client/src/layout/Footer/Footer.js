@@ -1,4 +1,5 @@
 import "./Footer.css";
+import "../../components/Button/Button.css";
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
         <div className="app-footer-main">
           <h2>AutoMove Logistik</h2>
           <p>Professioneller Fahrzeugtransport, sicher und europaweit. Kontaktieren Sie uns.</p>
-          <a href="/contact" className="app-footer-cta">
+          <a href="/contact" className="app-footer-cta btn-primary">
             Zum Kontaktformular
           </a>
         </div>

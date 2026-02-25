@@ -3,22 +3,52 @@
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.6rem 1.4rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.09em;
   text-align: center;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
   position: relative;
   overflow: visible;
-  transition: transform 120ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 120ms cubic-bezier(0.33, 1, 0.68, 1), background 320ms cubic-bezier(0.33, 1, 0.68, 1), color 320ms cubic-bezier(0.33, 1, 0.68, 1);
+  box-sizing: border-box;
+  transition: transform 320ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 320ms cubic-bezier(0.33, 1, 0.68, 1), background 320ms cubic-bezier(0.33, 1, 0.68, 1), color 320ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.ui-button--primary {
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.09em;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+  box-sizing: border-box;
+  transition: transform 320ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 320ms cubic-bezier(0.33, 1, 0.68, 1), background 320ms cubic-bezier(0.33, 1, 0.68, 1), color 320ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.btn-primary--block {
+  width: 100%;
+}
+
+.ui-button--primary,
+.btn-primary {
   background: linear-gradient(135deg, #0ea5e9, #00e0ff);
   color: #011322;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.22);
@@ -27,7 +57,8 @@
     0 0 0 1px rgba(15, 23, 42, 0.9);
 }
 
-.ui-button--primary::after {
+.ui-button--primary::after,
+.btn-primary::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -46,7 +77,8 @@
   z-index: -1;
 }
 
-.ui-button--primary:hover:not(:disabled) {
+.ui-button--primary:hover:not(:disabled),
+.btn-primary:hover {
   transform: translateY(-1px) scale(1.02);
   box-shadow:
     0 14px 34px rgba(56, 189, 248, 0.34),

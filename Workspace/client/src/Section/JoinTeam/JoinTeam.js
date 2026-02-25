@@ -2,7 +2,8 @@
 
 import "./JoinTeam.css";
 import { motion, useReducedMotion } from "framer-motion";
-import { transitionEntrance, transitionChild, resolveTransition } from "../../constants/animation";
+import "../../components/Button/Button.css";
+import { transitionEntrance, resolveTransition } from "../../constants/animation";
 
 export default function JoinTeam() {
   const reducedMotion = useReducedMotion();
@@ -27,10 +28,7 @@ export default function JoinTeam() {
         </p>
         <motion.a
           href="/contact"
-          className="join-team-cta"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.98 }}
-          transition={resolveTransition(reducedMotion, transitionChild)}
+          className="join-team-cta btn-primary"
         >
           Jetzt bewerben
         </motion.a>

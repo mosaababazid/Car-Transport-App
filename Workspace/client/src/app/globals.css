@@ -193,7 +193,7 @@ body {
 .back-to-home:hover {
   border-color: var(--accent);
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 0 20px var(--glow-accent);
+  box-shadow: 0 0 12px var(--glow-accent);
 }
 
 /* Avoid long compound words (e.g. DE) breaking layout */

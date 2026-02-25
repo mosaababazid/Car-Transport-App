@@ -1,5 +1,5 @@
 .trustbar-section {
-  padding: 1.5rem 1rem 2rem;
+  padding: 2rem 1rem 2.5rem;
   background: transparent;
 }
 
@@ -22,7 +22,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.85rem;
-  padding: 1rem 1.1rem;
+  padding: 1.05rem 1.15rem;
   border-radius: 12px;
   background: rgba(30, 41, 59, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -54,7 +54,7 @@
 
 .trustbar-text {
   font-size: 0.8rem;
-  line-height: 1.4;
+  line-height: 1.5;
   color: var(--text-secondary);
   text-align: left;
 }

@@ -3,7 +3,7 @@
   min-height: calc(100vh - 4.5rem);
   align-items: center;
   justify-content: center;
-  padding: 2.5rem 1rem 3rem;
+  padding: 3rem 1rem 3.5rem;
   background: transparent;
   overflow-x: hidden;
 }
@@ -37,7 +37,7 @@
   font-size: clamp(1.45rem, 4.2vw, 2.25rem);
   font-weight: 600;
   letter-spacing: -0.04em;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--text-primary);
   max-width: 22rem;
 }
@@ -100,8 +100,8 @@
 .hero-secondary-link:hover {
   border-color: var(--accent);
   background: rgba(30, 41, 59, 0.9);
-  transform: scale(1.04);
-  box-shadow: 0 0 28px var(--glow-accent), 0 0 48px rgba(0, 224, 255, 0.15);
+  transform: scale(1.03);
+  box-shadow: 0 0 14px var(--glow-accent), 0 0 26px rgba(0, 224, 255, 0.08);
 }
 
 @media (min-width: 640px) {

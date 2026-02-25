@@ -79,8 +79,8 @@
 
 .app-header-nav a.is-active {
   color: #67e8f9;
-  border-color: rgba(0, 224, 255, 0.95);
-  text-shadow: 0 0 14px rgba(0, 224, 255, 0.45);
+  border-color: rgba(0, 224, 255, 0.78);
+  text-shadow: 0 0 8px rgba(0, 224, 255, 0.22);
 }
 
 .app-header-cta {
@@ -194,8 +194,8 @@
 
 .app-header-nav-list a.is-active {
   color: #67e8f9;
-  border-bottom-color: rgba(0, 224, 255, 0.95);
-  text-shadow: 0 0 14px rgba(0, 224, 255, 0.45);
+  border-bottom-color: rgba(0, 224, 255, 0.78);
+  text-shadow: 0 0 8px rgba(0, 224, 255, 0.22);
 }
 
 @media (max-width: 640px) {

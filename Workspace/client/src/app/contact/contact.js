@@ -5,6 +5,7 @@ import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
+import "../../components/Button/Button.css";
 import "./contact.css";
 
 export default function ContactPage() {
@@ -104,7 +105,7 @@ export default function ContactPage() {
                   href="https://wa.me/491234567890"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-cta-link"
+                  className="contact-cta-link btn-primary"
                 >
                   Per WhatsApp schreiben
                 </a>
@@ -185,7 +186,12 @@ export default function ContactPage() {
                     {error}
                   </p>
                 )}
-                <Button type="submit" disabled={loading} aria-busy={loading}>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  aria-busy={loading}
+                  className="btn-primary--block"
+                >
                   {loading ? "Wird gesendet …" : sent ? "Gesendet" : "Nachricht senden"}
                 </Button>
                 {sent && (

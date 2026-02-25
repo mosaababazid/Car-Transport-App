@@ -1,5 +1,5 @@
 .services-section {
-  padding: 3rem 1rem 4rem;
+  padding: 3.5rem 1rem 4.25rem;
   background: transparent;
 }
 
@@ -19,6 +19,7 @@
 .services-subline {
   margin: 0 0 2rem;
   font-size: clamp(0.88rem, 2vw, 0.95rem);
+  line-height: 1.65;
   color: var(--text-secondary);
   text-align: left;
   max-width: 32rem;

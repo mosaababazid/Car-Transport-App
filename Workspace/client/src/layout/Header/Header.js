@@ -30,10 +30,13 @@ function scrollToSection(sectionId, reducedMotion) {
   }
   const el = document.getElementById(sectionId);
   if (el) {
-    const headerHeight = parseFloat(
+    const headerElement = document.querySelector(".app-header");
+    const measuredHeaderHeight = headerElement?.getBoundingClientRect().height ?? 0;
+    const cssHeaderHeight = parseFloat(
       getComputedStyle(document.documentElement).getPropertyValue("--header-height")
     ) || 56;
-    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+    const headerHeight = Math.max(cssHeaderHeight, measuredHeaderHeight);
+    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 8;
     window.scrollTo({ top, behavior: reducedMotion ? "auto" : "smooth" });
   }
 }
@@ -41,8 +44,10 @@ function scrollToSection(sectionId, reducedMotion) {
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const scrollLockYRef = useRef(0);
+  const openRef = useRef(false);
   const sectionVisibilityRef = useRef({});
+  const pendingSectionScrollRef = useRef(null);
+  const recomputeActiveSectionRef = useRef(() => {});
   const pathname = usePathname();
   const isHome = pathname === "/";
   const reducedMotion = useReducedMotion();
@@ -56,40 +61,49 @@ export default function Header() {
   };
 
   useEffect(() => {
+    openRef.current = open;
     const body = document.body;
+    const html = document.documentElement;
     if (open) {
       const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-      scrollLockYRef.current = window.scrollY;
       body.style.overflow = "hidden";
-      body.style.position = "fixed";
-      body.style.top = `-${scrollLockYRef.current}px`;
-      body.style.left = "0";
-      body.style.right = "0";
-      body.style.width = "100%";
+      body.style.touchAction = "none";
+      body.style.overscrollBehavior = "none";
+      html.style.overflow = "hidden";
+      html.style.overscrollBehavior = "none";
       body.style.paddingRight = `${scrollBarWidth}px`;
     } else {
-      const y = scrollLockYRef.current || 0;
       body.style.overflow = "";
-      body.style.position = "";
-      body.style.top = "";
-      body.style.left = "";
-      body.style.right = "";
-      body.style.width = "";
+      body.style.touchAction = "";
+      body.style.overscrollBehavior = "";
+      html.style.overflow = "";
+      html.style.overscrollBehavior = "";
       body.style.paddingRight = "0px";
-      if (window.scrollY !== y) {
-        window.scrollTo({ top: y, behavior: "auto" });
-      }
     }
     return () => {
       body.style.overflow = "";
-      body.style.position = "";
-      body.style.top = "";
-      body.style.left = "";
-      body.style.right = "";
-      body.style.width = "";
+      body.style.touchAction = "";
+      body.style.overscrollBehavior = "";
+      html.style.overflow = "";
+      html.style.overscrollBehavior = "";
       body.style.paddingRight = "0px";
     };
   }, [open]);
+
+  useEffect(() => {
+    if (open || !isHome) return;
+    const targetSection = pendingSectionScrollRef.current;
+    // Run after menu close/body unlock to avoid mobile jump/stuck behavior.
+    requestAnimationFrame(() => {
+      if (targetSection) {
+        scrollToSection(targetSection, reducedMotion);
+        pendingSectionScrollRef.current = null;
+      } else {
+        // No pending navigation: just refresh active state after unlock.
+        recomputeActiveSectionRef.current();
+      }
+    });
+  }, [open, isHome, reducedMotion]);
 
   // After client-side navigation to /#section, scroll to the section
   useEffect(() => {
@@ -111,14 +125,12 @@ export default function Header() {
       .map((link) => getSectionIdForLink(link))
       .filter(Boolean);
 
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    if (sections.length === 0) return;
+    const isMobileViewport = window.matchMedia("(max-width: 768px)").matches;
+    const observedSections = new Set();
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (openRef.current) return; // Freeze spy while mobile menu is open.
         for (const entry of entries) {
           const id = entry.target.id;
           if (!entry.isIntersecting) {
@@ -131,37 +143,109 @@ export default function Header() {
             : 0;
           sectionVisibilityRef.current[id] = score;
         }
-
-        let topId = null;
-        let topScore = 0;
-        for (const [id, score] of Object.entries(sectionVisibilityRef.current)) {
-          if (score > topScore) {
-            topId = id;
-            topScore = score;
-          }
-        }
-        if (topId && topScore >= 0.5) {
-          setActiveSection(topId);
-        }
+        updateActiveFromScroll();
       },
       {
         root: null,
-        rootMargin: "-10% 0px -12% 0px",
-        threshold: Array.from({ length: 21 }, (_, i) => i / 20),
+        rootMargin: isMobileViewport ? "-8% 0px -58% 0px" : "-10% 0px -20% 0px",
+        threshold: isMobileViewport
+          ? [0, 0.1, 0.2, 0.35, 0.5, 0.7, 1]
+          : Array.from({ length: 21 }, (_, i) => i / 20),
       }
     );
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    const syncObservedSections = () => {
+      const liveSections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      for (const section of liveSections) {
+        if (!observedSections.has(section)) {
+          observer.observe(section);
+          observedSections.add(section);
+        }
+      }
+
+      for (const section of Array.from(observedSections)) {
+        if (!liveSections.includes(section)) {
+          observer.unobserve(section);
+          observedSections.delete(section);
+          delete sectionVisibilityRef.current[section.id];
+        }
+      }
+
+      return liveSections;
+    };
+
+    const updateActiveFromScroll = () => {
+      if (openRef.current) return; // Prevent re-calculation during body lock.
+      if (window.scrollY < 80) {
+        setActiveSection("hero");
+        return;
+      }
+
+      const sections = syncObservedSections();
+      if (sections.length === 0) return;
+
+      const headerHeight = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+      ) || 56;
+      const markerY = headerHeight + (isMobileViewport ? 12 : 24);
+
+      let byPosition = sections[0].id;
+      for (const section of sections) {
+        const top = section.getBoundingClientRect().top;
+        if (top <= markerY) {
+          byPosition = section.id;
+        } else {
+          break;
+        }
+      }
+
+      let byVisibility = null;
+      let visibilityScore = 0;
+      for (const [id, score] of Object.entries(sectionVisibilityRef.current)) {
+        if (score > visibilityScore) {
+          byVisibility = id;
+          visibilityScore = score;
+        }
+      }
+
+      if (byVisibility && visibilityScore >= 0.35) {
+        setActiveSection(byVisibility);
+      } else {
+        setActiveSection(byPosition);
+      }
+    };
+
+    recomputeActiveSectionRef.current = updateActiveFromScroll;
+    syncObservedSections();
+    updateActiveFromScroll();
+    window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+    window.addEventListener("resize", updateActiveFromScroll);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateActiveFromScroll);
+      window.removeEventListener("resize", updateActiveFromScroll);
+      sectionVisibilityRef.current = {};
+      recomputeActiveSectionRef.current = () => {};
+    };
   }, [isHome]);
 
   const handleNavClick = (e, link) => {
-    setOpen(false);
     const sectionId = getSectionIdForLink(link);
+    const wasOpen = open;
+    setOpen(false);
+
     if (sectionId === null) return; // /contact – let Link navigate
     if (!isHome) return; // different page – let Link navigate to /#section
     e.preventDefault();
     setActiveSection(sectionId);
+    if (wasOpen) {
+      // On mobile, wait until overlay closes and body scroll is restored.
+      pendingSectionScrollRef.current = sectionId;
+      return;
+    }
     scrollToSection(sectionId, reducedMotion);
   };
 

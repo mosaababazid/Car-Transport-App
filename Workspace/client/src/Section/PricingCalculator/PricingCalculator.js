@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import "../../components/Button/Button.css";
 import { getPriceEstimate } from "../../helpers/api";
 import { VIEWPORT_ONCE, transitionEntrance, transitionChild, resolveTransition } from "../../constants/animation";
 
@@ -117,7 +118,12 @@ export default function PricingCalculator() {
             />
           </div>
 
-          <Button type="submit" disabled={loading} aria-busy={loading}>
+          <Button
+            type="submit"
+            disabled={loading}
+            aria-busy={loading}
+            className="btn-primary--block"
+          >
             {loading ? "Berechnung läuft…" : "Berechnen"}
           </Button>
 
@@ -161,7 +167,7 @@ export default function PricingCalculator() {
                 </div>
               )}
               <div className="pricing-cta-wrap">
-                <a href="/contact" className="pricing-cta-link">
+                <a href="/contact" className="pricing-cta-link btn-primary">
                   Kontaktieren
                 </a>
               </div>
