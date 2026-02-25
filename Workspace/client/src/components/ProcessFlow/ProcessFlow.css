@@ -131,9 +131,8 @@
   background: linear-gradient(180deg, #0d1420 0%, #0a111c 100%);
   border: 1.5px solid rgba(0, 224, 255, 0.32);
   box-shadow: 0 0 0 rgba(0, 224, 255, 0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   position: relative;
   z-index: 2;
   justify-self: center;
@@ -160,8 +159,12 @@
   font-weight: 620;
   letter-spacing: 0;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1ch;
   font-variant-numeric: tabular-nums;
-  color: rgba(226, 232, 240, 0.84);
+  color: rgba(191, 210, 229, 0.74);
   text-shadow: 0 1px 0 rgba(2, 6, 23, 0.4);
   transition: color 380ms var(--ease-smooth), text-shadow 380ms var(--ease-smooth),
     filter 380ms var(--ease-smooth);
@@ -181,11 +184,11 @@
 }
 
 .process-flow-step-marker.is-reached .process-flow-step-number {
-  color: #bfeef7;
+  color: #9de9f6;
   text-shadow:
-    0 0 1px rgba(0, 224, 255, 0.08),
+    0 0 2px rgba(0, 224, 255, 0.12),
     0 1px 0 rgba(2, 6, 23, 0.42);
-  filter: saturate(1.01);
+  filter: saturate(1.03);
 }
 
 .process-flow-step-card {
