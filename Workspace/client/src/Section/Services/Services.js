@@ -1,9 +1,17 @@
 "use client";
 
 import "./Services.css";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Car, Truck, Bus, Package, ShieldCheck, Globe, FileCheck } from "lucide-react";
+import {
+  STAGGER,
+  VIEWPORT_ONCE,
+  VIEWPORT_ONCE_MORE,
+  transitionEntrance,
+  transitionChild,
+  resolveTransition,
+} from "../../constants/animation";
 
 const VEHICLE_TYPES = [
   { label: "PKW", icon: Car },
@@ -36,6 +44,7 @@ const TRUST_SERVICES = [
 
 export default function Services() {
   const [baseOffset, setBaseOffset] = useState(50);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 639px)");
@@ -53,10 +62,10 @@ export default function Services() {
     <section id="services" className="services-section">
       <motion.div
         className="services-inner"
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={VIEWPORT_ONCE}
+        transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
         <h2 className="services-headline">Unsere Leistungen</h2>
         <p className="services-subline">
@@ -65,10 +74,10 @@ export default function Services() {
 
         <motion.div
           className="services-vehicle-grid"
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={VIEWPORT_ONCE}
+          transition={resolveTransition(reducedMotion, transitionChild)}
         >
           <p className="services-vehicle-label">Wir transportieren:</p>
           <ul className="services-vehicle-list" aria-label="Fahrzeugkategorien">
@@ -78,8 +87,8 @@ export default function Services() {
                 className="services-vehicle-item"
                 initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: index * 0.06, duration: 0.5, ease: "easeOut" }}
+                viewport={VIEWPORT_ONCE_MORE}
+                transition={{ delay: reducedMotion ? 0 : index * STAGGER, ...resolveTransition(reducedMotion, transitionChild) }}
               >
                 <span className="services-vehicle-icon" aria-hidden="true">
                   <item.icon size={20} strokeWidth={1.8} />
@@ -102,9 +111,8 @@ export default function Services() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{
-                  delay: index * 0.12,
-                  duration: 0.6,
-                  ease: "easeOut",
+                  delay: reducedMotion ? 0 : index * STAGGER,
+                  ...resolveTransition(reducedMotion, transitionChild),
                 }}
               >
                 <div className="services-card-icon">

@@ -14,6 +14,10 @@
   --text-secondary: #94a3b8;
   --border-glass: rgba(255, 255, 255, 0.12);
   --glow-accent: rgba(0, 224, 255, 0.35);
+  /* Animation rhythm: one easing curve and two durations for consistent feel */
+  --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
+  --duration-fast: 120ms;
+  --duration-smooth: 320ms;
 }
 
 @theme inline {
@@ -28,6 +32,19 @@ html {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {

@@ -4,8 +4,9 @@ import "./Header.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { transitionIcon, transitionFast, STAGGER, resolveTransition } from "../../constants/animation";
 
 const links = [
   { href: "/", label: "Übersicht", sectionId: "hero" },
@@ -27,6 +28,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (open) {
@@ -108,7 +110,7 @@ export default function Header() {
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={resolveTransition(reducedMotion, transitionIcon)}
               >
                 <X size={20} />
               </motion.div>
@@ -118,7 +120,7 @@ export default function Header() {
                 initial={{ rotate: 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={resolveTransition(reducedMotion, transitionIcon)}
               >
                 <Menu size={20} />
               </motion.div>
@@ -134,15 +136,15 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            >
+            transition={resolveTransition(reducedMotion, transitionFast)}
+          >
             <ul className="app-header-nav-list">
               {links.map((link, index) => (
                 <motion.li
                   key={link.href}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
+                  transition={{ delay: reducedMotion ? 0 : index * STAGGER, ...resolveTransition(reducedMotion, transitionFast) }}
                 >
                   <Link
                     href={link.href}

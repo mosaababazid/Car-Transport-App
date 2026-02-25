@@ -2,10 +2,11 @@
 
 import "./PricingCalculator.css";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import { getPriceEstimate } from "../../helpers/api";
+import { VIEWPORT_ONCE, transitionEntrance, transitionChild, resolveTransition } from "../../constants/animation";
 
 export default function PricingCalculator() {
   const [pickup, setPickup] = useState("");
@@ -13,6 +14,7 @@ export default function PricingCalculator() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -42,10 +44,10 @@ export default function PricingCalculator() {
     <section id="pricing" className="pricing-section">
       <motion.div
         className="pricing-inner pricing-glass"
-        initial={{ opacity: 0, y: 28 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.75, ease: [0.33, 1, 0.68, 1] }}
+        viewport={VIEWPORT_ONCE}
+        transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
         <header className="pricing-header">
           <span className="pricing-kicker">Preisrechner</span>
@@ -85,9 +87,9 @@ export default function PricingCalculator() {
           {result && (
             <motion.div
               className="pricing-result"
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+              transition={resolveTransition(reducedMotion, transitionChild)}
             >
               <div className="pricing-result-row">
                 <span className="pricing-result-label">Distanz</span>

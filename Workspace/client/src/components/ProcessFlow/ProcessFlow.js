@@ -2,7 +2,13 @@
 
 import "./ProcessFlow.css";
 import { useRef, useLayoutEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import {
+  STAGGER,
+  VIEWPORT_ONCE_MORE,
+  transitionChild,
+  resolveTransition,
+} from "../../constants/animation";
 
 const STEPS = [
   {
@@ -45,6 +51,7 @@ const STEPS = [
 export default function ProcessFlow() {
   const sectionRef = useRef(null);
   const timelineRef = useRef(null);
+  const reducedMotion = useReducedMotion();
   const lastStepRef = useRef(null);
   const firstStepMarkerRef = useRef(null);
   const lastStepMarkerRef = useRef(null);
@@ -84,8 +91,8 @@ export default function ProcessFlow() {
           className="process-flow-title"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={VIEWPORT_ONCE_MORE}
+          transition={resolveTransition(reducedMotion, transitionChild)}
         >
           Ablauf der Zusammenarbeit
         </motion.h2>
@@ -117,26 +124,24 @@ export default function ProcessFlow() {
                 <motion.div
                   ref={index === 0 ? firstStepMarkerRef : index === STEPS.length - 1 ? lastStepMarkerRef : null}
                   className="process-flow-step-marker"
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.92 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{
-                    duration: 0.5,
-                    delay: index * 0.06,
-                    ease: "easeOut",
+                    delay: reducedMotion ? 0 : index * STAGGER,
+                    ...resolveTransition(reducedMotion, transitionChild),
                   }}
                 >
                   <span className="process-flow-step-number">{step.number}</span>
                 </motion.div>
                 <motion.article
                   className="process-flow-step-card"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -24 : 24 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{
-                    duration: 0.55,
-                    delay: index * 0.05,
-                    ease: "easeOut",
+                    delay: reducedMotion ? 0 : index * STAGGER,
+                    ...resolveTransition(reducedMotion, transitionChild),
                   }}
                 >
                   <h3 className="process-flow-step-title">{step.title}</h3>
