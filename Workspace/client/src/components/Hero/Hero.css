@@ -4,7 +4,10 @@
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 4.5rem);
+  min-height: calc(100svh - 4.5rem);
   padding: 2rem 1rem 4rem;
+  padding-top: calc(2rem + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
   overflow: hidden;
   isolation: isolate;
 }
@@ -81,6 +84,18 @@
   border-bottom-right-radius: 18px;
   box-shadow: var(--box-shadow-glass);
   transition: box-shadow 400ms var(--ease-smooth), border-color 400ms var(--ease-smooth);
+}
+
+.hero-section--ios {
+  min-height: calc(100vh - 4.5rem);
+  min-height: calc(100svh - 4.5rem);
+}
+
+.hero-section--ios .hero-inner {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-section--ios .hero-glass-box {
