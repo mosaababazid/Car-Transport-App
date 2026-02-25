@@ -93,9 +93,10 @@ export default function Gallery({ variant = "preview" }) {
     >
       <motion.div
         className="gallery-inner"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_ONCE}
+        initial={isFullPage ? { opacity: 0, y: 16 } : { opacity: 0, y: 20 }}
+        animate={isFullPage ? { opacity: 1, y: 0 } : undefined}
+        whileInView={isFullPage ? undefined : { opacity: 1, y: 0 }}
+        viewport={isFullPage ? undefined : VIEWPORT_ONCE}
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
         <h2 id="gallery-heading" className="gallery-heading">
@@ -112,9 +113,10 @@ export default function Gallery({ variant = "preview" }) {
             <motion.article
               key={index}
               className="gallery-card"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={VIEWPORT_ONCE}
+              initial={isFullPage ? { opacity: 0, y: 18 } : { opacity: 0, y: 24 }}
+              animate={isFullPage ? { opacity: 1, y: 0 } : undefined}
+              whileInView={isFullPage ? undefined : { opacity: 1, y: 0 }}
+              viewport={isFullPage ? undefined : VIEWPORT_ONCE}
               transition={{
                 delay: reducedMotion ? 0 : index * STAGGER,
                 ...resolveTransition(reducedMotion, transitionChild),
@@ -135,13 +137,10 @@ export default function Gallery({ variant = "preview" }) {
                       src={item.src}
                       alt={item.alt}
                       fill
-                      sizes={
-                        isFullPage
-                          ? "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
-                          : "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
-                      }
+                      sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
                       className="gallery-card-image"
                       priority={isFullPage}
+                      loading={isFullPage ? "eager" : "lazy"}
                     />
                     <div className="gallery-card-overlay" />
                   </div>
