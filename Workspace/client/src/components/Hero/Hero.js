@@ -82,7 +82,7 @@ export default function Hero() {
               viewport={VIEWPORT_ONCE}
               transition={resolveTransition(reducedMotion, transitionChild)}
             >
-              Über 100+ Transporte monatlich in ganz Europa
+              Über 100+ Transporte monatlich in{"\u00A0"}ganz Europa
             </motion.span>
             <motion.h1
               className="hero-title"
