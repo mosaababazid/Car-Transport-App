@@ -222,6 +222,14 @@ body {
   outline: none;
 }
 
+@media (max-width: 640px) {
+  .back-to-home {
+    position: relative;
+    top: -0.32rem;
+    margin-bottom: 0.65rem;
+  }
+}
+
 h1, h2, h3, p, span, a, button, label {
   word-wrap: break-word;
   overflow-wrap: break-word;
