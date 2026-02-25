@@ -12,36 +12,36 @@ import {
 
 const STEPS = [
   {
-    number: "01",
+    number: "1",
     title: "Fahrer-Auswahl",
     description:
       "Einer unserer geschulten Fahrer wird Ihrem Auftrag zugeteilt, für einen zuverlässigen und professionellen Ablauf.",
   },
   {
-    number: "02",
+    number: "2",
     title: "Vereinbarung",
     description: "Termine, Uhrzeiten und alle Details werden verbindlich vereinbart. Sie wissen stets, wann Abholung und Anlieferung erfolgen.",
   },
   {
-    number: "03",
+    number: "3",
     title: "Abholung",
     description:
       "Der Fahrer holt Ihr Fahrzeug ab und erstellt ein digitales Übergabeprotokoll. Der Zustand wird lückenlos dokumentiert, so starten wir transparent und nachvollziehbar.",
   },
   {
-    number: "04",
+    number: "4",
     title: "Transport",
     description:
       "Sicherer Transport zu Ihrem Wunschort. Vollkaskoversichert und mit voraussichtlicher Ankunftszeit.",
   },
   {
-    number: "05",
+    number: "5",
     title: "Übergabe",
     description:
       "Am Ziel angekommen: Erneute Dokumentation des Zustands und digitales Übergabeprotokoll bei der Übergabe. Ihr Fahrzeug wird in demselben Zustand übergeben, in dem es abgeholt wurde.",
   },
   {
-    number: "06",
+    number: "6",
     title: "Dokumentation",
     description:
       "Sie erhalten das elektronische Übergabeprotokoll direkt im Anschluss für Ihre Unterlagen und maximale Transparenz.",

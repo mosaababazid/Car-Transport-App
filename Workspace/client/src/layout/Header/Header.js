@@ -1,7 +1,7 @@
 "use client";
 
 import "./Header.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -14,6 +14,14 @@ const links = [
   { href: "/#pricing", label: "Preis", sectionId: "pricing" },
   { href: "/contact", label: "Kontakt", sectionId: null },
 ];
+
+function getSectionIdForLink(link) {
+  if (link.sectionId) return link.sectionId;
+  if (typeof link.href === "string" && link.href.startsWith("/#")) {
+    return link.href.slice(2);
+  }
+  return null;
+}
 
 function scrollToSection(sectionId, reducedMotion) {
   if (!sectionId) {
@@ -32,22 +40,54 @@ function scrollToSection(sectionId, reducedMotion) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
+  const scrollLockYRef = useRef(0);
+  const sectionVisibilityRef = useRef({});
   const pathname = usePathname();
   const isHome = pathname === "/";
   const reducedMotion = useReducedMotion();
+  const isLinkActive = (link) => {
+    if (isHome) {
+      const sectionId = getSectionIdForLink(link);
+      if (sectionId) return activeSection === sectionId;
+      return pathname === "/contact";
+    }
+    return pathname === link.href;
+  };
 
   useEffect(() => {
+    const body = document.body;
     if (open) {
       const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
-      document.body.style.paddingRight = `${scrollBarWidth}px`;
+      scrollLockYRef.current = window.scrollY;
+      body.style.overflow = "hidden";
+      body.style.position = "fixed";
+      body.style.top = `-${scrollLockYRef.current}px`;
+      body.style.left = "0";
+      body.style.right = "0";
+      body.style.width = "100%";
+      body.style.paddingRight = `${scrollBarWidth}px`;
     } else {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "0px";
+      const y = scrollLockYRef.current || 0;
+      body.style.overflow = "";
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      body.style.width = "";
+      body.style.paddingRight = "0px";
+      if (window.scrollY !== y) {
+        window.scrollTo({ top: y, behavior: "auto" });
+      }
     }
     return () => {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "0px";
+      body.style.overflow = "";
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      body.style.width = "";
+      body.style.paddingRight = "0px";
     };
   }, [open]);
 
@@ -64,12 +104,65 @@ export default function Header() {
     });
   }, [isHome, pathname, reducedMotion]);
 
+  useEffect(() => {
+    if (!isHome || typeof window === "undefined") return;
+
+    const sectionIds = links
+      .map((link) => getSectionIdForLink(link))
+      .filter(Boolean);
+
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const id = entry.target.id;
+          if (!entry.isIntersecting) {
+            delete sectionVisibilityRef.current[id];
+            continue;
+          }
+          const normalizedHeight = Math.min(entry.boundingClientRect.height, window.innerHeight);
+          const score = normalizedHeight > 0
+            ? entry.intersectionRect.height / normalizedHeight
+            : 0;
+          sectionVisibilityRef.current[id] = score;
+        }
+
+        let topId = null;
+        let topScore = 0;
+        for (const [id, score] of Object.entries(sectionVisibilityRef.current)) {
+          if (score > topScore) {
+            topId = id;
+            topScore = score;
+          }
+        }
+        if (topId && topScore >= 0.5) {
+          setActiveSection(topId);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-10% 0px -12% 0px",
+        threshold: Array.from({ length: 21 }, (_, i) => i / 20),
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [isHome]);
+
   const handleNavClick = (e, link) => {
     setOpen(false);
-    if (link.sectionId === null) return; // /contact – let Link navigate
+    const sectionId = getSectionIdForLink(link);
+    if (sectionId === null) return; // /contact – let Link navigate
     if (!isHome) return; // different page – let Link navigate to /#section
     e.preventDefault();
-    scrollToSection(link.sectionId, reducedMotion);
+    setActiveSection(sectionId);
+    scrollToSection(sectionId, reducedMotion);
   };
 
   const toggleMenu = () => setOpen(!open);
@@ -91,16 +184,20 @@ export default function Header() {
         </Link>
 
         <nav className="app-header-nav app-header-nav--desktop">
-          {links.map((link) => (
+          {links.map((link) => {
+            const isActive = isLinkActive(link);
+            return (
             <Link
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link)}
-              aria-current={pathname === link.href ? "page" : undefined}
+              aria-current={isActive ? "page" : undefined}
+              className={isActive ? "is-active" : undefined}
             >
               {link.label}
             </Link>
-          ))}
+            );
+          })}
         </nav>
 
         <button
@@ -147,9 +244,14 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={resolveTransition(reducedMotion, transitionFast)}
+            onClick={(event) => {
+              if (event.target === event.currentTarget) setOpen(false);
+            }}
           >
             <ul className="app-header-nav-list">
-              {links.map((link, index) => (
+              {links.map((link, index) => {
+                const isActive = isLinkActive(link);
+                return (
                 <motion.li
                   key={link.href}
                   initial={{ opacity: 0, y: 12 }}
@@ -159,12 +261,14 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link)}
-                    aria-current={pathname === link.href ? "page" : undefined}
+                    aria-current={isActive ? "page" : undefined}
+                    className={isActive ? "is-active" : undefined}
                   >
                     {link.label}
                   </Link>
                 </motion.li>
-              ))}
+                );
+              })}
             </ul>
           </motion.nav>
         )}

@@ -133,9 +133,10 @@
 }
 
 .process-flow-step-number {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
   color: var(--accent);
 }
 

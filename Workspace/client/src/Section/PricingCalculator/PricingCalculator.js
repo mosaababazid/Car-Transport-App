@@ -1,7 +1,7 @@
 "use client";
 
 import "./PricingCalculator.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
@@ -12,9 +12,11 @@ export default function PricingCalculator() {
   const [pickup, setPickup] = useState("");
   const [dropoff, setDropoff] = useState("");
   const [result, setResult] = useState(null);
+  const [animatedPrice, setAnimatedPrice] = useState(0);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const reducedMotion = useReducedMotion();
+  const rafRef = useRef(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -41,6 +43,37 @@ export default function PricingCalculator() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (!result?.price) {
+      setAnimatedPrice(0);
+      return;
+    }
+    if (reducedMotion) {
+      setAnimatedPrice(result.price);
+      return;
+    }
+
+    const target = result.price;
+    const duration = 900;
+    const start = performance.now();
+    const initial = 0;
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.round(initial + (target - initial) * eased);
+      setAnimatedPrice(value);
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [result?.price, reducedMotion]);
 
   return (
     <section id="pricing" className="pricing-section">
@@ -112,8 +145,8 @@ export default function PricingCalculator() {
               </div>
               <div className="pricing-result-row">
                 <span className="pricing-result-label">Geschätzter Preis</span>
-                <strong className="pricing-result-value pricing-result-price">
-                  ab {result.price.toLocaleString("de-DE")} €
+                <strong className="pricing-result-value pricing-result-price" aria-live="polite">
+                  ab {animatedPrice.toLocaleString("de-DE")} €
                 </strong>
               </div>
               {typeof result.estimated_hours === "number" && (

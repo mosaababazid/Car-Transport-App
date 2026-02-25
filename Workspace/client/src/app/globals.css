@@ -13,7 +13,7 @@
   --text-primary: #f9fafb;
   --text-secondary: #94a3b8;
   --border-glass: rgba(255, 255, 255, 0.12);
-  --glow-accent: rgba(0, 224, 255, 0.35);
+  --glow-accent: rgba(0, 224, 255, 0.18);
   /* Animation rhythm: one easing curve and two durations for consistent feel */
   --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
   --duration-fast: 120ms;

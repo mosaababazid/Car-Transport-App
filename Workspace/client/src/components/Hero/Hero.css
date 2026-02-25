@@ -74,8 +74,8 @@
 
 .hero-primary-button:hover {
   box-shadow:
-    0 20px 48px rgba(56, 189, 248, 0.5),
-    0 0 32px var(--glow-accent),
+    0 14px 30px rgba(56, 189, 248, 0.3),
+    0 0 14px var(--glow-accent),
     0 0 0 1px rgba(15, 23, 42, 1);
 }
 
