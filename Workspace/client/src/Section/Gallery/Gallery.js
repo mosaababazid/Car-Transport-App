@@ -99,6 +99,12 @@ export default function Gallery({ variant = "preview" }) {
         viewport={isFullPage ? undefined : VIEWPORT_ONCE}
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
+        {isFullPage && (
+          <Link href="/" className="back-to-home">
+            Zur Startseite
+          </Link>
+        )}
+
         <h2 id="gallery-heading" className="gallery-heading">
           Galerie
         </h2>

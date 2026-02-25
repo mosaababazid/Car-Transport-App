@@ -217,6 +217,9 @@
   background: var(--secondary-bg);
   color: var(--secondary-text);
   border: 1px solid var(--secondary-border);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
 }
 
 .contact-cta-link--secondary:hover {

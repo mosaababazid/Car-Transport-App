@@ -10,7 +10,7 @@ export default function Footer() {
             <h2>AutoMove Logistik</h2>
             <p>Professioneller Fahrzeugtransport, sicher und europaweit.</p>
             <Link href="/contact" className="app-footer-cta">
-              Zum Kontaktformular
+            Zum Kontaktformular
             </Link>
           </div>
 

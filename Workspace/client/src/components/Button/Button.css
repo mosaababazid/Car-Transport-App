@@ -87,18 +87,23 @@
 }
 
 .ui-button--ghost {
-  background: rgba(15, 23, 42, 0.96);
-  color: var(--text-primary);
-  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: var(--secondary-bg);
+  color: var(--secondary-text);
+  border: 1px solid var(--secondary-border);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   box-shadow:
     0 10px 30px rgba(15, 23, 42, 0.95),
     0 0 0 1px rgba(15, 23, 42, 0.9);
 }
 
 .ui-button--ghost:hover:not(:disabled) {
-  border-color: var(--accent);
+  border-color: var(--secondary-border-hover);
+  color: var(--secondary-text-hover);
+  background: var(--secondary-bg-hover);
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 0 20px var(--glow-accent);
+  box-shadow: 0 0 12px var(--glow-accent);
 }
 
 .ui-button:disabled {
