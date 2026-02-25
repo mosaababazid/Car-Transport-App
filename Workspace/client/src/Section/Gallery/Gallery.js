@@ -3,7 +3,7 @@
 import "./Gallery.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -19,6 +19,8 @@ import { GALLERY_IMAGES } from "../../constants/galleryImages";
 export default function Gallery({ variant = "preview" }) {
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [touchStartX, setTouchStartX] = useState(null);
+  const triggerButtonRef = useRef(null);
+  const closeButtonRef = useRef(null);
   const reducedMotion = useReducedMotion();
 
   const goPrev = useCallback(() => {
@@ -29,7 +31,12 @@ export default function Gallery({ variant = "preview" }) {
     setLightboxIndex((i) => (i >= GALLERY_IMAGES.length - 1 ? 0 : i + 1));
   }, []);
 
-  const close = useCallback(() => setLightboxIndex(null), []);
+  const close = useCallback(() => {
+    setLightboxIndex(null);
+    requestAnimationFrame(() => {
+      triggerButtonRef.current?.focus();
+    });
+  }, []);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -48,6 +55,9 @@ export default function Gallery({ variant = "preview" }) {
     body.style.paddingRight = `${scrollBarWidth}px`;
     html.style.overflow = "hidden";
     html.style.overscrollBehavior = "none";
+    requestAnimationFrame(() => {
+      closeButtonRef.current?.focus();
+    });
     return () => {
       document.removeEventListener("keydown", handleKey);
       body.style.overflow = "";
@@ -113,7 +123,10 @@ export default function Gallery({ variant = "preview" }) {
               <button
                 type="button"
                 className="gallery-card-tap-target"
-                onClick={() => setLightboxIndex(index)}
+                onClick={(event) => {
+                  triggerButtonRef.current = event.currentTarget;
+                  setLightboxIndex(index);
+                }}
                 aria-label={`${item.alt} vergrößern (${index + 1} von ${GALLERY_IMAGES.length})`}
               >
                 <div className="gallery-card-glass">
@@ -182,6 +195,7 @@ export default function Gallery({ variant = "preview" }) {
                 <button
                   type="button"
                   className="gallery-lightbox-close"
+                  ref={closeButtonRef}
                   onClick={close}
                   aria-label="Schließen"
                 >

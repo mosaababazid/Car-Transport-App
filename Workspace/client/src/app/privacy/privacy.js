@@ -1,5 +1,6 @@
 import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
+import Link from "next/link";
 import { getLegalPageStructuredData } from "../structuredData";
 import "../legal.css";
 
@@ -20,9 +21,9 @@ export default function PrivacyPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <div className="legal-inner">
-          <a href="/" className="back-to-home">
+          <Link href="/" className="back-to-home">
             Zur Startseite
-          </a>
+          </Link>
           <h1 className="legal-title">Datenschutzerklärung</h1>
           <div className="legal-content">
             <h2>1. Verantwortlicher</h2>
@@ -55,7 +56,7 @@ export default function PrivacyPage() {
               finden Sie stets auf dieser Seite.
             </p>
             <p>
-              <a href="/imprint">Impressum</a> · <a href="/terms">AGB</a>
+              <Link href="/imprint">Impressum</Link> · <Link href="/terms">AGB</Link>
             </p>
           </div>
         </div>

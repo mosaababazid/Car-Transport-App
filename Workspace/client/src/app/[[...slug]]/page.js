@@ -6,6 +6,7 @@ import {
   TermsPage,
   ImprintPage,
 } from "../app";
+import Link from "next/link";
 
 const ROUTES = {
   gallery: GalleryPage,
@@ -104,7 +105,7 @@ export default async function RouterPage({ params }) {
       <div className="app-shell" style={{ padding: "2rem", textAlign: "center" }}>
         <h1>404</h1>
         <p>Seite nicht gefunden.</p>
-        <a href="/">Zur Startseite</a>
+        <Link href="/">Zur Startseite</Link>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 .process-flow-section {
-  padding: 4.5rem 1rem 6.25rem;
+  padding: 4.75rem 1rem 6.5rem;
   background: transparent;
   overflow-x: hidden;
 }
@@ -11,7 +11,7 @@
 }
 
 .process-flow-title {
-  margin: 0 0 3rem;
+  margin: 0 0 3.25rem;
   font-size: clamp(1.35rem, 3.5vw, 1.85rem);
   font-weight: 600;
   letter-spacing: -0.03em;
@@ -39,6 +39,12 @@
   border-radius: 2px;
   transform: translateX(-50%);
   box-sizing: content-box;
+  opacity: 0;
+  transition: opacity 260ms var(--ease-smooth);
+}
+
+.process-flow-line-track.is-ready {
+  opacity: 1;
 }
 
 .process-flow-line-track:not([style*="height"]) {
@@ -123,7 +129,7 @@
   border-radius: 50%;
   background: var(--bg-elevated);
   border: 2px solid var(--accent);
-  box-shadow: 0 0 16px var(--glow-accent);
+  box-shadow: 0 0 12px var(--glow-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,7 +139,7 @@
 }
 
 .process-flow-step-number {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -168,7 +174,7 @@
   text-align: left;
   margin: 0;
   font-size: 0.9rem;
-  line-height: 1.62;
+  line-height: 1.7;
   color: var(--text-secondary);
 }
 

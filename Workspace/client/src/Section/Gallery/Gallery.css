@@ -1,5 +1,5 @@
 .gallery-section {
-  padding: 4rem 1rem 5rem;
+  padding: 4.25rem 1rem 5.25rem;
   background: transparent;
   position: relative;
 }
@@ -13,18 +13,7 @@
 }
 
 .gallery-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(5, 5, 5, 0.3) 0%,
-    transparent 100%
-  );
-  pointer-events: none;
+  content: none;
 }
 
 .gallery-inner {
@@ -44,7 +33,7 @@
 .gallery-subline {
   margin: 0 0 2.5rem;
   font-size: clamp(0.88rem, 2vw, 0.95rem);
-  line-height: 1.65;
+  line-height: 1.72;
   color: var(--text-secondary);
   text-align: center;
   max-width: 36rem;
@@ -116,8 +105,8 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 0 0 1px rgba(0, 224, 255, 0.15),
     0 24px 56px rgba(0, 0, 0, 0.55),
-    0 0 48px rgba(0, 224, 255, 0.12),
-    0 0 80px rgba(0, 224, 255, 0.06);
+    0 0 34px rgba(0, 224, 255, 0.1),
+    0 0 56px rgba(0, 224, 255, 0.05);
 }
 
 .gallery-card-tap-target:focus-visible {
@@ -205,6 +194,14 @@
   background: var(--secondary-bg-hover);
   transform: scale(1.03);
   box-shadow: 0 0 12px var(--glow-accent);
+}
+
+.gallery-more-button:focus-visible {
+  border-color: var(--secondary-border-hover);
+  color: var(--secondary-text-hover);
+  background: var(--secondary-bg-hover);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.22), 0 0 12px var(--glow-accent);
+  outline: none;
 }
 
 @media (max-width: 639px) {
@@ -295,6 +292,15 @@
   background: var(--secondary-bg-hover);
   color: var(--secondary-text-hover);
   box-shadow: 0 0 12px var(--glow-accent);
+}
+
+.gallery-lightbox-close:focus-visible,
+.gallery-lightbox-nav:focus-visible {
+  border-color: var(--secondary-border-hover);
+  background: var(--secondary-bg-hover);
+  color: var(--secondary-text-hover);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.22), 0 0 12px var(--glow-accent);
+  outline: none;
 }
 
 .gallery-lightbox-close {

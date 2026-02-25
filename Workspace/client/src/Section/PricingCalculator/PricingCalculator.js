@@ -2,6 +2,7 @@
 
 import "./PricingCalculator.css";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
@@ -167,9 +168,9 @@ export default function PricingCalculator() {
                 </div>
               )}
               <div className="pricing-cta-wrap">
-                <a href="/contact" className="pricing-cta-link btn-primary">
+                <Link href="/contact" className="pricing-cta-link btn-primary">
                   Kontaktieren
-                </a>
+                </Link>
               </div>
             </motion.div>
           )}

@@ -20,10 +20,11 @@
   --secondary-border-hover: rgba(0, 224, 255, 0.5);
   --secondary-text: #c8f3ff;
   --secondary-text-hover: #e6fbff;
-  /* Animation rhythm: one easing curve and two durations for consistent feel */
   --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
   --duration-fast: 120ms;
   --duration-smooth: 320ms;
+  --section-pad-y: 4rem;
+  --section-pad-y-lg: 5rem;
 }
 
 @theme inline {
@@ -68,6 +69,9 @@ body {
   background: var(--bg-primary);
   color: var(--foreground);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 .app-shell {
@@ -172,7 +176,6 @@ body {
   top: 0.75rem;
 }
 
-/* Back-to-home link: matches .ui-button--ghost so it reads as primary nav action */
 .back-to-home {
   display: inline-flex;
   align-items: center;
@@ -204,7 +207,14 @@ body {
   box-shadow: 0 0 12px var(--glow-accent);
 }
 
-/* Avoid long compound words (e.g. DE) breaking layout */
+.back-to-home:focus-visible {
+  border-color: var(--secondary-border-hover);
+  color: var(--secondary-text-hover);
+  background: var(--secondary-bg-hover);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.22), 0 0 12px var(--glow-accent);
+  outline: none;
+}
+
 h1, h2, h3, p, span, a, button, label {
   word-wrap: break-word;
   overflow-wrap: break-word;

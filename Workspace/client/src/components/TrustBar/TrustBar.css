@@ -1,5 +1,5 @@
 .trustbar-section {
-  padding: 2rem 1rem 2.5rem;
+  padding: 2.75rem 1rem 3.25rem;
   background: transparent;
 }
 
@@ -54,7 +54,7 @@
 
 .trustbar-text {
   font-size: 0.8rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--text-secondary);
   text-align: left;
 }

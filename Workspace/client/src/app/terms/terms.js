@@ -1,5 +1,6 @@
 import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
+import Link from "next/link";
 import { getLegalPageStructuredData } from "../structuredData";
 import "../legal.css";
 
@@ -20,9 +21,9 @@ export default function TermsPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <div className="legal-inner">
-          <a href="/" className="back-to-home">
+          <Link href="/" className="back-to-home">
             Zur Startseite
-          </a>
+          </Link>
           <h1 className="legal-title">Allgemeine Geschäftsbedingungen (AGB)</h1>
           <div className="legal-content">
             <h2>1. Geltungsbereich</h2>
@@ -59,7 +60,8 @@ export default function TermsPage() {
               unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
             </p>
             <p>
-              <a href="/imprint">Impressum</a> · <a href="/privacy">Datenschutzerklärung</a>
+              <Link href="/imprint">Impressum</Link> ·{" "}
+              <Link href="/privacy">Datenschutzerklärung</Link>
             </p>
           </div>
         </div>

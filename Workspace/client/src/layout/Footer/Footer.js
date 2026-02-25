@@ -1,4 +1,5 @@
 import "./Footer.css";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -7,9 +8,9 @@ export default function Footer() {
         <div className="app-footer-main">
           <h2>AutoMove Logistik</h2>
           <p>Professioneller Fahrzeugtransport, sicher und europaweit. Kontaktieren Sie uns.</p>
-          <a href="/contact" className="app-footer-cta">
+          <Link href="/contact" className="app-footer-cta">
             ZUM KONTAKTFORMULAR
-          </a>
+          </Link>
         </div>
         <div className="app-footer-columns">
           <div>
@@ -24,9 +25,9 @@ export default function Footer() {
           </div>
         </div>
         <nav className="app-footer-legal" aria-label="Rechtliche Hinweise">
-          <a href="/imprint">Impressum</a>
-          <a href="/privacy">Datenschutzerklärung</a>
-          <a href="/terms">AGB</a>
+          <Link href="/imprint">Impressum</Link>
+          <Link href="/privacy">Datenschutzerklärung</Link>
+          <Link href="/terms">AGB</Link>
         </nav>
         <div className="app-footer-bottom">
           <span>© {new Date().getFullYear()} AutoMove Logistik</span>

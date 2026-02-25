@@ -94,19 +94,16 @@ export default function Header() {
   useEffect(() => {
     if (open || !isHome) return;
     const targetSection = pendingSectionScrollRef.current;
-    // Run after menu close/body unlock to avoid mobile jump/stuck behavior.
     requestAnimationFrame(() => {
       if (targetSection) {
         scrollToSection(targetSection, reducedMotion);
         pendingSectionScrollRef.current = null;
       } else {
-        // No pending navigation: just refresh active state after unlock.
         recomputeActiveSectionRef.current();
       }
     });
   }, [open, isHome, reducedMotion]);
 
-  // After client-side navigation to /#section, scroll to the section
   useEffect(() => {
     if (!isHome || typeof window === "undefined") return;
     const hash = window.location.hash.slice(1);
@@ -131,7 +128,7 @@ export default function Header() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (openRef.current) return; // Freeze spy while mobile menu is open.
+        if (openRef.current) return;
         for (const entry of entries) {
           const id = entry.target.id;
           if (!entry.isIntersecting) {
@@ -179,7 +176,7 @@ export default function Header() {
     };
 
     const updateActiveFromScroll = () => {
-      if (openRef.current) return; // Prevent re-calculation during body lock.
+      if (openRef.current) return;
       if (window.scrollY < 80) {
         setActiveSection("hero");
         return;
@@ -244,7 +241,6 @@ export default function Header() {
     e.preventDefault();
     setActiveSection(sectionId);
     if (wasOpen) {
-      // On mobile, wait until overlay closes and body scroll is restored.
       pendingSectionScrollRef.current = sectionId;
       return;
     }

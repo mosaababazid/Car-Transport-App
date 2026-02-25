@@ -55,17 +55,23 @@ export default function ProcessFlow() {
   const lastStepRef = useRef(null);
   const firstStepMarkerRef = useRef(null);
   const lastStepMarkerRef = useRef(null);
+  const [trackTopPx, setTrackTopPx] = useState(0);
   const [trackHeightPx, setTrackHeightPx] = useState(null);
+  const [lineReady, setLineReady] = useState(false);
 
   useLayoutEffect(() => {
     const timeline = timelineRef.current;
-    const marker = lastStepMarkerRef.current;
-    if (!timeline || !marker) return;
+    const firstMarker = firstStepMarkerRef.current;
+    const lastMarker = lastStepMarkerRef.current;
+    if (!timeline || !firstMarker || !lastMarker) return;
     const measure = () => {
       const tlRect = timeline.getBoundingClientRect();
-      const markerRect = marker.getBoundingClientRect();
-      const markerCenterY = markerRect.top - tlRect.top + markerRect.height / 2;
-      setTrackHeightPx(Math.max(0, Math.floor(markerCenterY)));
+      const firstRect = firstMarker.getBoundingClientRect();
+      const lastRect = lastMarker.getBoundingClientRect();
+      const firstCenterY = firstRect.top - tlRect.top + firstRect.height / 2;
+      const lastCenterY = lastRect.top - tlRect.top + lastRect.height / 2;
+      setTrackTopPx(Math.max(0, Math.floor(firstCenterY)));
+      setTrackHeightPx(Math.max(0, Math.floor(lastCenterY - firstCenterY)));
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -99,8 +105,12 @@ export default function ProcessFlow() {
 
         <div className="process-flow-timeline" ref={timelineRef}>
           <div
-            className="process-flow-line-track"
-            style={trackHeightPx != null ? { height: trackHeightPx } : undefined}
+            className={`process-flow-line-track ${lineReady ? "is-ready" : ""}`}
+            style={
+              trackHeightPx != null
+                ? { top: trackTopPx, height: trackHeightPx }
+                : undefined
+            }
           >
             <motion.div
               className="process-flow-line-fill"
@@ -127,6 +137,9 @@ export default function ProcessFlow() {
                   initial={{ opacity: 0, scale: 0.92 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, amount: 0.4 }}
+                  onAnimationComplete={() => {
+                    if (index === 0) setLineReady(true);
+                  }}
                   transition={{
                     delay: reducedMotion ? 0 : index * STAGGER,
                     ...resolveTransition(reducedMotion, transitionChild),

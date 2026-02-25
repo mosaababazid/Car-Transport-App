@@ -1,5 +1,6 @@
 import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
+import Link from "next/link";
 import { getLegalPageStructuredData } from "../structuredData";
 import "../legal.css";
 
@@ -20,9 +21,9 @@ export default function ImprintPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <div className="legal-inner">
-          <a href="/" className="back-to-home">
+          <Link href="/" className="back-to-home">
             Zur Startseite
-          </a>
+          </Link>
           <h1 className="legal-title">Impressum</h1>
           <div className="legal-content">
             <p>Angaben gemäß § 5 TMG</p>
@@ -43,7 +44,7 @@ export default function ImprintPage() {
             <h2>Verantwortlich für den Inhalt</h2>
             <p>[Name und Anschrift des Verantwortlichen]</p>
             <p>
-              <a href="/privacy">Datenschutzerklärung</a> · <a href="/terms">AGB</a>
+              <Link href="/privacy">Datenschutzerklärung</Link> · <Link href="/terms">AGB</Link>
             </p>
           </div>
         </div>

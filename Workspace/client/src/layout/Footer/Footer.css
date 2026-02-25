@@ -1,5 +1,5 @@
 .app-footer {
-  margin-top: 4rem;
+  margin-top: 4.75rem;
   padding: 2rem 1rem 1.5rem;
   background: transparent;
   border-top: 1px solid var(--bg-slate);
@@ -23,6 +23,7 @@
   margin: 0;
   font-size: 0.88rem;
   color: var(--text-secondary);
+  line-height: 1.65;
   text-align: left;
 }
 
