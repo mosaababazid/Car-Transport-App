@@ -90,8 +90,11 @@
 }
 
 .services-card--highlight:hover {
-  border-color: rgba(0, 224, 255, 0.35);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.5), 0 0 28px var(--glow-accent);
+  border-color: var(--box-border-strong);
+  box-shadow:
+    0 0 0 1px rgba(0, 224, 255, 0.06) inset,
+    0 16px 42px rgba(0, 0, 0, 0.46),
+    0 0 12px rgba(0, 224, 255, 0.05);
 }
 
 .services-grid {
@@ -120,8 +123,11 @@
 
 .services-card:hover {
   transform: scale(1.02);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.5), 0 0 24px var(--glow-accent);
+  border-color: var(--box-border-strong);
+  box-shadow:
+    0 0 0 1px rgba(0, 224, 255, 0.06) inset,
+    0 16px 42px rgba(0, 0, 0, 0.46),
+    0 0 10px rgba(0, 224, 255, 0.05);
 }
 
 .services-card-icon {
