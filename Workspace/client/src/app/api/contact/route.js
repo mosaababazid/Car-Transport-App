@@ -1,3 +1,5 @@
+import { checkRateLimit, getClientIp } from "../_lib/rateLimit";
+
 const MAIL_TO = process.env.MAIL_TO || "anfrage@automove-logistik.de";
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const MAIL_FROM = process.env.MAIL_FROM || "AutoMove Logistik <onboarding@resend.dev>";
@@ -14,6 +16,10 @@ function escapeHtml(s) {
 
 function sanitize(value, maxLength) {
   return String(value ?? "").trim().slice(0, maxLength);
+}
+
+function hasUnsafeControlChars(value) {
+  return /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(value);
 }
 
 function buildEmailBody({ name, email, phone, message }) {
@@ -43,6 +49,19 @@ function buildEmailBody({ name, email, phone, message }) {
 
 export async function POST(request) {
   try {
+    const ip = getClientIp(request);
+    const limiter = checkRateLimit({
+      key: `contact:${ip}`,
+      limit: 6,
+      windowMs: 60_000,
+    });
+    if (!limiter.allowed) {
+      return Response.json(
+        { error: "Zu viele Anfragen. Bitte kurz warten und erneut versuchen." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const name = sanitize(body.name, 100);
     const email = sanitize(body.email, 255).toLowerCase();
@@ -67,6 +86,12 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+    if (hasUnsafeControlChars(name) || hasUnsafeControlChars(message)) {
+      return Response.json(
+        { error: "Ungültige Zeichen in den Eingabefeldern." },
+        { status: 400 }
+      );
+    }
 
     if (!RESEND_API_KEY) {
       return Response.json(
@@ -81,12 +106,15 @@ export async function POST(request) {
     const { text, html } = buildEmailBody({ name, email, phone, message });
     const subject = `Kontaktanfrage von ${name}`;
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10_000);
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
+      signal: controller.signal,
       body: JSON.stringify({
         from: MAIL_FROM,
         to: [MAIL_TO],
@@ -94,7 +122,7 @@ export async function POST(request) {
         text,
         html,
       }),
-    });
+    }).finally(() => clearTimeout(timeout));
 
     const data = await res.json().catch(() => ({}));
 

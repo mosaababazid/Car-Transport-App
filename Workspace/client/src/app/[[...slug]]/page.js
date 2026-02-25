@@ -14,17 +14,26 @@ const ROUTES = {
 };
 
 const METADATA = {
+  contact: {
+    title: "Kontakt",
+    description:
+      "Kontakt zu AutoMove Logistik: Anfrage per Formular, Telefon oder WhatsApp. Schnelle Rückmeldung für Ihren Fahrzeugtransport.",
+    keywords: ["Kontakt", "Autotransport Kontakt", "Fahrzeuglogistik Anfrage"],
+  },
   privacy: {
     title: "Datenschutzerklärung",
     description: "Datenschutzerklärung der AutoMove Logistik.",
+    keywords: ["Datenschutzerklärung", "Datenschutz", "DSGVO"],
   },
   terms: {
     title: "AGB",
     description: "Allgemeine Geschäftsbedingungen der AutoMove Logistik.",
+    keywords: ["AGB", "Allgemeine Geschäftsbedingungen", "Vertragsbedingungen"],
   },
   imprint: {
     title: "Impressum",
     description: "Impressum und Angaben gemäß § 5 TMG.",
+    keywords: ["Impressum", "Anbieterkennzeichnung", "§ 5 TMG"],
   },
 };
 
@@ -36,8 +45,36 @@ export async function generateMetadata({ params }) {
   const segment = Array.isArray(slug) ? slug[0] : slug;
   const pageMeta = METADATA[segment] ?? {};
   const path = segment ? `/${segment}` : "";
+  const pageTitle = pageMeta.title ? `${pageMeta.title} | AutoMove Logistik` : undefined;
+  const ogImage = `${SITE_URL}/og-image.jpg`;
   return {
     ...pageMeta,
+    ...(segment && pageMeta.description
+      ? {
+          openGraph: {
+            title: pageTitle,
+            description: pageMeta.description,
+            url: `${SITE_URL}${path}`,
+            siteName: "AutoMove Logistik",
+            locale: "de_DE",
+            type: "website",
+            images: [
+              {
+                url: ogImage,
+                width: 1200,
+                height: 630,
+                alt: `${pageMeta.title} | AutoMove Logistik`,
+              },
+            ],
+          },
+          twitter: {
+            card: "summary_large_image",
+            title: pageTitle,
+            description: pageMeta.description,
+            images: [ogImage],
+          },
+        }
+      : {}),
     alternates: {
       canonical: `${SITE_URL}${path}`,
     },

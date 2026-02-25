@@ -63,3 +63,39 @@ export function getStructuredData() {
 
   return [localBusiness, webSite];
 }
+
+export function getLegalPageStructuredData({ path, title, description, kind }) {
+  const pageUrl = `${SITE_URL}${path}`;
+  const webPage = {
+    "@context": "https://schema.org",
+    "@type": kind || "WebPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: title,
+    description,
+    inLanguage: "de-DE",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Startseite",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: title,
+        item: pageUrl,
+      },
+    ],
+  };
+
+  return [webPage, breadcrumb];
+}

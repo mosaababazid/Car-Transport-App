@@ -1,12 +1,24 @@
 import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
+import { getLegalPageStructuredData } from "../structuredData";
 import "../legal.css";
 
 export default function ImprintPage() {
+  const schema = getLegalPageStructuredData({
+    path: "/imprint",
+    title: "Impressum",
+    description: "Impressum und Anbieterkennzeichnung gemäß § 5 TMG.",
+    kind: "AboutPage",
+  });
+
   return (
     <div className="app-shell">
       <Header />
       <main className="legal-main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
         <div className="legal-inner">
           <a href="/" className="back-to-home">
             Zur Startseite
