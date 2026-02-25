@@ -2,7 +2,7 @@
 
 import "./ProcessFlow.css";
 import { useRef, useLayoutEffect, useState } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion, useSpring } from "framer-motion";
 import {
   STAGGER,
   VIEWPORT_ONCE_MORE,
@@ -84,11 +84,18 @@ export default function ProcessFlow() {
   }, []);
 
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end 50%"],
+    target: timelineRef,
+    offset: ["start 82%", "end 38%"],
   });
 
-  const lineHeight = useTransform(scrollYProgress, (v) => `${ v * 100}%`);
+  const mappedLineProgress = useTransform(scrollYProgress, [0.16, 0.94], [0, 1]);
+  const smoothLineProgress = useSpring(mappedLineProgress, {
+    stiffness: reducedMotion ? 1000 : 180,
+    damping: reducedMotion ? 120 : 28,
+    mass: 0.35,
+  });
+  const effectiveLineProgress = reducedMotion ? mappedLineProgress : smoothLineProgress;
+  const lineHeight = useTransform(effectiveLineProgress, (v) => `${Math.max(0, Math.min(1, v)) * 100}%`);
 
   return (
     <section id="process-flow" className="process-flow-section" ref={sectionRef}>
