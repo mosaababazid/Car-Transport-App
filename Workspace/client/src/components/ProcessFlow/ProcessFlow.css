@@ -128,23 +128,64 @@
   min-width: 2.75rem;
   min-height: 2.75rem;
   border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 12px var(--glow-accent);
+  background: linear-gradient(180deg, #0d1420 0%, #0a111c 100%);
+  border: 1.5px solid rgba(0, 224, 255, 0.32);
+  box-shadow: 0 0 0 rgba(0, 224, 255, 0);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 2;
   justify-self: center;
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color 380ms var(--ease-smooth), box-shadow 380ms var(--ease-smooth),
+    background 380ms var(--ease-smooth), transform 380ms var(--ease-smooth);
+}
+
+.process-flow-step-marker::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 26%, rgba(148, 163, 184, 0.14), transparent 64%);
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity 380ms var(--ease-smooth);
 }
 
 .process-flow-step-number {
-  font-size: 0.98rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  font-family: "SF Pro Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 620;
+  letter-spacing: 0;
   line-height: 1;
-  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  color: rgba(226, 232, 240, 0.84);
+  text-shadow: 0 1px 0 rgba(2, 6, 23, 0.4);
+  transition: color 380ms var(--ease-smooth), text-shadow 380ms var(--ease-smooth),
+    filter 380ms var(--ease-smooth);
+}
+
+.process-flow-step-marker.is-reached {
+  background: linear-gradient(180deg, #0c1726 0%, #0a131f 100%);
+  border-color: rgba(0, 224, 255, 0.48);
+  box-shadow:
+    0 0 0 1px rgba(0, 224, 255, 0.08) inset,
+    0 0 6px rgba(0, 224, 255, 0.06),
+    0 0 10px rgba(0, 224, 255, 0.02);
+}
+
+.process-flow-step-marker.is-reached::before {
+  opacity: 1;
+}
+
+.process-flow-step-marker.is-reached .process-flow-step-number {
+  color: #bfeef7;
+  text-shadow:
+    0 0 1px rgba(0, 224, 255, 0.08),
+    0 1px 0 rgba(2, 6, 23, 0.42);
+  filter: saturate(1.01);
 }
 
 .process-flow-step-card {

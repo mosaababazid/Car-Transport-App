@@ -1,8 +1,15 @@
 "use client";
 
 import "./ProcessFlow.css";
-import { useRef, useLayoutEffect, useState } from "react";
-import { motion, useScroll, useTransform, useReducedMotion, useSpring } from "framer-motion";
+import { useRef, useLayoutEffect, useState, useCallback, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+  useSpring,
+  useMotionValueEvent,
+} from "framer-motion";
 import {
   STAGGER,
   VIEWPORT_ONCE_MORE,
@@ -52,11 +59,13 @@ export default function ProcessFlow() {
   const sectionRef = useRef(null);
   const timelineRef = useRef(null);
   const reducedMotion = useReducedMotion();
-  const lastStepRef = useRef(null);
+  const markerRefs = useRef([]);
   const firstStepMarkerRef = useRef(null);
   const lastStepMarkerRef = useRef(null);
   const [trackTopPx, setTrackTopPx] = useState(0);
   const [trackHeightPx, setTrackHeightPx] = useState(null);
+  const [markerProgressPoints, setMarkerProgressPoints] = useState([]);
+  const [reachedSteps, setReachedSteps] = useState(() => STEPS.map(() => false));
   const [lineReady, setLineReady] = useState(false);
 
   useLayoutEffect(() => {
@@ -70,8 +79,18 @@ export default function ProcessFlow() {
       const lastRect = lastMarker.getBoundingClientRect();
       const firstCenterY = firstRect.top - tlRect.top + firstRect.height / 2;
       const lastCenterY = lastRect.top - tlRect.top + lastRect.height / 2;
+      const span = Math.max(1, lastCenterY - firstCenterY);
+      const nextProgressPoints = STEPS.map((_, idx) => {
+        const markerEl = markerRefs.current[idx];
+        if (!markerEl) return idx / Math.max(1, STEPS.length - 1);
+        const rect = markerEl.getBoundingClientRect();
+        const centerY = rect.top - tlRect.top + rect.height / 2;
+        const normalized = (centerY - firstCenterY) / span;
+        return Math.max(0, Math.min(1, normalized));
+      });
       setTrackTopPx(Math.max(0, Math.floor(firstCenterY)));
       setTrackHeightPx(Math.max(0, Math.floor(lastCenterY - firstCenterY)));
+      setMarkerProgressPoints(nextProgressPoints);
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -96,6 +115,28 @@ export default function ProcessFlow() {
   });
   const effectiveLineProgress = reducedMotion ? mappedLineProgress : smoothLineProgress;
   const lineHeight = useTransform(effectiveLineProgress, (v) => `${Math.max(0, Math.min(1, v)) * 100}%`);
+
+  const updateReachedSteps = useCallback((rawProgress) => {
+    if (!markerProgressPoints.length) return;
+    const progress = Math.max(0, Math.min(1, rawProgress));
+    const lead = 0.018; // Tiny lead for smooth "arrival" feeling.
+    const next = markerProgressPoints.map((point) => progress + lead >= point);
+    setReachedSteps((prev) => {
+      if (prev.length !== next.length) return next;
+      for (let i = 0; i < next.length; i += 1) {
+        if (prev[i] !== next[i]) return next;
+      }
+      return prev;
+    });
+  }, [markerProgressPoints]);
+
+  useEffect(() => {
+    updateReachedSteps(effectiveLineProgress.get());
+  }, [effectiveLineProgress, updateReachedSteps]);
+
+  useMotionValueEvent(effectiveLineProgress, "change", (value) => {
+    updateReachedSteps(value);
+  });
 
   return (
     <section id="process-flow" className="process-flow-section" ref={sectionRef}>
@@ -135,12 +176,15 @@ export default function ProcessFlow() {
             {STEPS.map((step, index) => (
               <li
                 key={step.number}
-                ref={index === STEPS.length - 1 ? lastStepRef : null}
                 className={`process-flow-step process-flow-step--${index % 2 === 0 ? "left" : "right"}`}
               >
                 <motion.div
-                  ref={index === 0 ? firstStepMarkerRef : index === STEPS.length - 1 ? lastStepMarkerRef : null}
-                  className="process-flow-step-marker"
+                  ref={(el) => {
+                    markerRefs.current[index] = el;
+                    if (index === 0) firstStepMarkerRef.current = el;
+                    if (index === STEPS.length - 1) lastStepMarkerRef.current = el;
+                  }}
+                  className={`process-flow-step-marker ${reachedSteps[index] ? "is-reached" : ""}`}
                   initial={{ opacity: 0, scale: 0.92 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, amount: 0.4 }}
