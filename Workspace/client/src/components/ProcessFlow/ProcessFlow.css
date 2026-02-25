@@ -118,6 +118,27 @@
   position: relative;
 }
 
+.process-flow-step::after {
+  content: "";
+  position: absolute;
+  top: 1.375rem; /* marker center */
+  left: 2.75rem; /* marker right edge */
+  width: 1.5rem; /* grid gap on mobile/default */
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 224, 255, 0.04), rgba(0, 224, 255, 0.48), rgba(0, 224, 255, 0.06));
+  transform: translateY(-50%) scaleX(0.2);
+  transform-origin: left center;
+  opacity: 0;
+  filter: blur(0.25px);
+  transition: opacity 360ms var(--ease-smooth), transform 360ms var(--ease-smooth);
+  pointer-events: none;
+}
+
+.process-flow-step.is-reached::after {
+  opacity: 1;
+  transform: translateY(-50%) scaleX(1);
+}
+
 .process-flow-step:last-child {
   padding-bottom: 0;
   min-height: 4rem;
@@ -210,34 +231,6 @@
   box-shadow: 0 0 24px rgba(0, 224, 255, 0.08);
 }
 
-.process-flow-step-card::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 1.35rem;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(0, 224, 255, 0), rgba(0, 224, 255, 0.46), rgba(0, 224, 255, 0));
-  transform: translateY(-50%) scaleX(0.2);
-  transform-origin: center;
-  opacity: 0;
-  filter: blur(0.25px);
-  transition: opacity 360ms var(--ease-smooth), transform 360ms var(--ease-smooth);
-  pointer-events: none;
-}
-
-.process-flow-step--left .process-flow-step-card::before {
-  right: calc(-1.35rem - 1px);
-}
-
-.process-flow-step--right .process-flow-step-card::before {
-  left: calc(-1.35rem - 1px);
-}
-
-.process-flow-step.is-reached .process-flow-step-card::before {
-  opacity: 1;
-  transform: translateY(-50%) scaleX(1);
-}
-
 .process-flow-step-card.is-reached {
   border-color: rgba(0, 224, 255, 0.2);
   box-shadow:
@@ -302,16 +295,6 @@
     grid-template-columns: 2.75rem 1fr;
   }
 
-  .process-flow-step-card::before {
-    width: 1rem;
-  }
-
-  .process-flow-step--left .process-flow-step-card::before,
-  .process-flow-step--right .process-flow-step-card::before {
-    left: calc(-1rem - 1px);
-    right: auto;
-  }
-
   .process-flow-step-marker {
     justify-self: center;
   }
@@ -348,6 +331,21 @@
     gap: 2rem;
     min-height: 7rem;
     padding-bottom: 3rem;
+  }
+
+  .process-flow-step::after {
+    width: 2rem; /* desktop gap */
+    left: auto;
+  }
+
+  .process-flow-step--left::after {
+    right: calc(50% + 1.375rem);
+    transform-origin: right center;
+  }
+
+  .process-flow-step--right::after {
+    left: calc(50% + 1.375rem);
+    transform-origin: left center;
   }
 
   .process-flow-step--left .process-flow-step-marker {
