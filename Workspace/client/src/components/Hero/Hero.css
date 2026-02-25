@@ -89,6 +89,13 @@
   transition: box-shadow 400ms var(--ease-smooth), border-color 400ms var(--ease-smooth);
 }
 
+/* iOS Safari: backdrop-filter renders broken (fully blurred). Use solid fallback. */
+.hero-section--ios .hero-glass-box {
+  background: rgba(11, 16, 28, 0.92);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 .hero-glass-box:hover {
   border-color: rgba(0, 224, 255, 0.12);
   box-shadow:

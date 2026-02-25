@@ -4,7 +4,7 @@ import "./Hero.css";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   VIEWPORT_ONCE,
   transitionEntrance,
@@ -14,21 +14,23 @@ import {
 
 import mainImage from "../../assets/Images/main.jpg";
 
-function isIOSSafari() {
+function isIOS() {
   if (typeof navigator === "undefined") return false;
-  const ua = navigator.userAgent;
-  const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  const isSafari = /Safari/.test(ua) && !/Chrome|CriOS|FxiOS/.test(ua);
-  return isIOS && (isSafari || /AppleWebKit/.test(ua));
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
 }
 
 export default function Hero() {
   const [offset, setOffset] = useState(50);
-  const [avoidTransform, setAvoidTransform] = useState(false);
+  const sectionRef = useRef(null);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    setAvoidTransform(isIOSSafari());
+    if (isIOS() && sectionRef.current) {
+      sectionRef.current.classList.add("hero-section--ios");
+    }
   }, []);
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="hero-section">
+    <section id="hero" ref={sectionRef} className="hero-section">
       <div className="hero-image-wrapper" aria-hidden="true">
         <Image
           src={mainImage}
