@@ -134,12 +134,32 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(15, 23, 42, 0.85);
-  color: #ffffff;
+  border: 1px solid var(--secondary-border);
+  background: var(--secondary-bg);
+  color: var(--secondary-text);
+  box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.08) inset;
   cursor: pointer;
   padding: 0;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--duration-smooth) var(--ease-smooth), border-color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth), color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
+}
+
+.app-header-burger-toggle:hover {
+  border-color: var(--secondary-border-hover);
+  color: var(--secondary-text-hover);
+  background: var(--secondary-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px var(--glow-accent);
+}
+
+.app-header-burger-toggle:focus-visible {
+  border-color: var(--secondary-border-hover);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.18), 0 0 12px var(--glow-accent);
+}
+
+.app-header-burger-toggle:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .app-header-nav-overlay {
@@ -167,10 +187,29 @@
   flex-shrink: 0 !important;
   padding: 0 !important;
   margin: 0;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(15, 23, 42, 0.9);
-  color: #ffffff;
+  border: 1px solid var(--secondary-border);
+  background: var(--secondary-bg);
+  color: var(--secondary-text);
+  box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.08) inset;
   cursor: pointer;
+  transition: transform var(--duration-smooth) var(--ease-smooth), border-color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth), color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
+}
+
+.app-header-burger-close:hover {
+  border-color: var(--secondary-border-hover);
+  color: var(--secondary-text-hover);
+  background: var(--secondary-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px var(--glow-accent);
+}
+
+.app-header-burger-close:focus-visible {
+  border-color: var(--secondary-border-hover);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.18), 0 0 12px var(--glow-accent);
+}
+
+.app-header-burger-close:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .app-header-nav-list {
