@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Header from "../layout/Header/Header";
 import Footer from "../layout/Footer/Footer";
 import Hero from "../components/Hero/Hero";
+import Gallery from "../Section/Gallery/Gallery";
 import TrustBar from "../components/TrustBar/TrustBar";
 import Services from "../Section/Services/Services";
 
@@ -24,6 +25,7 @@ export default function HomePage() {
         <TrustBar />
         <Services />
         <ProcessFlow />
+        <Gallery />
         <PricingCalculator />
         <JoinTeam />
       </main>

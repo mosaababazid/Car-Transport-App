@@ -1,5 +1,6 @@
 import {
   HomePage,
+  GalleryPage,
   ContactPage,
   PrivacyPage,
   TermsPage,
@@ -7,6 +8,7 @@ import {
 } from "../app";
 
 const ROUTES = {
+  gallery: GalleryPage,
   contact: ContactPage,
   privacy: PrivacyPage,
   terms: TermsPage,
@@ -14,6 +16,12 @@ const ROUTES = {
 };
 
 const METADATA = {
+  gallery: {
+    title: "Galerie",
+    description:
+      "Bilder vom professionellen Fahrzeugtransport in Deutschland und Europa. Moderne Transporter für sicheren und zuverlässigen Autotransport.",
+    keywords: ["Galerie", "Autotransport Bilder", "Transporter", "Fahrzeugtransport"],
+  },
   contact: {
     title: "Kontakt",
     description:

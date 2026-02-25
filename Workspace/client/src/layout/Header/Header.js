@@ -11,6 +11,7 @@ import { transitionIcon, transitionFast, STAGGER, resolveTransition } from "../.
 const links = [
   { href: "/", label: "Übersicht", sectionId: "hero" },
   { href: "/#services", label: "Leistungen", sectionId: "services" },
+  { href: "/gallery", label: "Galerie", sectionId: "gallery" },
   { href: "/#pricing", label: "Preis", sectionId: "pricing" },
   { href: "/contact", label: "Kontakt", sectionId: null },
 ];
@@ -237,8 +238,9 @@ export default function Header() {
     const wasOpen = open;
     setOpen(false);
 
-    if (sectionId === null) return; // /contact – let Link navigate
-    if (!isHome) return; // different page – let Link navigate to /#section
+    if (sectionId === null) return;
+    if (link.href === "/gallery") return;
+    if (!isHome) return;
     e.preventDefault();
     setActiveSection(sectionId);
     if (wasOpen) {
