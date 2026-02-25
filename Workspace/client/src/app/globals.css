@@ -9,6 +9,9 @@
   --bg-elevated: #0b0d12;
   --bg-slate: #1e293b;
   --bg-soft: #11141b;
+  --box-bg: rgba(15, 23, 42, 0.56);
+  --box-border: rgba(255, 255, 255, 0.08);
+  --box-border-strong: rgba(0, 224, 255, 0.22);
   --accent: #00e0ff;
   --accent-gold: #f5c451;
   --text-primary: #f9fafb;

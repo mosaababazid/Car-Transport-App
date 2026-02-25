@@ -40,7 +40,6 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero-section">
-      {/* Crown Jewel — main.jpg with vanish mask (static, no parallax) */}
       <div className="hero-image-wrapper" aria-hidden="true">
         <Image
           src={mainImage}

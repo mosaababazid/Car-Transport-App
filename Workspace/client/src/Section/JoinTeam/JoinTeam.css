@@ -4,7 +4,6 @@
   overflow: hidden;
 }
 
-/* Distinct from main shell: angled gradient + faint stripe for CTA block “highway” */
 .join-team-bg {
   position: absolute;
   inset: 0;

@@ -1,7 +1,7 @@
 "use client";
 
 import "./ProcessFlow.css";
-import { useRef, useLayoutEffect, useState, useCallback, useEffect } from "react";
+import { useRef, useLayoutEffect, useState, useCallback } from "react";
 import {
   motion,
   useScroll,
@@ -119,7 +119,7 @@ export default function ProcessFlow() {
   const updateReachedSteps = useCallback((rawProgress) => {
     if (!markerProgressPoints.length) return;
     const progress = Math.max(0, Math.min(1, rawProgress));
-    const lead = 0.018; // Tiny lead for smooth "arrival" feeling.
+    const lead = 0.018;
     const next = markerProgressPoints.map((point) => progress + lead >= point);
     setReachedSteps((prev) => {
       if (prev.length !== next.length) return next;
@@ -129,10 +129,6 @@ export default function ProcessFlow() {
       return prev;
     });
   }, [markerProgressPoints]);
-
-  useEffect(() => {
-    updateReachedSteps(effectiveLineProgress.get());
-  }, [effectiveLineProgress, updateReachedSteps]);
 
   useMotionValueEvent(effectiveLineProgress, "change", (value) => {
     updateReachedSteps(value);

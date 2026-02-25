@@ -113,7 +113,6 @@
   transition: border-color 120ms cubic-bezier(0.33, 1, 0.68, 1), background 120ms cubic-bezier(0.33, 1, 0.68, 1), color 120ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-/* Offset letter-spacing so label stays visually centered in pill */
 .app-header-cta {
   padding-left: 0.7rem;
   padding-right: calc(0.7rem + 0.12em);

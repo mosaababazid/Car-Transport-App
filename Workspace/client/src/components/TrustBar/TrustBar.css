@@ -24,8 +24,8 @@
   gap: 0.85rem;
   padding: 1.05rem 1.15rem;
   border-radius: var(--radius-soft-sm);
-  background: rgba(30, 41, 59, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
 }
 
 .trustbar-icon {

@@ -72,10 +72,10 @@
 
 .hero-glass-box {
   padding: 2rem 2.25rem;
-  background: rgba(11, 13, 18, 0.52);
+  background: var(--box-bg);
   backdrop-filter: blur(28px) saturate(1.4);
   -webkit-backdrop-filter: blur(28px) saturate(1.4);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--box-border);
   border-radius: var(--radius-soft-lg);
   border-top-left-radius: 18px;
   border-bottom-right-radius: 18px;
