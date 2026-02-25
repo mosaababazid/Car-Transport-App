@@ -4,13 +4,13 @@ export default function Input({ label, id, error, describedBy, ...props }) {
   const errorId = error ? `${id}-error` : undefined;
   const ariaDescribedBy = [describedBy, errorId].filter(Boolean).join(" ") || undefined;
   return (
-    <div className="ui-field">
+    <div className={`ui-field ${error ? "ui-field--error" : ""}`}>
       {label && (
         <label className="ui-field-label" htmlFor={id}>
           {label}
         </label>
       )}
-      <div className="ui-field-shell">
+      <div className={`ui-field-shell ${error ? "ui-field-shell--error" : ""}`}>
         <input
           id={id}
           className="ui-field-input"

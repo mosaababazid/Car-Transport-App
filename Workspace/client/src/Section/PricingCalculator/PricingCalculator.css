@@ -133,15 +133,16 @@
 }
 
 .pricing-cta-link--secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-glass);
+  background: var(--secondary-bg);
+  color: var(--secondary-text);
+  border: 1px solid var(--secondary-border);
 }
 
 .pricing-cta-link--secondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  box-shadow: 0 0 20px var(--glow-accent);
+  border-color: var(--secondary-border-hover);
+  color: var(--secondary-text-hover);
+  background: var(--secondary-bg-hover);
+  box-shadow: 0 0 12px var(--glow-accent);
 }
 
 @media (max-width: 640px) {

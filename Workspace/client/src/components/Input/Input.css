@@ -13,14 +13,33 @@
 
 .ui-field-shell {
   border-radius: 999px;
-  padding: 0.45rem 0.9rem;
-  border: 1px solid rgba(51, 65, 85, 0.9);
+  padding: 0.5rem 0.95rem;
+  border: 1px solid rgba(125, 211, 252, 0.3);
   background:
-    radial-gradient(circle at 0 0, rgba(30, 64, 175, 0.6), transparent 55%),
-    rgba(15, 23, 42, 0.98);
+    radial-gradient(circle at 0 0, rgba(14, 165, 233, 0.2), transparent 55%),
+    rgba(30, 41, 59, 0.72);
   box-shadow:
-    0 10px 30px rgba(15, 23, 42, 0.98),
-    0 0 0 1px rgba(15, 23, 42, 0.95);
+    0 8px 24px rgba(2, 6, 23, 0.45),
+    0 0 0 1px rgba(125, 211, 252, 0.12) inset;
+  transition: border-color 320ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 320ms cubic-bezier(0.33, 1, 0.68, 1), background 320ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.ui-field:focus-within .ui-field-shell {
+  border-color: rgba(0, 224, 255, 0.5);
+  background:
+    radial-gradient(circle at 0 0, rgba(14, 165, 233, 0.24), transparent 55%),
+    rgba(30, 41, 59, 0.82);
+  box-shadow:
+    0 10px 28px rgba(2, 6, 23, 0.55),
+    0 0 0 1px rgba(0, 224, 255, 0.22) inset,
+    0 0 14px rgba(0, 224, 255, 0.12);
+}
+
+.ui-field-shell--error {
+  border-color: rgba(248, 113, 113, 0.55);
+  box-shadow:
+    0 10px 28px rgba(127, 29, 29, 0.25),
+    0 0 0 1px rgba(248, 113, 113, 0.2) inset;
 }
 
 .ui-field-input {
@@ -34,5 +53,11 @@
 }
 
 .ui-field-input::placeholder {
-  color: rgba(148, 163, 184, 0.7);
+  color: rgba(203, 213, 225, 0.75);
+}
+
+.ui-field-error {
+  font-size: 0.76rem;
+  color: #fecaca;
+  letter-spacing: 0.01em;
 }
