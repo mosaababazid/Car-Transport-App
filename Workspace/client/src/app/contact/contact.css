@@ -17,13 +17,21 @@
 .contact-glass {
   max-width: 36rem;
   margin: 0 auto;
-  border-radius: var(--radius-soft-md);
-  padding: 1.75rem 1.25rem 1.5rem;
+  border-radius: var(--radius-soft-lg);
+  border-top-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  padding: 1.75rem 2rem 1.5rem;
   background: var(--box-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(28px) saturate(1.4);
+  -webkit-backdrop-filter: blur(28px) saturate(1.4);
   border: 1px solid var(--box-border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  box-shadow: var(--box-shadow-glass);
+  transition: box-shadow 400ms var(--ease-smooth), border-color 400ms var(--ease-smooth);
+}
+
+.contact-glass:hover {
+  border-color: rgba(0, 224, 255, 0.12);
+  box-shadow: var(--box-shadow-glass-hover);
 }
 
 .contact-header {

@@ -1,14 +1,29 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import "./JoinTeam.css";
 import { motion, useReducedMotion } from "framer-motion";
 import "../../components/Button/Button.css";
 import { transitionEntrance, resolveTransition } from "../../constants/animation";
 
+function isIOS() {
+  if (typeof navigator === "undefined") return false;
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
 export default function JoinTeam() {
   const reducedMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (isIOS() && sectionRef.current) {
+      sectionRef.current.classList.add("join-team--ios");
+    }
+  }, []);
+
   return (
-    <section id="karriere" className="join-team" aria-labelledby="join-team-heading">
+    <section ref={sectionRef} id="karriere" className="join-team" aria-labelledby="join-team-heading">
       <div className="join-team-bg" aria-hidden="true" />
       <motion.div
         className="join-team-inner"
@@ -26,12 +41,11 @@ export default function JoinTeam() {
         <p className="join-team-action">
           Dann bewirb dich jetzt bei uns und werde Teil unseres Teams.
         </p>
-        <motion.a
-          href="/contact"
-          className="join-team-cta btn-primary"
-        >
-          Jetzt bewerben
-        </motion.a>
+        <div className="join-team-actions">
+          <a href="/contact" className="join-team-cta btn-primary">
+            Jetzt bewerben
+          </a>
+        </div>
       </motion.div>
     </section>
   );
