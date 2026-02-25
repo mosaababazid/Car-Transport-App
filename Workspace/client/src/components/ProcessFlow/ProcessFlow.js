@@ -176,7 +176,9 @@ export default function ProcessFlow() {
             {STEPS.map((step, index) => (
               <li
                 key={step.number}
-                className={`process-flow-step process-flow-step--${index % 2 === 0 ? "left" : "right"}`}
+                className={`process-flow-step process-flow-step--${index % 2 === 0 ? "left" : "right"} ${
+                  reachedSteps[index] ? "is-reached" : ""
+                }`}
               >
                 <motion.div
                   ref={(el) => {
@@ -199,7 +201,7 @@ export default function ProcessFlow() {
                   <span className="process-flow-step-number">{step.number}</span>
                 </motion.div>
                 <motion.article
-                  className="process-flow-step-card"
+                  className={`process-flow-step-card ${reachedSteps[index] ? "is-reached" : ""}`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.35 }}

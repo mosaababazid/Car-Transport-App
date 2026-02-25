@@ -115,6 +115,7 @@
   align-items: start;
   min-height: 6rem;
   padding-bottom: 2.5rem;
+  position: relative;
 }
 
 .process-flow-step:last-child {
@@ -200,11 +201,48 @@
   padding: 1.25rem 1.5rem;
   transition: border-color 320ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 320ms cubic-bezier(0.33, 1, 0.68, 1);
   min-width: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .process-flow-step-card:hover {
   border-color: rgba(0, 224, 255, 0.25);
   box-shadow: 0 0 24px rgba(0, 224, 255, 0.08);
+}
+
+.process-flow-step-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 1.35rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 224, 255, 0), rgba(0, 224, 255, 0.46), rgba(0, 224, 255, 0));
+  transform: translateY(-50%) scaleX(0.2);
+  transform-origin: center;
+  opacity: 0;
+  filter: blur(0.25px);
+  transition: opacity 360ms var(--ease-smooth), transform 360ms var(--ease-smooth);
+  pointer-events: none;
+}
+
+.process-flow-step--left .process-flow-step-card::before {
+  right: calc(-1.35rem - 1px);
+}
+
+.process-flow-step--right .process-flow-step-card::before {
+  left: calc(-1.35rem - 1px);
+}
+
+.process-flow-step.is-reached .process-flow-step-card::before {
+  opacity: 1;
+  transform: translateY(-50%) scaleX(1);
+}
+
+.process-flow-step-card.is-reached {
+  border-color: rgba(0, 224, 255, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(0, 224, 255, 0.08) inset,
+    0 0 12px rgba(0, 224, 255, 0.06);
 }
 
 .process-flow-step-title {
@@ -262,6 +300,16 @@
 
   .process-flow-step {
     grid-template-columns: 2.75rem 1fr;
+  }
+
+  .process-flow-step-card::before {
+    width: 1rem;
+  }
+
+  .process-flow-step--left .process-flow-step-card::before,
+  .process-flow-step--right .process-flow-step-card::before {
+    left: calc(-1rem - 1px);
+    right: auto;
   }
 
   .process-flow-step-marker {
