@@ -1,4 +1,10 @@
 import { checkRateLimit, getClientIp } from "../_lib/rateLimit";
+import {
+  formatInternationalPhone,
+  getPhoneCountry,
+  normalizePhoneDigits,
+  validatePhoneForCountry,
+} from "../../../constants/phoneCountries";
 
 const MAIL_TO = process.env.MAIL_TO || "anfrage@automove-logistik.de";
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -22,7 +28,7 @@ function hasUnsafeControlChars(value) {
   return /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(value);
 }
 
-function buildEmailBody({ name, email, phone, message }) {
+function buildEmailBody({ name, email, phone, phoneCountryLabel, message }) {
   const lines = [
     message,
     "",
@@ -30,6 +36,7 @@ function buildEmailBody({ name, email, phone, message }) {
     `Name: ${escapeHtml(name)}`,
     `E-Mail: ${escapeHtml(email)}`,
     `Telefon: ${phone ? escapeHtml(phone) : "–"}`,
+    `Land/Vorwahl: ${phoneCountryLabel ? escapeHtml(phoneCountryLabel) : "–"}`,
   ];
   const text = lines.join("\n");
   const html = `
@@ -41,7 +48,8 @@ function buildEmailBody({ name, email, phone, message }) {
   <hr style="border: none; border-top: 1px solid #eee;">
   <p><strong>Name:</strong> ${escapeHtml(name)}<br>
   <strong>E-Mail:</strong> ${escapeHtml(email)}<br>
-  <strong>Telefon:</strong> ${phone ? escapeHtml(phone) : "–"}</p>
+  <strong>Telefon:</strong> ${phone ? escapeHtml(phone) : "–"}<br>
+  <strong>Land/Vorwahl:</strong> ${phoneCountryLabel ? escapeHtml(phoneCountryLabel) : "–"}</p>
 </body>
 </html>`;
   return { text, html };
@@ -65,12 +73,15 @@ export async function POST(request) {
     const body = await request.json();
     const name = sanitize(body.name, 100);
     const email = sanitize(body.email, 255).toLowerCase();
-    const phone = sanitize(body.phone, 30);
+    const phoneCountry = sanitize(body.phoneCountry, 2).toUpperCase();
+    const phoneDigits = normalizePhoneDigits(body.phoneDigits, 20);
+    const phoneCountryMeta = getPhoneCountry(phoneCountry);
+    const phone = formatInternationalPhone(phoneCountry, phoneDigits);
     const message = sanitize(body.message, 2000);
 
-    if (!name || !email || !message) {
+    if (!name || !email || !phoneDigits || !message || !phoneCountryMeta) {
       return Response.json(
-        { error: "Name, E-Mail und Nachricht sind erforderlich." },
+        { error: "Name, E-Mail, Telefonnummer und Nachricht sind erforderlich." },
         { status: 400 }
       );
     }
@@ -80,9 +91,11 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-    if (phone && !/^[+()\d\s-]{6,30}$/.test(phone)) {
+    if (!validatePhoneForCountry(phoneCountry, phoneDigits)) {
       return Response.json(
-        { error: "Bitte eine gültige Telefonnummer angeben." },
+        {
+          error: `Bitte eine gueltige Festnetz- oder Mobilnummer fuer ${phoneCountryMeta.name} angeben.`,
+        },
         { status: 400 }
       );
     }
@@ -103,7 +116,13 @@ export async function POST(request) {
       );
     }
 
-    const { text, html } = buildEmailBody({ name, email, phone, message });
+    const { text, html } = buildEmailBody({
+      name,
+      email,
+      phone,
+      phoneCountryLabel: `${phoneCountryMeta.name} (${phoneCountryMeta.dialCode})`,
+      message,
+    });
     const subject = `Kontaktanfrage von ${name}`;
 
     const controller = new AbortController();
