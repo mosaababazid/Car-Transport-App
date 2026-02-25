@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Undo2 } from "lucide-react";
 import {
   STAGGER,
   VIEWPORT_ONCE,
@@ -100,8 +100,8 @@ export default function Gallery({ variant = "preview" }) {
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
         {isFullPage && (
-          <Link href="/" className="back-to-home">
-            Zur Startseite
+          <Link href="/" className="back-to-home" aria-label="Zur Startseite">
+            <Undo2 size={18} strokeWidth={2.2} aria-hidden="true" />
           </Link>
         )}
 

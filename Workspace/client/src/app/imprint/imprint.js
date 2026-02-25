@@ -1,6 +1,7 @@
 import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
 import Link from "next/link";
+import { Undo2 } from "lucide-react";
 import { getLegalPageStructuredData } from "../structuredData";
 import "../legal.css";
 
@@ -21,8 +22,8 @@ export default function ImprintPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <div className="legal-inner">
-          <Link href="/" className="back-to-home">
-            Zur Startseite
+          <Link href="/" className="back-to-home" aria-label="Zur Startseite">
+            <Undo2 size={18} strokeWidth={2.2} aria-hidden="true" />
           </Link>
           <h1 className="legal-title">Impressum</h1>
           <div className="legal-content">
