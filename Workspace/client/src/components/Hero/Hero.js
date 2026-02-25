@@ -3,7 +3,6 @@
 import "./Hero.css";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import Button from "../Button/Button";
 import {
   VIEWPORT_ONCE,
   transitionEntrance,
@@ -22,6 +21,16 @@ export default function Hero() {
     mediaQuery.addEventListener("change", update);
     return () => mediaQuery.removeEventListener("change", update);
   }, []);
+
+  const scrollToPricing = () => {
+    const target = document.getElementById("pricing");
+    if (!target) return;
+    const headerHeight = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+    ) || 56;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+    window.scrollTo({ top, behavior: reducedMotion ? "auto" : "smooth" });
+  };
 
   return (
     <section id="hero" className="hero-section">
@@ -67,9 +76,14 @@ export default function Hero() {
           viewport={VIEWPORT_ONCE}
           transition={resolveTransition(reducedMotion, transitionEntrance)}
         >
-          <a href="#pricing" className="hero-primary-link" aria-label="Zum Preisrechner scrollen">
-            <Button>Preis berechnen</Button>
-          </a>
+          <button
+            type="button"
+            className="ui-button ui-button--primary hero-primary-button"
+            onClick={scrollToPricing}
+            aria-label="Zum Preisrechner scrollen"
+          >
+            Preis berechnen
+          </button>
           <a href="/contact" className="hero-secondary-link" aria-label="Zum Kontaktformular">
             Kontaktieren Sie uns
           </a>

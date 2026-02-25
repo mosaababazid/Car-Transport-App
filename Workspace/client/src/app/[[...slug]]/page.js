@@ -28,11 +28,20 @@ const METADATA = {
   },
 };
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://automove-logistik.de";
+
 export async function generateMetadata({ params }) {
   const resolved = await params;
   const slug = resolved?.slug;
   const segment = Array.isArray(slug) ? slug[0] : slug;
-  return METADATA[segment] ?? {};
+  const pageMeta = METADATA[segment] ?? {};
+  const path = segment ? `/${segment}` : "";
+  return {
+    ...pageMeta,
+    alternates: {
+      canonical: `${SITE_URL}${path}`,
+    },
+  };
 }
 
 export default async function RouterPage({ params }) {

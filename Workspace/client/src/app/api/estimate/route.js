@@ -4,6 +4,10 @@ const OSRM_BASE = "https://router.project-osrm.org/route/v1/driving";
 
 const USER_AGENT = "AutoMoveLogistik/1.0 (https://automove-logistik.de)";
 
+function sanitizeAddress(value) {
+  return String(value ?? "").trim().slice(0, 200);
+}
+
 async function geocode(query) {
   const url = new URL(NOMINATIM_BASE);
   url.searchParams.set("q", query);
@@ -39,8 +43,8 @@ async function getDrivingDistance(from, to) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const pickup = body.pickup?.trim();
-    const dropoff = body.dropoff?.trim();
+    const pickup = sanitizeAddress(body.pickup);
+    const dropoff = sanitizeAddress(body.dropoff);
     if (!pickup || !dropoff) {
       return Response.json(
         { error: "pickup and dropoff are required" },
@@ -83,7 +87,6 @@ export async function POST(request) {
       estimated_hours: Math.round(estimated_hours * 10) / 10,
     });
   } catch (err) {
-    console.error("estimate error:", err);
     return Response.json(
       { error: "Die Preisberechnung ist fehlgeschlagen." },
       { status: 500 }

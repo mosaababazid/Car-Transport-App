@@ -21,17 +21,19 @@ export default function PricingCalculator() {
     setError("");
     setResult(null);
 
-    if (!pickup.trim() || !dropoff.trim()) {
+    const safePickup = pickup.trim().slice(0, 200);
+    const safeDropoff = dropoff.trim().slice(0, 200);
+
+    if (!safePickup || !safeDropoff) {
       setError("Bitte geben Sie Abhol- und Zielort an.");
       return;
     }
 
     setLoading(true);
     try {
-      const data = await getPriceEstimate(pickup, dropoff);
+      const data = await getPriceEstimate(safePickup, safeDropoff);
       setResult(data);
     } catch (err) {
-      console.error(err);
       setError(
         "Die Preisberechnung ist derzeit nicht erreichbar. Bitte Adressen prüfen oder später erneut versuchen."
       );
@@ -66,6 +68,9 @@ export default function PricingCalculator() {
               placeholder="Stadt oder genaue Adresse, z. B. Berlin oder Musterstraße 1, 10115 Berlin"
               value={pickup}
               onChange={(e) => setPickup(e.target.value)}
+              maxLength={200}
+              autoComplete="street-address"
+              required
             />
             <Input
               id="dropoff"
@@ -73,15 +78,20 @@ export default function PricingCalculator() {
               placeholder="Stadt oder genaue Adresse, z. B. München oder Zielstraße 5, 80331 München"
               value={dropoff}
               onChange={(e) => setDropoff(e.target.value)}
+              maxLength={200}
+              autoComplete="street-address"
+              required
             />
           </div>
 
-          <Button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading} aria-busy={loading}>
             {loading ? "Berechnung läuft…" : "Berechnen"}
           </Button>
 
           {error && (
-            <p className="pricing-message pricing-message--error">{error}</p>
+            <p className="pricing-message pricing-message--error" role="alert" aria-live="polite">
+              {error}
+            </p>
           )}
 
           {result && (

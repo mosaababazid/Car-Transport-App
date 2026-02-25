@@ -37,6 +37,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/mosaababazid"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Website entwickelt von Mosaab Abazid (öffnet in neuem Tab)"
               className="app-footer-credit-link"
             >
               Mosaab Abazid

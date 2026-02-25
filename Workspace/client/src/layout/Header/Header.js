@@ -15,13 +15,19 @@ const links = [
   { href: "/contact", label: "Kontakt", sectionId: null },
 ];
 
-function scrollToSection(sectionId) {
+function scrollToSection(sectionId, reducedMotion) {
   if (!sectionId) {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
     return;
   }
   const el = document.getElementById(sectionId);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (el) {
+    const headerHeight = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+    ) || 56;
+    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+    window.scrollTo({ top, behavior: reducedMotion ? "auto" : "smooth" });
+  }
 }
 
 export default function Header() {
@@ -53,18 +59,17 @@ export default function Header() {
     const id = decodeURIComponent(hash);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollToSection(id, reducedMotion);
       });
     });
-  }, [isHome, pathname]);
+  }, [isHome, pathname, reducedMotion]);
 
   const handleNavClick = (e, link) => {
     setOpen(false);
     if (link.sectionId === null) return; // /contact – let Link navigate
     if (!isHome) return; // different page – let Link navigate to /#section
     e.preventDefault();
-    scrollToSection(link.sectionId);
+    scrollToSection(link.sectionId, reducedMotion);
   };
 
   const toggleMenu = () => setOpen(!open);
@@ -91,6 +96,7 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link)}
+              aria-current={pathname === link.href ? "page" : undefined}
             >
               {link.label}
             </Link>
@@ -101,6 +107,9 @@ export default function Header() {
           type="button"
           className="app-header-burger-toggle"
           onClick={toggleMenu}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          aria-label={open ? "Menü schließen" : "Menü öffnen"}
           style={{ position: "relative", zIndex: 10001 }}
         >
           <AnimatePresence mode="wait">
@@ -132,6 +141,7 @@ export default function Header() {
       <AnimatePresence>
         {open && (
           <motion.nav
+            id="mobile-navigation"
             className="app-header-nav-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -149,6 +159,7 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link)}
+                    aria-current={pathname === link.href ? "page" : undefined}
                   >
                     {link.label}
                   </Link>

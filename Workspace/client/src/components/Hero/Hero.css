@@ -60,27 +60,23 @@
   max-width: 20rem;
 }
 
-.hero-primary-link {
-  display: flex;
+.hero-primary-button {
+  display: inline-flex;
+  width: 100%;
   min-width: 0;
-  text-decoration: none;
+  min-height: 2.75rem;
   transition: transform 320ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 320ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.hero-primary-link:hover {
+.hero-primary-button:hover {
   transform: scale(1.04);
 }
 
-.hero-primary-link:hover .ui-button {
+.hero-primary-button:hover {
   box-shadow:
     0 20px 48px rgba(56, 189, 248, 0.5),
     0 0 32px var(--glow-accent),
     0 0 0 1px rgba(15, 23, 42, 1);
-}
-
-.hero-primary-link .ui-button {
-  width: 100%;
-  min-height: 2.75rem;
 }
 
 .hero-secondary-link {
@@ -116,11 +112,7 @@
     gap: 1rem;
     width: 100%;
   }
-  .hero-primary-link {
-    display: flex;
-    min-width: 0;
-  }
-  .hero-primary-link .ui-button {
+  .hero-primary-button {
     width: 100%;
   }
   .hero-secondary-link {

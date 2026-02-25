@@ -8,7 +8,12 @@ function escapeHtml(s) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
+
+function sanitize(value, maxLength) {
+  return String(value ?? "").trim().slice(0, maxLength);
 }
 
 function buildEmailBody({ name, email, phone, message }) {
@@ -39,14 +44,26 @@ function buildEmailBody({ name, email, phone, message }) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const name = body.name?.trim();
-    const email = body.email?.trim();
-    const phone = body.phone?.trim() || "";
-    const message = body.message?.trim();
+    const name = sanitize(body.name, 100);
+    const email = sanitize(body.email, 255).toLowerCase();
+    const phone = sanitize(body.phone, 30);
+    const message = sanitize(body.message, 2000);
 
     if (!name || !email || !message) {
       return Response.json(
         { error: "Name, E-Mail und Nachricht sind erforderlich." },
+        { status: 400 }
+      );
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return Response.json(
+        { error: "Bitte eine gültige E-Mail-Adresse angeben." },
+        { status: 400 }
+      );
+    }
+    if (phone && !/^[+()\d\s-]{6,30}$/.test(phone)) {
+      return Response.json(
+        { error: "Bitte eine gültige Telefonnummer angeben." },
         { status: 400 }
       );
     }
@@ -92,7 +109,6 @@ export async function POST(request) {
 
     return Response.json({ ok: true });
   } catch (err) {
-    console.error("contact API error:", err);
     return Response.json(
       { error: "Die Anfrage konnte nicht verarbeitet werden." },
       { status: 500 }

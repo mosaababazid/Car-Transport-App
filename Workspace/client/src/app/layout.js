@@ -5,11 +5,13 @@ import { getStructuredData } from "./structuredData";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://automove-logistik.de";
@@ -43,11 +45,20 @@ export const metadata = {
       "Autotransport in Deutschland und Europa: Auto transportieren lassen – PKW, LKW, Transporter. Vollkaskoversichert. Unverbindliches Angebot in Sekunden.",
     locale: "de_DE",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "AutoMove Logistik - Autotransport in Deutschland und Europa",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Autotransport & Fahrzeuglogistik Deutschland",
     description: "Auto transportieren lassen – professionell, vollkaskoversichert, europaweit.",
+    images: [`${SITE_URL}/og-image.jpg`],
   },
   robots: {
     index: true,
@@ -66,6 +77,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <a href="#main-content" className="skip-link">
+          Zum Hauptinhalt springen
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

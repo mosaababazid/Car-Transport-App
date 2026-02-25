@@ -46,6 +46,8 @@ export function getStructuredData() {
       { "@type": "Offer", "name": "Autotransport für Gewerbekunden (B2B)" },
       { "@type": "Offer", "name": "Auto transportieren lassen für Privatkunden" },
     ],
+    priceRange: "EUR",
+    openingHours: "Mo-Fr 08:00-18:00",
   };
 
   const webSite = {

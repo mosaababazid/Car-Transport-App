@@ -15,16 +15,54 @@ export default function ContactPage() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  function sanitizeField(value, maxLength) {
+    return String(value ?? "").trim().slice(0, maxLength);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+    setFieldErrors({ name: "", email: "", phone: "", message: "" });
+    const safeName = sanitizeField(name, 100);
+    const safeEmail = sanitizeField(email, 255).toLowerCase();
+    const safePhone = sanitizeField(phone, 30);
+    const safeMessage = sanitizeField(message, 2000);
+
+    const nextErrors = {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    };
+    if (!safeName) nextErrors.name = "Bitte Namen angeben.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(safeEmail)) nextErrors.email = "Bitte gültige E-Mail angeben.";
+    if (safePhone && !/^[+()\d\s-]{6,30}$/.test(safePhone)) nextErrors.phone = "Bitte gültige Telefonnummer angeben.";
+    if (!safeMessage) nextErrors.message = "Bitte Nachricht angeben.";
+
+    if (Object.values(nextErrors).some(Boolean)) {
+      setFieldErrors(nextErrors);
+      setError("Bitte prüfen Sie die markierten Felder.");
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, message }),
+        body: JSON.stringify({
+          name: safeName,
+          email: safeEmail,
+          phone: safePhone,
+          message: safeMessage,
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -87,6 +125,9 @@ export default function ContactPage() {
                     placeholder="Ihr Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    maxLength={100}
+                    autoComplete="name"
+                    error={fieldErrors.name}
                     required
                   />
                   <Input
@@ -96,6 +137,10 @@ export default function ContactPage() {
                     placeholder="ihre@email.de"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    maxLength={255}
+                    autoComplete="email"
+                    inputMode="email"
+                    error={fieldErrors.email}
                     required
                   />
                 </div>
@@ -106,6 +151,10 @@ export default function ContactPage() {
                   placeholder="z. B. +49 123 456789"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  maxLength={30}
+                  autoComplete="tel"
+                  inputMode="tel"
+                  error={fieldErrors.phone}
                 />
                 <div className="ui-field">
                   <label className="ui-field-label" htmlFor="message">
@@ -119,12 +168,24 @@ export default function ContactPage() {
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       rows={5}
+                      maxLength={2000}
+                      aria-invalid={fieldErrors.message ? "true" : undefined}
+                      aria-describedby={fieldErrors.message ? "message-error" : undefined}
                       required
                     />
                   </div>
+                  {fieldErrors.message && (
+                    <span id="message-error" className="ui-field-error" role="alert">
+                      {fieldErrors.message}
+                    </span>
+                  )}
                 </div>
-                {error && <p className="contact-message contact-message--error">{error}</p>}
-                <Button type="submit" disabled={loading}>
+                {error && (
+                  <p className="contact-message contact-message--error" role="alert" aria-live="polite">
+                    {error}
+                  </p>
+                )}
+                <Button type="submit" disabled={loading} aria-busy={loading}>
                   {loading ? "Wird gesendet …" : sent ? "Gesendet" : "Nachricht senden"}
                 </Button>
                 {sent && (
