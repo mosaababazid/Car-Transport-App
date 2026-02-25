@@ -14,9 +14,22 @@ import {
 
 import mainImage from "../../assets/Images/main.jpg";
 
+function isIOS() {
+  if (typeof navigator === "undefined") return false;
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+}
+
 export default function Hero() {
   const [offset, setOffset] = useState(50);
+  const [avoidTransform, setAvoidTransform] = useState(false);
   const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    setAvoidTransform(isIOS());
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 639px)");
@@ -53,8 +66,8 @@ export default function Hero() {
 
       <motion.div
         className="hero-inner"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={avoidTransform ? { opacity: 0 } : { opacity: 0, y: 20 }}
+        whileInView={avoidTransform ? { opacity: 1 } : { opacity: 1, y: 0 }}
         viewport={VIEWPORT_ONCE}
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
@@ -62,8 +75,8 @@ export default function Hero() {
           <div className="hero-glass-content">
             <motion.span
               className="hero-badge"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={avoidTransform ? { opacity: 0 } : { opacity: 0, y: 12 }}
+              whileInView={avoidTransform ? { opacity: 1 } : { opacity: 1, y: 0 }}
               viewport={VIEWPORT_ONCE}
               transition={resolveTransition(reducedMotion, transitionChild)}
             >
@@ -71,8 +84,8 @@ export default function Hero() {
             </motion.span>
             <motion.h1
               className="hero-title"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={avoidTransform ? { opacity: 0 } : { opacity: 0, y: 12 }}
+              whileInView={avoidTransform ? { opacity: 1 } : { opacity: 1, y: 0 }}
               viewport={VIEWPORT_ONCE}
               transition={resolveTransition(reducedMotion, transitionEntrance)}
             >
@@ -80,8 +93,8 @@ export default function Hero() {
             </motion.h1>
             <motion.p
               className="hero-body"
-              initial={{ opacity: 0, x: offset }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={avoidTransform ? { opacity: 0 } : { opacity: 0, x: offset }}
+              whileInView={avoidTransform ? { opacity: 1 } : { opacity: 1, x: 0 }}
               viewport={VIEWPORT_ONCE}
               transition={resolveTransition(reducedMotion, transitionChild)}
             >
@@ -90,8 +103,8 @@ export default function Hero() {
             </motion.p>
             <motion.div
               className="hero-actions"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={avoidTransform ? { opacity: 0 } : { opacity: 0, y: 24 }}
+              whileInView={avoidTransform ? { opacity: 1 } : { opacity: 1, y: 0 }}
               viewport={VIEWPORT_ONCE}
               transition={resolveTransition(reducedMotion, transitionEntrance)}
             >
