@@ -64,7 +64,7 @@ export default function Services() {
         className="services-inner"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_ONCE}
+        viewport={{ once: true, amount: 0.05 }}
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
         <h2 className="services-headline">Unsere Leistungen</h2>
