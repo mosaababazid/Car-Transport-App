@@ -33,7 +33,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Environment – never commit secrets
+# Env
 .env
 .env.local
 .env.*.local
@@ -43,7 +43,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# Local docs
 DEPLOY.md
 
 # typescript

@@ -27,7 +27,7 @@ build/
 out/
 build/
 
-# Environment – sensible data, never commit
+# Env
 .env
 .env.local
 .env.development.local
@@ -61,7 +61,6 @@ htmlcov/
 # Vercel
 .vercel
 
-# Local docs (not for repo)
 DEPLOY.md
 
 # TypeScript
