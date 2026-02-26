@@ -107,7 +107,7 @@ export default function ProcessFlow() {
     offset: ["start 78%", "end 38%"],
   });
 
-  const mappedLineProgress = useTransform(scrollYProgress, [0.16, 0.94], [0, 1]);
+  const mappedLineProgress = useTransform(scrollYProgress, [0.12, 0.92], [0, 1]);
   const smoothLineProgress = useSpring(mappedLineProgress, {
     stiffness: reducedMotion ? 1000 : 180,
     damping: reducedMotion ? 120 : 28,
