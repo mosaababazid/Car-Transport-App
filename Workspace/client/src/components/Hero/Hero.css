@@ -207,6 +207,15 @@
   box-shadow: 0 0 12px var(--glow-accent);
 }
 
+@media (max-width: 639px) {
+  .hero-section,
+  .hero-section--ios {
+    min-height: calc(75svh - 4.5rem);
+    min-height: calc(75vh - 4.5rem);
+    padding-bottom: 2.5rem;
+  }
+}
+
 @media (min-width: 640px) {
   .hero-actions {
     grid-template-columns: 1fr 1fr;
