@@ -99,7 +99,7 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-    if (hasUnsafeControlChars(name) || hasUnsafeControlChars(message)) {
+    if (hasUnsafeControlChars(name) || hasUnsafeControlChars(email) || hasUnsafeControlChars(message)) {
       return Response.json(
         { error: "Ungültige Zeichen in den Eingabefeldern." },
         { status: 400 }
@@ -146,9 +146,7 @@ export async function POST(request) {
 
     if (!res.ok) {
       return Response.json(
-        {
-          error: data.message || "E-Mail konnte nicht gesendet werden.",
-        },
+        { error: "E-Mail konnte nicht gesendet werden." },
         { status: res.status >= 500 ? 502 : 400 }
       );
     }

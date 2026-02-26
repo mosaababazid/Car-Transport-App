@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import {
   HomePage,
   GalleryPage,
@@ -6,7 +7,6 @@ import {
   TermsPage,
   ImprintPage,
 } from "../app";
-import NotFoundPage from "../not-found/NotFoundPage";
 
 const ROUTES = {
   gallery: GalleryPage,
@@ -55,7 +55,6 @@ export async function generateMetadata({ params }) {
   const pageMeta = METADATA[segment] ?? {};
   const path = segment ? `/${segment}` : "";
   const pageTitle = pageMeta.title ? `${pageMeta.title} | AutoMove Logistik` : undefined;
-  const ogImage = `${SITE_URL}/og-image.jpg`;
   return {
     ...pageMeta,
     ...(segment && pageMeta.description
@@ -69,7 +68,7 @@ export async function generateMetadata({ params }) {
             type: "website",
             images: [
               {
-                url: ogImage,
+                url: "/opengraph-image",
                 width: 1200,
                 height: 630,
                 alt: `${pageMeta.title} | AutoMove Logistik`,
@@ -80,7 +79,7 @@ export async function generateMetadata({ params }) {
             card: "summary_large_image",
             title: pageTitle,
             description: pageMeta.description,
-            images: [ogImage],
+            images: ["/opengraph-image"],
           },
         }
       : {}),
@@ -101,7 +100,7 @@ export default async function RouterPage({ params }) {
 
   const Page = ROUTES[segment];
   if (!Page) {
-    return <NotFoundPage />;
+    notFound();
   }
 
   return <Page />;

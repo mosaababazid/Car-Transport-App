@@ -83,6 +83,9 @@ main[id],
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .app-shell::before {
+    animation: none;
+  }
 }
 
 body {
@@ -213,7 +216,7 @@ body {
   text-decoration: none;
 }
 
-.skip-link:focus {
+.skip-link:focus-visible {
   top: 0.75rem;
 }
 

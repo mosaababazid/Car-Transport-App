@@ -47,7 +47,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-image.jpg`,
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "AutoMove Logistik - Autotransport in Deutschland und Europa",
@@ -58,7 +58,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Autotransport & Fahrzeuglogistik Deutschland",
     description: "Auto transportieren lassen – professionell, vollkaskoversichert, europaweit.",
-    images: [`${SITE_URL}/og-image.jpg`],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,

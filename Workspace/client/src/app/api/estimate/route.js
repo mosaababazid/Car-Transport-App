@@ -71,7 +71,7 @@ export async function POST(request) {
     const dropoff = sanitizeAddress(body.dropoff);
     if (!pickup || !dropoff) {
       return Response.json(
-        { error: "pickup and dropoff are required" },
+        { error: "Abholort und Zielort sind erforderlich." },
         { status: 400 }
       );
     }

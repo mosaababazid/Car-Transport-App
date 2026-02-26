@@ -213,12 +213,18 @@
   filter: blur(8px);
 }
 
-.contact-cta-link--whatsapp:hover {
+.contact-cta-link--whatsapp:hover,
+.contact-cta-link--whatsapp:focus-visible {
   transform: translateY(-1px) scale(1.02);
   box-shadow:
     0 6px 20px rgba(6, 182, 212, 0.22),
     0 0 6px rgba(0, 224, 255, 0.1),
     0 0 0 1px rgba(15, 23, 42, 0.9);
+}
+
+.contact-cta-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .contact-cta-link--secondary {
@@ -230,7 +236,8 @@
   letter-spacing: 0.09em;
 }
 
-.contact-cta-link--secondary:hover {
+.contact-cta-link--secondary:hover,
+.contact-cta-link--secondary:focus-visible {
   border-color: var(--secondary-border-hover);
   color: var(--secondary-text-hover);
   background: var(--secondary-bg-hover);

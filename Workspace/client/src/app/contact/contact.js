@@ -249,7 +249,7 @@ export default function ContactPage() {
                 )}
                 <Button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || sent}
                   aria-busy={loading}
                   className="btn-primary--block"
                 >

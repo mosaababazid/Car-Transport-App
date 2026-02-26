@@ -27,13 +27,15 @@ build/
 out/
 build/
 
-# Environment
+# Environment – sensible data, never commit
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env.*.local
 .env*
+!.env.example
 
 # IDE & OS
 .idea/
@@ -59,9 +61,17 @@ htmlcov/
 # Vercel
 .vercel
 
+# Local docs (not for repo)
+DEPLOY.md
+
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
 
 # Misc
 *.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+.turbo

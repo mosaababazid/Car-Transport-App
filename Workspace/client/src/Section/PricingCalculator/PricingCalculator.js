@@ -144,7 +144,7 @@ export default function PricingCalculator() {
               <div className="pricing-result-row">
                 <span className="pricing-result-label">Distanz</span>
                 <strong className="pricing-result-value">
-                  {result.distance_km.toLocaleString("de-DE", {
+                  {Number(result.distance_km ?? 0).toLocaleString("de-DE", {
                     maximumFractionDigits: 0,
                   })}{" "}
                   km
