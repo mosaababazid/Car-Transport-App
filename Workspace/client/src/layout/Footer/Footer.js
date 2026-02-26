@@ -1,7 +1,13 @@
+"use client";
+
 import "./Footer.css";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isContactPage = pathname === "/contact";
+
   return (
     <footer id="contact" className="app-footer">
       <div className="app-footer-inner">
@@ -9,9 +15,11 @@ export default function Footer() {
           <div className="app-footer-main">
             <h2>AutoMove Logistik</h2>
             <p>Professioneller Fahrzeugtransport, sicher und europaweit.</p>
-            <Link href="/contact" className="app-footer-cta">
-            Zum Kontaktformular
-            </Link>
+            {!isContactPage && (
+              <Link href="/contact" className="app-footer-cta">
+                Zum Kontaktformular
+              </Link>
+            )}
           </div>
 
           <div className="app-footer-columns">
