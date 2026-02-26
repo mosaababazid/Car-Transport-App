@@ -104,7 +104,7 @@ export default function ProcessFlow() {
 
   const { scrollYProgress } = useScroll({
     target: timelineRef,
-    offset: ["start 82%", "end 38%"],
+    offset: ["start 78%", "end 38%"],
   });
 
   const mappedLineProgress = useTransform(scrollYProgress, [0.16, 0.94], [0, 1]);
@@ -141,7 +141,7 @@ export default function ProcessFlow() {
           className="process-flow-title"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={VIEWPORT_ONCE_MORE}
+          viewport={{ once: true, amount: 0.15 }}
           transition={resolveTransition(reducedMotion, transitionChild)}
         >
           Ablauf der Zusammenarbeit
@@ -185,7 +185,7 @@ export default function ProcessFlow() {
                   className={`process-flow-step-marker ${reachedSteps[index] ? "is-reached" : ""}`}
                   initial={{ opacity: 0, scale: 0.92 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.4 }}
+                  viewport={{ once: true, amount: 0.32 }}
                   onAnimationComplete={() => {
                     if (index === 0) setLineReady(true);
                   }}
@@ -200,7 +200,7 @@ export default function ProcessFlow() {
                   className={`process-flow-step-card ${reachedSteps[index] ? "is-reached" : ""}`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
+                  viewport={{ once: true, amount: 0.28 }}
                   transition={{
                     delay: reducedMotion ? 0 : index * STAGGER,
                     ...resolveTransition(reducedMotion, transitionChild),
