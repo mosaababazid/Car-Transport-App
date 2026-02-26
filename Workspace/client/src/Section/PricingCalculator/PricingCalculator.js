@@ -83,7 +83,7 @@ export default function PricingCalculator() {
         className="pricing-inner pricing-glass"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_ONCE}
+        viewport={{ once: true, amount: 0.05 }}
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
         <header className="pricing-header">

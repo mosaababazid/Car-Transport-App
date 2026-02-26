@@ -96,7 +96,7 @@ export default function Gallery({ variant = "preview" }) {
         initial={isFullPage ? { opacity: 0, y: 16 } : { opacity: 0, y: 20 }}
         animate={isFullPage ? { opacity: 1, y: 0 } : undefined}
         whileInView={isFullPage ? undefined : { opacity: 1, y: 0 }}
-        viewport={isFullPage ? undefined : VIEWPORT_ONCE}
+        viewport={isFullPage ? undefined : { once: true, amount: 0.05 }}
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
         {isFullPage && (
@@ -122,7 +122,7 @@ export default function Gallery({ variant = "preview" }) {
               initial={isFullPage ? { opacity: 0, y: 18 } : { opacity: 0, y: 24 }}
               animate={isFullPage ? { opacity: 1, y: 0 } : undefined}
               whileInView={isFullPage ? undefined : { opacity: 1, y: 0 }}
-              viewport={isFullPage ? undefined : VIEWPORT_ONCE}
+              viewport={isFullPage ? undefined : { once: true, amount: 0.05 }}
               transition={{
                 delay: reducedMotion ? 0 : index * STAGGER,
                 ...resolveTransition(reducedMotion, transitionChild),
@@ -162,7 +162,7 @@ export default function Gallery({ variant = "preview" }) {
             className="gallery-cta"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={VIEWPORT_ONCE}
+            viewport={{ once: true, amount: 0.15 }}
             transition={resolveTransition(reducedMotion, transitionChild)}
           >
             <Link href="/gallery" className="gallery-more-button">
