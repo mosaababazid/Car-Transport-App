@@ -94,7 +94,7 @@ export async function POST(request) {
     if (!validatePhoneForCountry(phoneCountry, phoneDigits)) {
       return Response.json(
         {
-          error: `Bitte eine gueltige Festnetz- oder Mobilnummer fuer ${phoneCountryMeta.name} angeben.`,
+          error: `Bitte eine gültige Festnetz- oder Mobilnummer für ${phoneCountryMeta.name} angeben.`,
         },
         { status: 400 }
       );
@@ -109,8 +109,7 @@ export async function POST(request) {
     if (!RESEND_API_KEY) {
       return Response.json(
         {
-          error:
-            "E-Mail-Versand ist nicht konfiguriert. Bitte RESEND_API_KEY in der Umgebung setzen.",
+          error: "E-Mail-Versand aktuell nicht verfügbar. Bitte später erneut versuchen.",
         },
         { status: 503 }
       );

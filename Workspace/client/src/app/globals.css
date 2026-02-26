@@ -27,6 +27,7 @@
   --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
   --duration-fast: 120ms;
   --duration-smooth: 320ms;
+  --duration-ui: 400ms;
   --section-pad-y: 4rem;
   --section-pad-y-lg: 5rem;
   --radius-pill: 999px;
@@ -92,7 +93,7 @@ body {
   overflow-x: hidden;
   background: var(--bg-primary);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

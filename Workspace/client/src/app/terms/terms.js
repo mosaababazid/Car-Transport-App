@@ -16,7 +16,7 @@ export default function TermsPage() {
   return (
     <div className="app-shell">
       <Header />
-      <main className="legal-main">
+      <main id="main-content" className="legal-main">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

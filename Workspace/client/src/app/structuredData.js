@@ -1,8 +1,17 @@
-/** JSON-LD for SEO (LocalBusiness + WebSite). Injected in layout (SSR) so crawlers get it. */
-
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://automove-logistik.de";
 
+function getBusiness() {
+  return {
+    phone: process.env.NEXT_PUBLIC_PHONE || "+491234567890",
+    email: process.env.NEXT_PUBLIC_EMAIL || "anfrage@automove-logistik.de",
+    street: process.env.NEXT_PUBLIC_STREET || "Beispielstraße 1",
+    city: process.env.NEXT_PUBLIC_CITY || "Saarbrücken",
+    postalCode: process.env.NEXT_PUBLIC_POSTAL || "66111",
+  };
+}
+
 export function getStructuredData() {
+  const biz = getBusiness();
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -16,13 +25,13 @@ export function getStructuredData() {
     description:
       "Autotransport und Fahrzeuglogistik: Auto transportieren lassen in Deutschland und Europa. PKW, LKW, Transporter, Bus. Vollkaskoversichert, über 100 Transporte monatlich. Unverbindliches Angebot für B2B und Privatkunden.",
     url: SITE_URL,
-    telephone: "+49 123 456 7890",
-    email: "anfrage@automove-logistik.de",
+    telephone: biz.phone.replace(/\s/g, ""),
+    email: biz.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Beispielstraße 1",
-      addressLocality: "Saarbrücken",
-      postalCode: "66111",
+      streetAddress: biz.street,
+      addressLocality: biz.city,
+      postalCode: biz.postalCode,
       addressRegion: "Saarland",
       addressCountry: "DE",
     },

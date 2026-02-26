@@ -12,6 +12,8 @@ import {
   VIEWPORT_ONCE,
   transitionEntrance,
   transitionChild,
+  transitionFast,
+  transitionIcon,
   resolveTransition,
 } from "../../constants/animation";
 import { GALLERY_IMAGES } from "../../constants/galleryImages";
@@ -180,7 +182,7 @@ export default function Gallery({ variant = "preview" }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: reducedMotion ? 0 : 0.2 }}
+              transition={resolveTransition(reducedMotion, transitionIcon)}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
               role="dialog"
@@ -229,7 +231,7 @@ export default function Gallery({ variant = "preview" }) {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: reducedMotion ? 0 : 0.25 }}
+                      transition={resolveTransition(reducedMotion, transitionFast)}
                       className="gallery-lightbox-image-wrapper"
                     >
                       <Image

@@ -26,7 +26,7 @@
   border-top-left-radius: 18px;
   border-bottom-right-radius: 18px;
   box-shadow: var(--box-shadow-glass);
-  transition: box-shadow 400ms var(--ease-smooth), border-color 400ms var(--ease-smooth);
+  transition: box-shadow var(--duration-ui) var(--ease-smooth), border-color var(--duration-ui) var(--ease-smooth);
 }
 
 .join-team-inner:hover {

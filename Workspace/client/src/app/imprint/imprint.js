@@ -3,6 +3,7 @@ import Footer from "../../layout/Footer/Footer";
 import Link from "next/link";
 import { Undo2 } from "lucide-react";
 import { getLegalPageStructuredData } from "../structuredData";
+import { BUSINESS } from "../../constants/business";
 import "../legal.css";
 
 export default function ImprintPage() {
@@ -16,7 +17,7 @@ export default function ImprintPage() {
   return (
     <div className="app-shell">
       <Header />
-      <main className="legal-main">
+      <main id="main-content" className="legal-main">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -31,19 +32,19 @@ export default function ImprintPage() {
             <h2>Anbieter</h2>
             <p>
               AutoMove Logistik<br />
-              [Straße und Hausnummer]<br />
-              66111 Saarbrücken<br />
-              Deutschland
+              {BUSINESS.street}<br />
+              {BUSINESS.postalCode} {BUSINESS.city}<br />
+              {BUSINESS.country}
             </p>
             <h2>Kontakt</h2>
             <p>
-              Telefon: +49 123 456 7890<br />
-              E-Mail: anfrage@automove-logistik.de
+              Telefon: {BUSINESS.phoneDisplay}<br />
+              E-Mail: {BUSINESS.email}
             </p>
             <h2>Umsatzsteuer-ID</h2>
-            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [USt-IdNr.]</p>
+            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {BUSINESS.vatId}</p>
             <h2>Verantwortlich für den Inhalt</h2>
-            <p>[Name und Anschrift des Verantwortlichen]</p>
+            <p>{BUSINESS.responsible}</p>
             <p>
               <Link href="/privacy">Datenschutzerklärung</Link> · <Link href="/terms">AGB</Link>
             </p>

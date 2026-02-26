@@ -61,6 +61,40 @@ export default function Header() {
     return pathname === link.href;
   };
 
+  const overlayRef = useRef(null);
+  const burgerRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const burger = burgerRef.current;
+    const overlay = overlayRef.current;
+    const overlayFocusable = overlay
+      ? Array.from(overlay.querySelectorAll('a[href], button:not([disabled])'))
+      : [];
+    const focusable = burger ? [burger, ...overlayFocusable] : overlayFocusable;
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first?.focus();
+
+    const handleKeyDown = (e) => {
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
   useEffect(() => {
     openRef.current = open;
     const body = document.body;
@@ -283,6 +317,7 @@ export default function Header() {
         </nav>
 
         <button
+          ref={burgerRef}
           type="button"
           className="app-header-burger-toggle"
           onClick={toggleMenu}
@@ -320,6 +355,7 @@ export default function Header() {
       <AnimatePresence>
         {open && (
           <motion.nav
+            ref={overlayRef}
             id="mobile-navigation"
             className="app-header-nav-overlay"
             initial={{ opacity: 0 }}

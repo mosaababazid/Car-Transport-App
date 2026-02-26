@@ -94,8 +94,8 @@
     0 0 0 1px rgba(0, 224, 255, 0.05),
     var(--shadow-float-soft),
     0 0 18px rgba(0, 224, 255, 0.03);
-  transition: transform 420ms var(--ease-smooth), border-color 420ms var(--ease-smooth),
-    box-shadow 420ms var(--ease-smooth);
+  transition: transform var(--duration-ui) var(--ease-smooth), border-color var(--duration-ui) var(--ease-smooth),
+    box-shadow var(--duration-ui) var(--ease-smooth);
 }
 
 .gallery-card-tap-target:hover .gallery-card-glass,
@@ -130,7 +130,7 @@
 .gallery-card-image {
   object-fit: cover;
   object-position: center;
-  transition: transform 520ms var(--ease-smooth);
+  transition: transform var(--duration-ui) var(--ease-smooth);
 }
 
 .gallery-card-tap-target:hover .gallery-card-image,
@@ -161,7 +161,7 @@
     transparent 68%
   );
   opacity: 0;
-  transition: opacity 420ms var(--ease-smooth);
+  transition: opacity var(--duration-ui) var(--ease-smooth);
   pointer-events: none;
 }
 
@@ -187,8 +187,8 @@
   border: 1px solid var(--secondary-border);
   color: var(--secondary-text);
   background: var(--secondary-bg);
-  transition: border-color 320ms var(--ease-smooth), background 320ms var(--ease-smooth),
-    transform 320ms var(--ease-smooth), box-shadow 320ms var(--ease-smooth);
+  transition: border-color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth),
+    transform var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
 }
 
 .gallery-more-button:hover {
@@ -285,8 +285,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 320ms var(--ease-smooth), background 320ms var(--ease-smooth),
-    color 320ms var(--ease-smooth), box-shadow 320ms var(--ease-smooth);
+  transition: border-color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth),
+    color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
 }
 
 .gallery-lightbox-close:hover,

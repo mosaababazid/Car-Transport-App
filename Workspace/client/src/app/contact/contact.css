@@ -26,7 +26,7 @@
   -webkit-backdrop-filter: blur(28px) saturate(1.4);
   border: 1px solid var(--box-border);
   box-shadow: var(--box-shadow-glass);
-  transition: box-shadow 400ms var(--ease-smooth), border-color 400ms var(--ease-smooth);
+  transition: box-shadow var(--duration-ui) var(--ease-smooth), border-color var(--duration-ui) var(--ease-smooth);
 }
 
 .contact-glass:hover {
@@ -192,7 +192,7 @@
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
-  transition: transform 400ms var(--ease-smooth), box-shadow 400ms var(--ease-smooth), border-color 400ms var(--ease-smooth), color 400ms var(--ease-smooth), background 400ms var(--ease-smooth);
+  transition: transform var(--duration-ui) var(--ease-smooth), box-shadow var(--duration-ui) var(--ease-smooth), border-color var(--duration-ui) var(--ease-smooth), color var(--duration-ui) var(--ease-smooth), background var(--duration-ui) var(--ease-smooth);
 }
 
 .contact-cta-link:hover {

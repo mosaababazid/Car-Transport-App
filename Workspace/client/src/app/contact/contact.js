@@ -15,6 +15,7 @@ import {
   normalizePhoneDigits,
   validatePhoneForCountry,
 } from "../../constants/phoneCountries";
+import { BUSINESS, whatsappUrl } from "../../constants/business";
 import "../../components/Button/Button.css";
 import "./contact.css";
 
@@ -69,7 +70,7 @@ export default function ContactPage() {
     } else if (!safePhoneDigits) {
       nextErrors.phone = "Bitte Telefonnummer angeben.";
     } else if (!validatePhoneForCountry(safePhoneCountry, safePhoneDigits)) {
-      nextErrors.phone = `Bitte gültige Festnetz- oder Mobilnummer fuer ${phoneCountryMeta.name} angeben.`;
+      nextErrors.phone = `Bitte gültige Festnetz- oder Mobilnummer für ${phoneCountryMeta.name} angeben.`;
     }
     if (!safeMessage) nextErrors.message = "Bitte Nachricht angeben.";
 
@@ -114,7 +115,7 @@ export default function ContactPage() {
   return (
     <div className="app-shell">
       <Header />
-      <main className="contact-main">
+      <main id="main-content" className="contact-main">
         <section className="contact-section">
           <div className="contact-wrap">
             <Link href="/" className="back-to-home" aria-label="Zur Startseite">
@@ -131,14 +132,14 @@ export default function ContactPage() {
 
               <div className="contact-cta-wrap">
                 <a
-                  href="https://wa.me/491234567890"
+                  href={whatsappUrl(BUSINESS.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact-cta-link btn-primary contact-cta-link--whatsapp"
                 >
                   Per WhatsApp schreiben
                 </a>
-                <a href="tel:+491234567890" className="contact-cta-link contact-cta-link--secondary">
+                <a href={`tel:${BUSINESS.phone.replace(/\s/g, "")}`} className="contact-cta-link contact-cta-link--secondary">
                   Anrufen
                 </a>
               </div>
@@ -184,7 +185,7 @@ export default function ContactPage() {
                       className="contact-phone-select"
                       value={phoneCountry}
                       onChange={(e) => setPhoneCountry(e.target.value)}
-                      aria-label="Landesvorwahl waehlen"
+                      aria-label="Landesvorwahl wählen"
                     >
                       {PHONE_COUNTRIES.map((country) => (
                         <option key={country.iso} value={country.iso}>

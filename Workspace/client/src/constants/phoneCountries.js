@@ -3,9 +3,7 @@ import { parsePhoneNumberFromString } from "libphonenumber-js/min";
 export const DEFAULT_PHONE_COUNTRY = "DE";
 
 export const PHONE_COUNTRIES = [
-  // Germany first
   { iso: "DE", name: "Deutschland", dialCode: "+49", minLength: 5, maxLength: 15 },
-  // EU countries
   { iso: "AT", name: "Oesterreich", dialCode: "+43", minLength: 5, maxLength: 15 },
   { iso: "BE", name: "Belgien", dialCode: "+32", minLength: 8, maxLength: 9 },
   { iso: "BG", name: "Bulgarien", dialCode: "+359", minLength: 7, maxLength: 9 },
@@ -55,7 +53,7 @@ export function validatePhoneForCountry(iso, nationalDigits) {
 
   if (
     trimmedForIntl.length < country.minLength
-    || trimmedForIntl.length > country.maxLength + 6 // allow extension tail
+    || trimmedForIntl.length > country.maxLength + 6
   ) {
     return false;
   }
@@ -66,7 +64,6 @@ export function validatePhoneForCountry(iso, nationalDigits) {
     return true;
   }
 
-  // Extension-friendly fallback: treat trailing 1-6 digits as office extension.
   for (let extLength = 1; extLength <= 6; extLength += 1) {
     if (trimmedForIntl.length - extLength < country.minLength) break;
     const coreDigits = trimmedForIntl.slice(0, -extLength);
@@ -77,7 +74,6 @@ export function validatePhoneForCountry(iso, nationalDigits) {
     }
   }
 
-  // Fallback for local fixed-line patterns that can still be legitimate.
   return trimmedForIntl.length >= country.minLength
     && trimmedForIntl.length <= country.maxLength;
 }

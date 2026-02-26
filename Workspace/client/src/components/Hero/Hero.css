@@ -83,7 +83,7 @@
   border-top-left-radius: 18px;
   border-bottom-right-radius: 18px;
   box-shadow: var(--box-shadow-glass);
-  transition: box-shadow 400ms var(--ease-smooth), border-color 400ms var(--ease-smooth);
+  transition: box-shadow var(--duration-ui) var(--ease-smooth), border-color var(--duration-ui) var(--ease-smooth);
 }
 
 .hero-section--ios {
@@ -167,7 +167,7 @@
   width: 100%;
   min-width: 0;
   min-height: 2.75rem;
-  transition: transform 400ms var(--ease-smooth), box-shadow 400ms var(--ease-smooth);
+  transition: transform var(--duration-ui) var(--ease-smooth), box-shadow var(--duration-ui) var(--ease-smooth);
 }
 
 .hero-primary-button:hover {
@@ -195,8 +195,8 @@
   color: var(--secondary-text);
   text-decoration: none;
   background: var(--secondary-bg);
-  transition: border-color 320ms var(--ease-smooth), background 320ms var(--ease-smooth),
-    transform 320ms var(--ease-smooth), box-shadow 320ms var(--ease-smooth);
+  transition: border-color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth),
+    transform var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
 }
 
 .hero-secondary-link:hover {

@@ -3,6 +3,7 @@
 import "./Footer.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BUSINESS } from "../../constants/business";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -25,13 +26,11 @@ export default function Footer() {
           <div className="app-footer-columns">
             <div>
               <span className="app-footer-label">Telefon</span>
-              <a href="tel:+491234567890">+49 123 456 7890</a>
+              <a href={`tel:${BUSINESS.phone.replace(/\s/g, "")}`}>{BUSINESS.phoneDisplay}</a>
             </div>
             <div>
               <span className="app-footer-label">E-Mail</span>
-              <a href="mailto:anfrage@automove-logistik.de">
-                anfrage@automove-logistik.de
-              </a>
+              <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
             </div>
           </div>
 

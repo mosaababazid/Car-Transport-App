@@ -3,6 +3,7 @@ import Footer from "../../layout/Footer/Footer";
 import Link from "next/link";
 import { Undo2 } from "lucide-react";
 import { getLegalPageStructuredData } from "../structuredData";
+import { BUSINESS } from "../../constants/business";
 import "../legal.css";
 
 export default function PrivacyPage() {
@@ -16,7 +17,7 @@ export default function PrivacyPage() {
   return (
     <div className="app-shell">
       <Header />
-      <main className="legal-main">
+      <main id="main-content" className="legal-main">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -30,7 +31,7 @@ export default function PrivacyPage() {
             <h2>1. Verantwortlicher</h2>
             <p>
               Verantwortlich für die Datenverarbeitung auf dieser Website ist AutoMove Logistik,
-              [Anschrift]. Kontakt: anfrage@automove-logistik.de
+              {BUSINESS.street}, {BUSINESS.postalCode} {BUSINESS.city}. Kontakt: {BUSINESS.email}
             </p>
             <h2>2. Erhebung und Speicherung personenbezogener Daten</h2>
             <p>
@@ -48,7 +49,7 @@ export default function PrivacyPage() {
             <p>
               Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der
               Verarbeitung Ihrer personenbezogenen Daten sowie ein Widerspruchsrecht. Bei Fragen
-              wenden Sie sich an anfrage@automove-logistik.de. Sie haben zudem das Recht, sich bei
+              wenden Sie sich an {BUSINESS.email}. Sie haben zudem das Recht, sich bei
               einer Aufsichtsbehörde zu beschweren.
             </p>
             <h2>5. Änderungen</h2>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import "./JoinTeam.css";
 import { motion, useReducedMotion } from "framer-motion";
 import "../../components/Button/Button.css";
@@ -42,9 +43,9 @@ export default function JoinTeam() {
           Dann bewirb dich jetzt bei uns und werde Teil unseres Teams.
         </p>
         <div className="join-team-actions">
-          <a href="/contact" className="join-team-cta btn-primary">
+          <Link href="/contact" className="join-team-cta btn-primary">
             Jetzt bewerben
-          </a>
+          </Link>
         </div>
       </motion.div>
     </section>

@@ -41,7 +41,7 @@
   box-sizing: content-box;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 260ms var(--ease-smooth);
+  transition: opacity var(--duration-smooth) var(--ease-smooth);
 }
 
 .process-flow-line-track.is-ready {
@@ -130,7 +130,7 @@
   transform-origin: left center;
   opacity: 0;
   filter: blur(0.25px);
-  transition: opacity 360ms var(--ease-smooth), transform 360ms var(--ease-smooth);
+  transition: opacity var(--duration-smooth) var(--ease-smooth), transform var(--duration-smooth) var(--ease-smooth);
   pointer-events: none;
 }
 
@@ -160,8 +160,8 @@
   justify-self: center;
   overflow: hidden;
   isolation: isolate;
-  transition: border-color 380ms var(--ease-smooth), box-shadow 380ms var(--ease-smooth),
-    background 380ms var(--ease-smooth), transform 380ms var(--ease-smooth);
+  transition: border-color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth),
+    background var(--duration-smooth) var(--ease-smooth), transform var(--duration-smooth) var(--ease-smooth);
 }
 
 .process-flow-step-marker::before {
@@ -172,11 +172,11 @@
   background: radial-gradient(circle at 30% 26%, rgba(148, 163, 184, 0.14), transparent 64%);
   opacity: 0.7;
   pointer-events: none;
-  transition: opacity 380ms var(--ease-smooth);
+  transition: opacity var(--duration-smooth) var(--ease-smooth);
 }
 
 .process-flow-step-number {
-  font-family: "SF Pro Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 0.95rem;
   font-weight: 620;
   letter-spacing: 0;
@@ -188,8 +188,8 @@
   font-variant-numeric: tabular-nums;
   color: rgba(191, 210, 229, 0.74);
   text-shadow: 0 1px 0 rgba(2, 6, 23, 0.4);
-  transition: color 380ms var(--ease-smooth), text-shadow 380ms var(--ease-smooth),
-    filter 380ms var(--ease-smooth);
+  transition: color var(--duration-smooth) var(--ease-smooth), text-shadow var(--duration-smooth) var(--ease-smooth),
+    filter var(--duration-smooth) var(--ease-smooth);
 }
 
 .process-flow-step-marker.is-reached {
@@ -220,7 +220,7 @@
   border: 1px solid var(--box-border);
   border-radius: var(--radius-soft-md);
   padding: 1.25rem 1.5rem;
-  transition: border-color 320ms cubic-bezier(0.33, 1, 0.68, 1), box-shadow 320ms cubic-bezier(0.33, 1, 0.68, 1);
+  transition: border-color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
   min-width: 0;
   position: relative;
   overflow: hidden;
