@@ -49,7 +49,7 @@ export default function Footer() {
           <span className="app-footer-credit app-footer-meta">
             Website entwickelt von{" "}
             <a
-              href="https://www.linkedin.com/in/mosaababazid"
+              href="https://mosaababazid.com/de"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Website entwickelt von Mosaab Abazid (öffnet in neuem Tab)"
