@@ -19,7 +19,7 @@ class EstimateResponse(BaseModel):
 PRICE_PER_KM_EUR = 0.75
 OSRM_BASE_URL = "http://router.project-osrm.org"
 
-app = FastAPI(title="CarTransport / AutoMove Pricing API")
+app = FastAPI(title="CarTransport / luxordrive Pricing API")
 
 app.add_middleware(
   CORSMiddleware,

@@ -118,13 +118,13 @@ Ensure the client is configured to call the backend (e.g. `NEXT_PUBLIC_API_URL` 
 
 **Done in this pass**
 
-- Server `main.py`: API title and user-agent aligned with the project name (CarTransport / AutoMove).
+- Server `main.py`: API title and user-agent aligned with the project name (CarTransport / luxordrive).
 
 ---
 
 ## License and credits
 
-- Content and branding (e.g. AutoMove Logistik) are project-specific.
+- Content and branding (e.g. luxordrive Logistik) are project-specific.
 - Website credit can be kept in the footer (e.g. developer name/link) as desired.
 
 This README is kept in English for a professional, internationally readable repository.

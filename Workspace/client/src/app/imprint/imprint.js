@@ -31,7 +31,7 @@ export default function ImprintPage() {
             <p>Angaben gemäß § 5 TMG</p>
             <h2>Anbieter</h2>
             <p>
-              AutoMove Logistik<br />
+              LUXOR DRIVE<br />
               {BUSINESS.street}<br />
               {BUSINESS.postalCode} {BUSINESS.city}<br />
               {BUSINESS.country}

@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="app-footer-inner">
         <div className="app-footer-top">
           <div className="app-footer-main">
-            <h2>AutoMove Logistik</h2>
+            <h2>LUXOR DRIVE</h2>
             <p>Professioneller Fahrzeugtransport, sicher und europaweit.</p>
             {!isContactPage && (
               <Link href="/contact" className="app-footer-cta">
@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div className="app-footer-bottom">
-          <span className="app-footer-meta">© {new Date().getFullYear()} AutoMove Logistik</span>
+          <span className="app-footer-meta">© {new Date().getFullYear()} LUXOR DRIVE</span>
           <span className="app-footer-meta">
             Preisangabe unverbindlich. Abhol- und Zielort eingeben für Ihr Angebot.
           </span>

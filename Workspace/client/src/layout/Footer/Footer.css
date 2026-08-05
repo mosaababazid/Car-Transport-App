@@ -50,9 +50,9 @@
   text-shadow: none;
   border-radius: var(--radius-pill);
   text-decoration: none;
-  background: rgba(14, 165, 233, 0.14);
-  color: #c8f3ff;
-  border: 1px solid rgba(0, 224, 255, 0.28);
+  background: rgba(184, 139, 68, 0.1);
+  color: #d7be94;
+  border: 1px solid rgba(184, 139, 68, 0.26);
   box-shadow: none;
   transition: transform var(--duration-smooth) var(--ease-smooth), border-color var(--duration-smooth) var(--ease-smooth), color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth);
 }
@@ -60,9 +60,9 @@
 .app-footer-cta:hover {
   text-decoration: none;
   transform: translateY(-1px);
-  border-color: rgba(0, 224, 255, 0.5);
-  color: #e6fbff;
-  background: rgba(14, 165, 233, 0.2);
+  border-color: rgba(220, 192, 139, 0.5);
+  color: #e7d2ad;
+  background: rgba(184, 139, 68, 0.15);
 }
 
 .app-footer-columns {
@@ -95,7 +95,7 @@
 
 .app-footer-columns a:hover {
   color: var(--accent);
-  border-color: rgba(0, 224, 255, 0.8);
+  border-color: rgba(184, 139, 68, 0.7);
 }
 
 .app-footer-legal {
@@ -115,7 +115,7 @@
 
 .app-footer-legal a:hover {
   color: var(--accent);
-  border-bottom-color: rgba(0, 224, 255, 0.5);
+  border-bottom-color: rgba(184, 139, 68, 0.45);
 }
 
 .app-footer-bottom {

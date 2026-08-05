@@ -5,7 +5,7 @@ export const BUSINESS = {
   phone: RAW_PHONE,
   phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY || RAW_PHONE,
   whatsapp: RAW_WHATSAPP.replace(/\D/g, ""),
-  email: process.env.NEXT_PUBLIC_EMAIL || "anfrage@automove-logistik.de",
+  email: process.env.NEXT_PUBLIC_EMAIL || "anfrage@luxordrive-logistik.de",
   street: process.env.NEXT_PUBLIC_STREET || "Beispielstraße 1",
   city: process.env.NEXT_PUBLIC_CITY || "Saarbrücken",
   postalCode: process.env.NEXT_PUBLIC_POSTAL || "66111",

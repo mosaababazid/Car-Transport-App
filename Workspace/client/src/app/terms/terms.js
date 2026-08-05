@@ -9,7 +9,7 @@ export default function TermsPage() {
   const schema = getLegalPageStructuredData({
     path: "/terms",
     title: "Allgemeine Geschäftsbedingungen (AGB)",
-    description: "Allgemeine Geschäftsbedingungen der AutoMove Logistik.",
+    description: "Allgemeine Geschäftsbedingungen der LUXOR DRIVE.",
     kind: "WebPage",
   });
 
@@ -30,7 +30,7 @@ export default function TermsPage() {
             <h2>1. Geltungsbereich</h2>
             <p>
               Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge über die
-              Fahrzeuglogistik und den Transport von Kraftfahrzeugen, die zwischen AutoMove Logistik
+              Fahrzeuglogistik und den Transport von Kraftfahrzeugen, die zwischen LUXOR DRIVE
               und dem Kunden geschlossen werden.
             </p>
             <h2>2. Vertragsschluss</h2>
@@ -57,7 +57,7 @@ export default function TermsPage() {
             <h2>6. Schlussbestimmungen</h2>
             <p>
               Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist, soweit
-              gesetzlich zulässig, der Sitz von AutoMove Logistik. Sollten einzelne Bestimmungen
+              gesetzlich zulässig, der Sitz von LUXOR DRIVE. Sollten einzelne Bestimmungen
               unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
             </p>
             <p>

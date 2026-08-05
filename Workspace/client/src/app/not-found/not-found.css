@@ -23,7 +23,7 @@
 }
 
 .not-found-glass:hover {
-  border-color: rgba(0, 224, 255, 0.12);
+  border-color: rgba(184, 139, 68, 0.2);
   box-shadow: var(--box-shadow-glass-hover);
 }
 

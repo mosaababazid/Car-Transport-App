@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
+import { SITE_NAME_SHORT, SITE_TAGLINE, OG_IMAGE } from "../lib/seo/site";
 
-export const alt = "AutoMove Logistik - Autotransport in Deutschland und Europa";
-export const size = { width: 1200, height: 630 };
+export const alt = OG_IMAGE.alt;
+export const size = { width: OG_IMAGE.width, height: OG_IMAGE.height };
 export const contentType = "image/png";
 
 export default function Image() {
@@ -24,12 +25,12 @@ export default function Image() {
             display: "flex",
             fontSize: 72,
             fontWeight: 700,
-            color: "#00e0ff",
+            color: "#c6a062",
             letterSpacing: "-0.02em",
             marginBottom: 16,
           }}
         >
-          AutoMove Logistik
+          {SITE_NAME_SHORT}
         </div>
         <div
           style={{
@@ -40,7 +41,7 @@ export default function Image() {
             textAlign: "center",
           }}
         >
-          Autotransport & Fahrzeuglogistik in Deutschland und Europa
+          {SITE_TAGLINE} in Deutschland und Europa
         </div>
         <div
           style={{

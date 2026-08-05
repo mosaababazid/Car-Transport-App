@@ -3,10 +3,12 @@
 import "./Header.css";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { transitionIcon, transitionFast, STAGGER, resolveTransition } from "../../constants/animation";
+import logoImage from "../../assets/Images/logo1.png";
 
 const links = [
   { href: "/", label: "Übersicht", sectionId: "hero" },
@@ -293,10 +295,22 @@ export default function Header() {
           href="/"
           className="app-header-brand"
           onClick={() => setOpen(false)}
-          aria-label="AutoMove Logistik – Zur Startseite"
+          aria-label="LUXOR DRIVE – Zur Startseite"
         >
-          <span className="app-header-mark" />
-          <span className="app-header-title">AutoMove Logistik</span>
+          <span className="app-header-mark" aria-hidden="true">
+            <Image
+              src={logoImage}
+              alt=""
+              width={120}
+              height={44}
+              className="app-header-logo"
+              priority
+            />
+          </span>
+          <span className="app-header-brand-text">
+            <span className="app-header-title">LUXOR DRIVE</span>
+            <span className="app-header-subtitle">AUTOMOBIL UND TRANSPORT</span>
+          </span>
         </Link>
 
         <nav className="app-header-nav app-header-nav--desktop">

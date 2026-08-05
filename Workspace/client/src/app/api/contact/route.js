@@ -6,9 +6,9 @@ import {
   validatePhoneForCountry,
 } from "../../../constants/phoneCountries";
 
-const MAIL_TO = process.env.MAIL_TO || "anfrage@automove-logistik.de";
+const MAIL_TO = process.env.MAIL_TO || "anfrage@luxordrive-logistik.de";
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const MAIL_FROM = process.env.MAIL_FROM || "AutoMove Logistik <onboarding@resend.dev>";
+const MAIL_FROM = process.env.MAIL_FROM || "LUXOR DRIVE <onboarding@resend.dev>";
 
 function escapeHtml(s) {
   if (typeof s !== "string") return "";

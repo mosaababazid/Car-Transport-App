@@ -76,14 +76,13 @@
 .hero-glass-box {
   padding: 2rem 2.25rem;
   background: var(--box-bg);
-  backdrop-filter: blur(28px) saturate(1.4);
-  -webkit-backdrop-filter: blur(28px) saturate(1.4);
   border: 1px solid var(--box-border);
   border-radius: var(--radius-soft-lg);
   border-top-left-radius: 18px;
   border-bottom-right-radius: 18px;
   box-shadow: var(--box-shadow-glass);
   transition: box-shadow var(--duration-ui) var(--ease-smooth), border-color var(--duration-ui) var(--ease-smooth);
+  position: relative;
 }
 
 .hero-section--ios {
@@ -100,12 +99,10 @@
 
 .hero-section--ios .hero-glass-box {
   background: var(--box-bg);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 .hero-glass-box:hover {
-  border-color: rgba(0, 224, 255, 0.12);
+  border-color: rgba(184, 139, 68, 0.2);
   box-shadow: var(--box-shadow-glass-hover);
 }
 
@@ -128,8 +125,8 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(0, 224, 255, 0.1);
-  border: 1px solid rgba(0, 224, 255, 0.25);
+  background: rgba(184, 139, 68, 0.12);
+  border: 1px solid rgba(184, 139, 68, 0.26);
 }
 
 .hero-title {
@@ -173,8 +170,8 @@
 .hero-primary-button:hover {
   transform: translateY(-1px) scale(1.02);
   box-shadow:
-    0 6px 20px rgba(6, 182, 212, 0.22),
-    0 0 6px rgba(0, 224, 255, 0.1),
+    0 6px 20px rgba(103, 73, 33, 0.34),
+    0 0 6px rgba(184, 139, 68, 0.1),
     0 0 0 1px rgba(15, 23, 42, 0.9);
 }
 

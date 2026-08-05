@@ -30,7 +30,7 @@
 }
 
 .contact-glass:hover {
-  border-color: rgba(0, 224, 255, 0.12);
+  border-color: rgba(184, 139, 68, 0.2);
   box-shadow: var(--box-shadow-glass-hover);
 }
 
@@ -200,11 +200,11 @@
 }
 
 .contact-cta-link--whatsapp {
-  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
-  color: #011322;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, #c6a062, #8f6a34);
+  color: #f7f1e4;
+  text-shadow: 0 1px 0 rgba(26, 17, 3, 0.3);
   box-shadow:
-    0 4px 14px rgba(6, 182, 212, 0.18),
+    0 4px 14px rgba(103, 73, 33, 0.28),
     0 0 0 1px rgba(15, 23, 42, 0.85);
 }
 
@@ -217,8 +217,8 @@
 .contact-cta-link--whatsapp:focus-visible {
   transform: translateY(-1px) scale(1.02);
   box-shadow:
-    0 6px 20px rgba(6, 182, 212, 0.22),
-    0 0 6px rgba(0, 224, 255, 0.1),
+    0 6px 20px rgba(103, 73, 33, 0.34),
+    0 0 6px rgba(184, 139, 68, 0.1),
     0 0 0 1px rgba(15, 23, 42, 0.9);
 }
 
