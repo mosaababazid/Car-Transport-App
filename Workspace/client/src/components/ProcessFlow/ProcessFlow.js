@@ -80,6 +80,10 @@ export default function ProcessFlow() {
   const [trackTop, setTrackTop] = useState(0);
   const [trackHeight, setTrackHeight] = useState(0);
   const [ready, setReady] = useState(false);
+  const [progressRange, setProgressRange] = useState({
+    start: 0,
+    end: 1,
+  });
   const [reached, setReached] = useState(
     STEPS.map(() => false)
   );
@@ -103,9 +107,14 @@ export default function ProcessFlow() {
       const first = centers[0];
       const last = centers[centers.length - 1];
       const span = Math.max(1, last - first);
+      const documentOffset = tlRect.top + window.scrollY;
 
       setTrackTop(first);
       setTrackHeight(span);
+      setProgressRange({
+        start: documentOffset + first - window.innerHeight * 0.78,
+        end: documentOffset + last - window.innerHeight * 0.72,
+      });
 
       setPoints(
         centers.map((center) =>
@@ -115,6 +124,7 @@ export default function ProcessFlow() {
     };
 
     measure();
+    const measureFrame = requestAnimationFrame(measure);
 
     const resizeObserver = new ResizeObserver(measure);
     resizeObserver.observe(timeline);
@@ -122,31 +132,29 @@ export default function ProcessFlow() {
     window.addEventListener("resize", measure);
 
     return () => {
+      cancelAnimationFrame(measureFrame);
       resizeObserver.disconnect();
       window.removeEventListener("resize", measure);
     };
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start 78%", "end 42%"],
-  });
+  const { scrollY } = useScroll();
 
   const rawProgress = useTransform(
-    scrollYProgress,
-    [0.04, 0.96],
+    scrollY,
+    [progressRange.start, progressRange.end],
     [0, 1]
   );
 
   const smoothProgress = useSpring(rawProgress, {
-    stiffness: reducedMotion ? 1000 : 75,
-    damping: reducedMotion ? 100 : 28,
-    mass: 0.45,
+    stiffness: reducedMotion ? 1000 : 150,
+    damping: reducedMotion ? 100 : 30,
+    mass: 0.3,
   });
 
   const progress = reducedMotion ? rawProgress : smoothProgress;
 
-  const lineHeight = useTransform(progress, (value) => {
+  const lineHeight = useTransform(rawProgress, (value) => {
     return `${Math.max(0, Math.min(1, value)) * 100}%`;
   });
 
@@ -233,11 +241,9 @@ export default function ProcessFlow() {
                   } ${isActive ? "is-active" : ""}`}
                   initial={{
                     opacity: 0,
-                    y: 35,
                   }}
                   whileInView={{
                     opacity: 1,
-                    y: 0,
                   }}
                   viewport={{
                     once: true,

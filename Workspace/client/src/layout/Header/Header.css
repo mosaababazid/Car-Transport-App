@@ -278,6 +278,40 @@
   outline: none;
 }
 
+.back-to-top-button {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  z-index: 1001;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--secondary-border);
+  border-radius: 50%;
+  background: rgba(16, 18, 22, 0.9);
+  color: var(--accent-gold);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(197, 165, 114, 0.08) inset;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--duration-smooth) var(--ease-smooth), border-color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth), color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
+}
+
+.back-to-top-button:hover,
+.back-to-top-button:focus-visible {
+  border-color: var(--secondary-border-hover);
+  background: var(--accent);
+  color: #14110c;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38), 0 0 14px var(--glow-accent);
+}
+
+.back-to-top-button:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
 @media (max-width: 640px) {
   .app-header-nav--desktop {
     display: none;

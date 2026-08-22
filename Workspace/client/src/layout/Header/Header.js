@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { ArrowUp, Menu, X } from "lucide-react";
 import { transitionIcon, transitionFast, STAGGER, resolveTransition } from "../../constants/animation";
 import logoImage from "../../assets/Images/logo1.png";
 
@@ -54,6 +54,7 @@ export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const reducedMotion = useReducedMotion();
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const isLinkActive = (link) => {
     if (isHome) {
       const sectionId = getSectionIdForLink(link);
@@ -285,11 +286,29 @@ export default function Header() {
 
   const toggleMenu = () => setOpen(!open);
 
+  useEffect(() => {
+    const updateBackToTopVisibility = () => {
+      setShowBackToTop(window.scrollY > 560);
+    };
+
+    updateBackToTopVisibility();
+    window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateBackToTopVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  };
+
   return (
-    <header
-      className="app-header"
-      style={open ? { backdropFilter: "none", WebkitBackdropFilter: "none", zIndex: 99999 } : {}}
-    >
+    <>
+      <header
+        className="app-header"
+        style={open ? { backdropFilter: "none", WebkitBackdropFilter: "none", zIndex: 99999 } : {}}
+      >
       <div className="app-header-inner">
         <Link
           href="/"
@@ -405,6 +424,25 @@ export default function Header() {
           </motion.nav>
         )}
       </AnimatePresence>
-    </header>
+
+      </header>
+
+      <AnimatePresence>
+        {showBackToTop && !open && (
+          <motion.button
+            type="button"
+            className="back-to-top-button"
+            onClick={scrollToTop}
+            aria-label="Nach oben"
+            initial={{ opacity: 0, scale: 0.82, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.82, y: 10 }}
+            transition={resolveTransition(reducedMotion, transitionFast)}
+          >
+            <ArrowUp size={18} strokeWidth={2} aria-hidden="true" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
