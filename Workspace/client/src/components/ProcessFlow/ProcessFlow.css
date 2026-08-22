@@ -188,21 +188,16 @@
   z-index: 3;
   display: grid;
   place-items: center;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   color: #737d89;
-  background:
-    radial-gradient(
-      circle at 35% 25%,
-      rgba(255, 255, 255, 0.06),
-      transparent 60%
-    ),
-    #0c1119;
+  background: #0c1119;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  border-radius: 0.32rem;
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.4),
-    0 0 0 8px rgba(10, 15, 23, 0.7);
+    0 0 0 0.45rem rgba(10, 15, 23, 0.7);
+  transform: rotate(45deg);
   transition:
     color 0.7s var(--pf-ease),
     border-color 0.7s var(--pf-ease),
@@ -210,13 +205,15 @@
     box-shadow 0.7s var(--pf-ease);
 }
 
+.process-flow-marker-core svg { transform: rotate(-45deg); }
+
 .process-flow-marker-ring {
   position: absolute;
-  inset: 0;
+  inset: 0.35rem;
   border: 1px solid rgba(197, 165, 114, 0.4);
-  border-radius: 50%;
+  border-radius: 0.2rem;
   opacity: 0;
-  transform: scale(0.65);
+  transform: rotate(45deg) scale(0.55);
   transition:
     opacity 0.8s var(--pf-ease),
     transform 0.9s var(--pf-ease);
@@ -224,23 +221,19 @@
 
 .process-flow-marker-pulse {
   position: absolute;
-  inset: -0.7rem;
-  border: 1px solid rgba(197, 165, 114, 0.12);
-  border-radius: 50%;
+  left: -1.15rem;
+  right: -1.15rem;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 165, 114, 0.55), transparent);
   opacity: 0;
-  transform: scale(0.7);
+  transform: scaleX(0.35);
 }
 
 .process-flow-step.is-active .process-flow-marker-core {
   color: var(--pf-gold-light);
   border-color: rgba(197, 165, 114, 0.5);
-  background:
-    radial-gradient(
-      circle at 35% 25%,
-      rgba(197, 165, 114, 0.18),
-      transparent 62%
-    ),
-    #111923;
+  background: #111923;
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.4),
     0 0 20px rgba(197, 165, 114, 0.13),
@@ -249,24 +242,30 @@
 
 .process-flow-step.is-active .process-flow-marker-ring {
   opacity: 1;
-  transform: scale(1);
+  transform: rotate(45deg) scale(1);
+  animation: process-flow-waypoint 3.2s linear infinite;
 }
 
 .process-flow-step.is-active .process-flow-marker-pulse {
   opacity: 1;
-  animation: process-flow-pulse 2.8s ease-out infinite;
+  animation: process-flow-scan 2.4s var(--pf-ease) infinite;
 }
 
-@keyframes process-flow-pulse {
+@keyframes process-flow-waypoint {
   0% {
-    transform: scale(0.72);
-    opacity: 0.5;
+    transform: rotate(45deg) scale(0.82);
+    opacity: 0.35;
   }
-
+  50% { opacity: 1; }
   100% {
-    transform: scale(1.15);
-    opacity: 0;
+    transform: rotate(405deg) scale(1);
+    opacity: 0.35;
   }
+}
+
+@keyframes process-flow-scan {
+  0%, 100% { transform: scaleX(0.3); opacity: 0; }
+  45%, 55% { transform: scaleX(1); opacity: 0.8; }
 }
 
 .process-flow-card {
@@ -470,8 +469,8 @@
   }
 
   .process-flow-marker-core {
-    width: 2.85rem;
-    height: 2.85rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
 
   .process-flow-card {
@@ -502,7 +501,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .process-flow-marker-pulse {
+  .process-flow-marker-pulse,
+  .process-flow-marker-ring {
     animation: none;
   }
 
