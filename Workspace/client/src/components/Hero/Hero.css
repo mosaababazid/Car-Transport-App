@@ -219,6 +219,11 @@
   min-width: 0;
   min-height: 3rem;
   border-radius: var(--radius-control);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
   transition:
     transform var(--duration-ui) var(--ease-smooth),
     box-shadow var(--duration-ui) var(--ease-smooth);

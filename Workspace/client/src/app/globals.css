@@ -65,6 +65,26 @@ html {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) #0a0b0d;
+}
+
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0b0d;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 0.18rem solid #0a0b0d;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #dcc6a0, #b68e54);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dcc6a0;
 }
 
 section[id],
