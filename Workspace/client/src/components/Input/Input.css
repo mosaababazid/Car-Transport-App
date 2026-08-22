@@ -12,7 +12,7 @@
 }
 
 .ui-field-shell {
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   padding: 0.5rem 0.95rem;
   border: 1px solid rgba(148, 163, 184, 0.34);
   background:

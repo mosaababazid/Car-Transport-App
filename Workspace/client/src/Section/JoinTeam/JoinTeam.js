@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import "./JoinTeam.css";
 import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import "../../components/Button/Button.css";
 import { transitionEntrance, resolveTransition } from "../../constants/animation";
 
@@ -25,25 +26,35 @@ export default function JoinTeam() {
 
   return (
     <section ref={sectionRef} id="karriere" className="join-team" aria-labelledby="join-team-heading">
-      <div className="join-team-bg" aria-hidden="true" />
       <motion.div
         className="join-team-inner"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.05 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
+        <div className="join-team-eyebrow">
+          <span />
+          Karriere
+          <span />
+        </div>
+
         <h2 id="join-team-heading" className="join-team-headline">
-          Mach dein Hobby zum Beruf!
+          Mach dein Hobby zum <em>Beruf!</em>
         </h2>
+
         <p className="join-team-subline">
           Du liebst Autos? Du fährst gerne lange Strecken? Du möchtest mit deiner Leidenschaft Geld verdienen?
         </p>
+
+        <div className="join-team-divider" />
+
         <p className="join-team-action">
           Dann bewirb dich jetzt bei uns und werde Teil unseres Teams.
         </p>
+
         <div className="join-team-actions">
-          <Link href="/contact" className="join-team-cta btn-primary">
+          <Link href="/contact" className="join-team-cta">
             Jetzt bewerben
           </Link>
         </div>

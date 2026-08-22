@@ -183,7 +183,7 @@
   width: 100%;
   min-height: 2.75rem;
   padding: 0.72rem 1.35rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   font-size: 0.9rem;
   font-weight: 700;
   line-height: 1;

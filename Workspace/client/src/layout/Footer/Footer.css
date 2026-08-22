@@ -48,7 +48,7 @@
   text-transform: none;
   font-weight: 600;
   text-shadow: none;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   text-decoration: none;
   background: rgba(197, 165, 114, 0.1);
   color: #dcc6a0;

@@ -183,7 +183,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-control);
   border: 1px solid var(--secondary-border);
   color: var(--secondary-text);
   background: var(--secondary-bg);

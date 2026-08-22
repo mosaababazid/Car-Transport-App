@@ -4,11 +4,16 @@ import "./PricingCalculator.css";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { Map, Clock, ArrowRight } from "lucide-react";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import "../../components/Button/Button.css";
 import { getPriceEstimate } from "../../helpers/api";
-import { VIEWPORT_ONCE, transitionEntrance, transitionChild, resolveTransition } from "../../constants/animation";
+import {
+  transitionEntrance,
+  transitionChild,
+  resolveTransition,
+} from "../../constants/animation";
 
 export default function PricingCalculator() {
   const [pickup, setPickup] = useState("");
@@ -81,17 +86,23 @@ export default function PricingCalculator() {
     <section id="pricing" className="pricing-section">
       <motion.div
         className="pricing-inner pricing-glass"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.05 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={resolveTransition(reducedMotion, transitionEntrance)}
       >
         <header className="pricing-header">
-          <span className="pricing-kicker">Preisrechner</span>
-          <h2>Unverbindliches Angebot</h2>
+          <div className="pricing-eyebrow">
+            <span />
+            Preisrechner
+            <span />
+          </div>
+          <h2>
+            Unverbindliches <em>Angebot</em>
+          </h2>
           <p>
-            Abhol- und Zielort eingeben. Die Straßenentfernung wird per Routenberechnung ermittelt;
-            der geschätzte Preis wird in Euro (€) angezeigt.
+            Geben Sie Abhol- und Zielort ein. Die Routenberechnung ermittelt die
+            Entfernung und erstellt ein geschätztes Angebot.
           </p>
         </header>
 
@@ -100,7 +111,7 @@ export default function PricingCalculator() {
             <Input
               id="pickup"
               label="Abholort"
-              placeholder="Stadt oder genaue Adresse, z. B. Berlin oder Musterstraße 1, 10115 Berlin"
+              placeholder="z. B. Berlin oder Musterstraße 1, 10115"
               value={pickup}
               onChange={(e) => setPickup(e.target.value)}
               maxLength={200}
@@ -110,7 +121,7 @@ export default function PricingCalculator() {
             <Input
               id="dropoff"
               label="Zielort"
-              placeholder="Stadt oder genaue Adresse, z. B. München oder Zielstraße 5, 80331 München"
+              placeholder="z. B. München oder Zielstraße 5, 80331"
               value={dropoff}
               onChange={(e) => setDropoff(e.target.value)}
               maxLength={200}
@@ -123,53 +134,70 @@ export default function PricingCalculator() {
             type="submit"
             disabled={loading}
             aria-busy={loading}
-            className="btn-primary--block"
+            className="btn-primary--block pricing-submit-btn"
           >
-            {loading ? "Berechnung läuft…" : "Berechnen"}
+            {loading ? "Berechnung läuft…" : "Angebot anfordern"}
           </Button>
 
           {error && (
-            <p className="pricing-message pricing-message--error" role="alert" aria-live="polite">
+            <motion.p
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              className="pricing-message pricing-message--error"
+              role="alert"
+              aria-live="polite"
+            >
               {error}
-            </p>
+            </motion.p>
           )}
 
           {result && (
             <motion.div
               className="pricing-result"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.96, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={resolveTransition(reducedMotion, transitionChild)}
             >
-              <div className="pricing-result-row">
-                <span className="pricing-result-label">Distanz</span>
-                <strong className="pricing-result-value">
-                  {Number(result.distance_km ?? 0).toLocaleString("de-DE", {
-                    maximumFractionDigits: 0,
-                  })}{" "}
-                  km
-                </strong>
+              <div className="pricing-result-content">
+                <div className="pricing-result-row">
+                  <span className="pricing-result-label">
+                    <Map size={16} strokeWidth={1.5} />
+                    Distanz
+                  </span>
+                  <strong className="pricing-result-value">
+                    {Number(result.distance_km ?? 0).toLocaleString("de-DE", {
+                      maximumFractionDigits: 0,
+                    })}{" "}
+                    km
+                  </strong>
+                </div>
+
+                {typeof result.estimated_hours === "number" && (
+                  <div className="pricing-result-row">
+                    <span className="pricing-result-label">
+                      <Clock size={16} strokeWidth={1.5} />
+                      Geschätzte Fahrtzeit
+                    </span>
+                    <strong className="pricing-result-value">
+                      {result.estimated_hours.toLocaleString("de-DE", {
+                        maximumFractionDigits: 1,
+                      })}{" "}
+                      h
+                    </strong>
+                  </div>
+                )}
               </div>
-              <div className="pricing-result-row">
-                <span className="pricing-result-label">Geschätzter Preis</span>
-                <strong className="pricing-result-value pricing-result-price" aria-live="polite">
+
+              <div className="pricing-result-total">
+                <span className="pricing-total-label">Geschätzter Preis</span>
+                <strong className="pricing-total-value" aria-live="polite">
                   ab {animatedPrice.toLocaleString("de-DE")} €
                 </strong>
               </div>
-              {typeof result.estimated_hours === "number" && (
-                <div className="pricing-result-row">
-                  <span className="pricing-result-label">Geschätzte Fahrtzeit</span>
-                  <strong className="pricing-result-value">
-                    {result.estimated_hours.toLocaleString("de-DE", {
-                      maximumFractionDigits: 1,
-                    })}{" "}
-                    h
-                  </strong>
-                </div>
-              )}
+
               <div className="pricing-cta-wrap">
-                <Link href="/contact" className="pricing-cta-link btn-primary">
-                  Kontaktieren
+                <Link href="/contact" className="pricing-cta-link">
+                  Transport verbindlich anfragen
                 </Link>
               </div>
             </motion.div>
