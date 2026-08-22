@@ -75,7 +75,7 @@
   .trustbar-item:not(:last-child) { border-right: 0; }
   .trustbar-item:nth-child(2) { border-right: 1px solid rgba(197, 165, 114, 0.2); }
   .trustbar-item:hover { background: transparent; }
-  .trustbar-icon { width: 2rem; height: 2rem; border: 0; border-radius: 0; background: transparent; color: var(--accent); }
+  .trustbar-icon { width: 2rem; height: 2rem; border: 0; border-radius: 0; color: var(--accent); background: linear-gradient(var(--accent), var(--accent)) left top / 0.82rem 1px no-repeat, linear-gradient(var(--accent), var(--accent)) left top / 1px 0.82rem no-repeat, linear-gradient(var(--accent), var(--accent)) right bottom / 0.82rem 1px no-repeat, linear-gradient(var(--accent), var(--accent)) right bottom / 1px 0.82rem no-repeat; }
   .trustbar-item:first-child .trustbar-icon { width: 2.35rem; height: 2.35rem; margin-bottom: 0.15rem; color: var(--accent-gold); }
   .trustbar-item:hover .trustbar-icon { transform: none; }
   .trustbar-figure { margin: 0; font-size: 1.55rem; line-height: 1; }
