@@ -80,6 +80,9 @@ export default function ProcessFlow() {
   const [trackTop, setTrackTop] = useState(0);
   const [trackHeight, setTrackHeight] = useState(0);
   const [ready, setReady] = useState(false);
+  const [reached, setReached] = useState(
+    STEPS.map(() => false)
+  );
 
   useLayoutEffect(() => {
     const timeline = timelineRef.current;
@@ -165,10 +168,6 @@ export default function ProcessFlow() {
       });
     },
     [points]
-  );
-
-  const [reached, setReached] = useState(
-    STEPS.map(() => false)
   );
 
   useMotionValueEvent(progress, "change", updateReached);

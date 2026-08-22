@@ -2,7 +2,7 @@
 
 **Live demo:** [car-transport-app-mosaab.vercel.app](https://car-transport-app-mosaab.vercel.app/)
 
-A full-stack web application for **vehicle logistics and car transport** services in Germany and Europe. It provides a modern landing page with a pricing calculator, contact form, and legal pages (privacy, terms, imprint). The frontend is built with Next.js; the backend offers a REST API for route-based price estimates.
+A full-stack web application for **vehicle logistics and car transport** services in Germany and Europe. It provides a modern landing page with a pricing calculator, contact form, and legal pages (privacy, terms, imprint). The entire application runs on Next.js, including its API routes.
 
 ---
 
@@ -30,22 +30,18 @@ CarTransport/
 │   │       ├── layout/
 │   │       ├── Section/
 │   │       └── helpers/
-│   └── server/                    # FastAPI backend (Python)
-│       ├── main.py
-│       └── requirements.txt
 ├── .gitignore
 └── README.md
 ```
 
 - **client**: Next.js App Router. One route file `[[...slug]]/page.js` serves `/`, `/contact`, `/privacy`, `/terms`, `/imprint`; all page components are exported from `app.js`. Per-page logic lives in `contact/contact.js`, `contact/contact.css`, `privacy/privacy.js`, etc. Global and legal CSS in `app/`.
-- **server**: FastAPI app: geocodes pickup/dropoff, computes distance (OSRM), returns a simple price estimate.
+- **API routes**: Next.js server routes for contact submissions and route-based price estimates.
 
 ---
 
 ## Prerequisites
 
-- **Node.js** 18+ and **npm** (or yarn/pnpm) for the client
-- **Python** 3.10+ for the server (virtual environment recommended)
+- **Node.js** 18+ and **npm** (or yarn/pnpm)
 
 ---
 
@@ -61,29 +57,12 @@ npm run dev
 
 The app is served at [http://localhost:3000](http://localhost:3000) by default.
 
-### Server (FastAPI)
-
-```bash
-cd Workspace/server
-python -m venv venv
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-# source venv/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-The API runs at [http://localhost:8000](http://localhost:8000). Docs: [http://localhost:8000/docs](http://localhost:8000/docs).
-
-Ensure the client is configured to call the backend (e.g. `NEXT_PUBLIC_API_URL` or equivalent) so the pricing calculator and contact/estimate flows work.
-
 ---
 
 ## Main features
 
 - **Landing page** (`/`): Hero, trust bar, services, process flow, pricing calculator, join-team CTA
-- **Pricing calculator**: Pickup and dropoff inputs; calls backend `/api/estimate` for distance and price
+- **Pricing calculator**: Pickup and dropoff inputs; calls the Next.js `/api/estimate` route for distance and price
 - **Contact** (`/contact`): Form plus WhatsApp/phone links; form submits to `/api/contact`
 - **Legal**: Privacy (`/privacy`), terms (`/terms`), imprint (`/imprint`) with metadata
 - **SEO**: Metadata and structured data (`structuredData.js`) in layout
@@ -92,8 +71,7 @@ Ensure the client is configured to call the backend (e.g. `NEXT_PUBLIC_API_URL` 
 
 ## Configuration
 
-- **Client**: Use `.env.local` for `NEXT_PUBLIC_SITE_URL` and any API base URL your app uses. Copy `.env.example` for Resend (contact form). Optional: `NEXT_PUBLIC_API_BASE_URL` to point the calculator at the Python backend instead of the built-in Next.js API route.
-- **Server**: CORS is set for `http://localhost:3000`; adjust in `main.py` for other origins.
+- **Client**: Use `.env.local` for `NEXT_PUBLIC_SITE_URL` and the Resend/contact form variables. Copy `.env.example` as a starting point.
 
 ---
 
@@ -118,7 +96,7 @@ Ensure the client is configured to call the backend (e.g. `NEXT_PUBLIC_API_URL` 
 
 **Done in this pass**
 
-- Server `main.py`: API title and user-agent aligned with the project name (CarTransport / luxordrive).
+- Estimate and contact APIs run directly as Next.js App Router route handlers.
 
 ---
 
