@@ -4,13 +4,15 @@ import "./Services.css";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   BadgeCheck,
-  BusFront,
-  CarFront,
   Route,
   ScanLine,
-  Truck,
-  Van,
 } from "lucide-react";
+import {
+  PiBusDuotone,
+  PiCarProfileDuotone,
+  PiTruckTrailerDuotone,
+  PiVanDuotone,
+} from "react-icons/pi";
 import {
   STAGGER,
   VIEWPORT_ONCE,
@@ -47,10 +49,10 @@ const OFFERINGS = [
 ];
 
 const VEHICLE_TYPES = [
-  { label: "PKW", icon: CarFront },
-  { label: "Transporter", icon: Van },
-  { label: "LKW", icon: Truck },
-  { label: "Bus", icon: BusFront },
+  { label: "PKW", icon: PiCarProfileDuotone },
+  { label: "Transporter", icon: PiVanDuotone },
+  { label: "LKW", icon: PiTruckTrailerDuotone },
+  { label: "Bus", icon: PiBusDuotone },
 ];
 
 export default function Services() {
