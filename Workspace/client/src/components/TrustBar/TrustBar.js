@@ -1,7 +1,8 @@
 "use client";
 
 import "./TrustBar.css";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { ShieldCheck, Globe, BarChart3 } from "lucide-react";
 import { STAGGER, VIEWPORT_ONCE_MORE, transitionChild, resolveTransition } from "../../constants/animation";
 
@@ -23,6 +24,38 @@ const ITEMS = [
   },
 ];
 
+function TrustFigure({ figure, reducedMotion }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.6 });
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    if (reducedMotion) return;
+
+    const duration = 1150;
+    const startTime = performance.now();
+    let frameId;
+    const update = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * 100));
+      if (progress < 1) frameId = requestAnimationFrame(update);
+    };
+    frameId = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(frameId);
+  }, [isInView, reducedMotion]);
+
+  if (figure !== "100+") return figure;
+
+  return (
+    <span ref={ref}>
+      {reducedMotion && isInView ? 100 : value}
+      <span className="trustbar-plus">+</span>
+    </span>
+  );
+}
+
 export default function TrustBar() {
   const reducedMotion = useReducedMotion();
   return (
@@ -40,7 +73,9 @@ export default function TrustBar() {
             <span className="trustbar-icon" aria-hidden="true">
               <item.icon size={18} strokeWidth={1.6} />
             </span>
-            <strong className="trustbar-figure">{item.figure}</strong>
+            <strong className="trustbar-figure">
+              <TrustFigure figure={item.figure} reducedMotion={reducedMotion} />
+            </strong>
             <p className="trustbar-text">{item.text}</p>
           </motion.article>
         ))}
