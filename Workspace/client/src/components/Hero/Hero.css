@@ -373,13 +373,15 @@
     gap: 0.6rem;
   }
 
-  .hero-primary-button,
-  .hero-secondary-link {
+  button.hero-primary-button,
+  .hero-actions .hero-secondary-link {
     width: 100%;
     min-height: 2.8rem;
     padding-inline: 0.45rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.055em;
+    line-height: 1;
   }
 }
 
