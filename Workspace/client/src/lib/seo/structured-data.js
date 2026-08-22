@@ -34,7 +34,7 @@ export function getStructuredDataGraph() {
     "@type": "Organization",
     "@id": organizationId,
     name: SITE_NAME_SHORT,
-    legalName: SITE_NAME_SHORT,
+    legalName: BUSINESS.legalName,
     alternateName: [
       "EuroAutomobile & Transport",
       "LUXOR DRIVE | AUTOMOBIL UND TRANSPORT",

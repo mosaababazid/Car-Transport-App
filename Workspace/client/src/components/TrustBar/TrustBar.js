@@ -7,19 +7,19 @@ import { STAGGER, VIEWPORT_ONCE_MORE, transitionChild, resolveTransition } from 
 
 const ITEMS = [
   {
-    icon: ShieldCheck,
-    label: "Vollkaskoversichert",
-    text: "Jedes Fahrzeug während des gesamten Transports versichert.",
+    icon: BarChart3,
+    figure: "100+",
+    text: "Erfolgreiche Transporte jeden Monat.",
   },
   {
     icon: Globe,
-    label: "EU-weit",
+    figure: "EU-weit",
     text: "Fahrzeuglogistik in Deutschland und ganz Europa.",
   },
   {
-    icon: BarChart3,
-    label: "100+ Aufträge / Monat",
-    text: "Über 100 erfolgreiche Transporte monatlich.",
+    icon: ShieldCheck,
+    figure: "Vollkasko",
+    text: "Jedes Fahrzeug während des gesamten Transports versichert.",
   },
 ];
 
@@ -29,8 +29,8 @@ export default function TrustBar() {
     <section className="trustbar-section" aria-label="Vertrauensmerkmale">
       <div className="trustbar-inner">
         {ITEMS.map((item, index) => (
-          <motion.div
-            key={item.label}
+          <motion.article
+            key={item.figure}
             className="trustbar-item"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -38,13 +38,11 @@ export default function TrustBar() {
             transition={{ delay: reducedMotion ? 0 : index * STAGGER, ...resolveTransition(reducedMotion, transitionChild) }}
           >
             <span className="trustbar-icon" aria-hidden="true">
-              <item.icon size={20} strokeWidth={1.8} />
+              <item.icon size={18} strokeWidth={1.6} />
             </span>
-            <div className="trustbar-content">
-              <strong className="trustbar-label">{item.label}</strong>
-              <span className="trustbar-text">{item.text}</span>
-            </div>
-          </motion.div>
+            <strong className="trustbar-figure">{item.figure}</strong>
+            <p className="trustbar-text">{item.text}</p>
+          </motion.article>
         ))}
       </div>
     </section>

@@ -10,7 +10,7 @@ export default function ImprintPage() {
   const schema = getLegalPageStructuredData({
     path: "/imprint",
     title: "Impressum",
-    description: "Impressum und Anbieterkennzeichnung gemäß § 5 TMG.",
+    description: "Impressum und Anbieterkennzeichnung gemäß § 5 DDG.",
     kind: "AboutPage",
   });
 
@@ -28,10 +28,10 @@ export default function ImprintPage() {
           </Link>
           <h1 className="legal-title">Impressum</h1>
           <div className="legal-content">
-            <p>Angaben gemäß § 5 TMG</p>
-            <h2>Anbieter</h2>
+            <p>Angaben gemäß § 5 DDG</p>
             <p>
-              LUXOR DRIVE<br />
+              {BUSINESS.legalName}<br />
+              Inhaber: {BUSINESS.owner}<br />
               {BUSINESS.street}<br />
               {BUSINESS.postalCode} {BUSINESS.city}<br />
               {BUSINESS.country}
@@ -41,10 +41,20 @@ export default function ImprintPage() {
               Telefon: {BUSINESS.phoneDisplay}<br />
               E-Mail: {BUSINESS.email}
             </p>
-            <h2>Umsatzsteuer-ID</h2>
-            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {BUSINESS.vatId}</p>
+            <h2>Steuernummer</h2>
+            <p>{BUSINESS.taxNumber}</p>
+            {BUSINESS.vatId ? (
+              <>
+                <h2>Umsatzsteuer-ID</h2>
+                <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {BUSINESS.vatId}</p>
+              </>
+            ) : null}
             <h2>Verantwortlich für den Inhalt</h2>
-            <p>{BUSINESS.responsible}</p>
+            <p>
+              {BUSINESS.responsible}<br />
+              {BUSINESS.street}<br />
+              {BUSINESS.postalCode} {BUSINESS.city}
+            </p>
             <p>
               <Link href="/privacy">Datenschutzerklärung</Link> · <Link href="/terms">AGB</Link>
             </p>

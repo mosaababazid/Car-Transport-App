@@ -101,21 +101,21 @@
 }
 
 .app-header-nav a:hover {
-  color: #d7be94;
-  border-color: rgba(184, 139, 68, 0.6);
+  color: #dcc6a0;
+  border-color: rgba(197, 165, 114, 0.6);
 }
 
 .app-header-nav a:focus-visible {
-  color: #e7d2ad;
-  border-color: rgba(220, 192, 139, 0.64);
-  text-shadow: 0 0 8px rgba(184, 139, 68, 0.22);
+  color: #f0e6d4;
+  border-color: rgba(220, 198, 160, 0.64);
+  text-shadow: 0 0 8px rgba(197, 165, 114, 0.22);
   outline: none;
 }
 
 .app-header-nav a.is-active {
-  color: #e7d2ad;
-  border-color: rgba(220, 192, 139, 0.64);
-  text-shadow: 0 0 8px rgba(184, 139, 68, 0.22);
+  color: #f0e6d4;
+  border-color: rgba(220, 198, 160, 0.64);
+  text-shadow: 0 0 8px rgba(197, 165, 114, 0.22);
 }
 
 .app-header-cta {
@@ -171,7 +171,7 @@
   border: 1px solid var(--secondary-border);
   background: var(--secondary-bg);
   color: var(--secondary-text);
-  box-shadow: 0 0 0 1px rgba(184, 139, 68, 0.09) inset;
+  box-shadow: 0 0 0 1px rgba(197, 165, 114, 0.09) inset;
   cursor: pointer;
   padding: 0;
   outline: none;
@@ -189,7 +189,7 @@
 
 .app-header-burger-toggle:focus-visible {
   border-color: var(--secondary-border-hover);
-  box-shadow: 0 0 0 2px rgba(184, 139, 68, 0.18), 0 0 12px var(--glow-accent);
+  box-shadow: 0 0 0 2px rgba(197, 165, 114, 0.18), 0 0 12px var(--glow-accent);
 }
 
 .app-header-burger-toggle:active {
@@ -224,7 +224,7 @@
   border: 1px solid var(--secondary-border);
   background: var(--secondary-bg);
   color: var(--secondary-text);
-  box-shadow: 0 0 0 1px rgba(184, 139, 68, 0.09) inset;
+  box-shadow: 0 0 0 1px rgba(197, 165, 114, 0.09) inset;
   cursor: pointer;
   transition: transform var(--duration-smooth) var(--ease-smooth), border-color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth), color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
 }
@@ -239,7 +239,7 @@
 
 .app-header-burger-close:focus-visible {
   border-color: var(--secondary-border-hover);
-  box-shadow: 0 0 0 2px rgba(184, 139, 68, 0.18), 0 0 12px var(--glow-accent);
+  box-shadow: 0 0 0 2px rgba(197, 165, 114, 0.18), 0 0 12px var(--glow-accent);
 }
 
 .app-header-burger-close:active {
@@ -266,15 +266,15 @@
 }
 
 .app-header-nav-list a.is-active {
-  color: #e7d2ad;
-  border-bottom-color: rgba(220, 192, 139, 0.64);
-  text-shadow: 0 0 8px rgba(184, 139, 68, 0.22);
+  color: #f0e6d4;
+  border-bottom-color: rgba(220, 198, 160, 0.64);
+  text-shadow: 0 0 8px rgba(197, 165, 114, 0.22);
 }
 
 .app-header-nav-list a:focus-visible {
-  color: #e7d2ad;
-  border-bottom-color: rgba(220, 192, 139, 0.64);
-  text-shadow: 0 0 8px rgba(184, 139, 68, 0.22);
+  color: #f0e6d4;
+  border-bottom-color: rgba(220, 198, 160, 0.64);
+  text-shadow: 0 0 8px rgba(197, 165, 114, 0.22);
   outline: none;
 }
 

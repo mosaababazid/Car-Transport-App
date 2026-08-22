@@ -1,69 +1,79 @@
 .trustbar-section {
-  padding: 2.75rem 1rem 3.25rem;
-  background: transparent;
-}
-
-@media (max-width: 639px) {
-  .trustbar-section {
-    padding: 1.5rem 1rem 2rem;
-  }
-  .trustbar-item {
-    padding: 0.85rem 1rem;
-  }
+  padding: 3.15rem 1.25rem 3.4rem;
 }
 
 .trustbar-inner {
-  max-width: 56rem;
+  max-width: 68rem;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 640px) {
-  .trustbar-inner {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
+  border-top: 1px solid rgba(197, 165, 114, 0.22);
+  border-bottom: 1px solid rgba(197, 165, 114, 0.22);
 }
 
 .trustbar-item {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  padding: 1.05rem 1.15rem;
-  border-radius: var(--radius-soft-sm);
-  background: var(--box-bg);
-  border: 1px solid var(--box-border);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.7rem;
+  padding: 1.65rem 1.1rem;
+}
+
+.trustbar-item:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .trustbar-icon {
-  flex-shrink: 0;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 12px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(184, 139, 68, 0.12);
   color: var(--accent);
+  line-height: 0;
 }
 
-.trustbar-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.trustbar-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-primary);
+.trustbar-figure {
+  font-size: clamp(1.85rem, 4.2vw, 2.45rem);
+  font-weight: 450;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--accent-gold);
 }
 
 .trustbar-text {
-  font-size: 0.8rem;
-  line-height: 1.6;
+  margin: 0;
+  max-width: 16.5rem;
+  font-size: 0.98rem;
+  line-height: 1.65;
   color: var(--text-secondary);
-  text-align: left;
+  text-wrap: balance;
+}
+
+@media (min-width: 800px) {
+  .trustbar-inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .trustbar-item {
+    padding: 2.35rem 1.5rem 2.45rem;
+  }
+
+  .trustbar-item:not(:last-child) {
+    border-bottom: none;
+  }
+
+  .trustbar-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 24%;
+    bottom: 24%;
+    right: 0;
+    width: 1px;
+    background: rgba(197, 165, 114, 0.2);
+  }
+}
+
+@media (max-width: 799px) {
+  .trustbar-section {
+    padding: 1.5rem 1.15rem 1.75rem;
+  }
 }

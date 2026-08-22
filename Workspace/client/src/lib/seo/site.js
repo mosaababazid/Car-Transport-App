@@ -46,7 +46,7 @@ export const OG_IMAGE = {
 export const LOCALE = "de_DE";
 export const LANGUAGE = "de";
 
-export const THEME_COLOR = "#050505";
+export const THEME_COLOR = "#0a0b0d";
 
 export const PAGE_META = {
   gallery: {
@@ -73,8 +73,8 @@ export const PAGE_META = {
   },
   imprint: {
     title: "Impressum",
-    description: "Impressum und Angaben gemäß § 5 TMG.",
-    keywords: ["Impressum", "Anbieterkennzeichnung", "§ 5 TMG"],
+    description: "Impressum und Angaben gemäß § 5 DDG.",
+    keywords: ["Impressum", "Anbieterkennzeichnung", "§ 5 DDG"],
   },
 };
 

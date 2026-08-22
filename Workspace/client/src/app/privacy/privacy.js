@@ -30,8 +30,9 @@ export default function PrivacyPage() {
           <div className="legal-content">
             <h2>1. Verantwortlicher</h2>
             <p>
-              Verantwortlich für die Datenverarbeitung auf dieser Website ist LUXOR DRIVE,
-              {BUSINESS.street}, {BUSINESS.postalCode} {BUSINESS.city}. Kontakt: {BUSINESS.email}
+              Verantwortlich für die Datenverarbeitung auf dieser Website ist {BUSINESS.legalName},
+              Inhaber {BUSINESS.owner}, {BUSINESS.street}, {BUSINESS.postalCode} {BUSINESS.city}.
+              Kontakt: {BUSINESS.email}
             </p>
             <h2>2. Erhebung und Speicherung personenbezogener Daten</h2>
             <p>
