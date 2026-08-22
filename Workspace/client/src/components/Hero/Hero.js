@@ -13,9 +13,11 @@ import {
 } from "../../constants/animation";
 
 import mainImage from "../../assets/Images/main.jpg";
+import heroLogo from "../../assets/Images/logo.svg";
 
 function isIOS() {
   if (typeof navigator === "undefined") return false;
+
   return (
     /iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
@@ -35,27 +37,54 @@ export default function Hero() {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 639px)");
-    const update = () => setOffset(mediaQuery.matches ? 20 : 50);
+
+    const update = () => {
+      setOffset(mediaQuery.matches ? 20 : 50);
+    };
+
     update();
+
     mediaQuery.addEventListener("change", update);
-    return () => mediaQuery.removeEventListener("change", update);
+
+    return () => {
+      mediaQuery.removeEventListener("change", update);
+    };
   }, []);
 
   const scrollToPricing = () => {
     const target = document.getElementById("pricing");
+
     if (!target) return;
+
     const headerHeight =
       parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--header-height"
+        )
       ) || 56;
+
     const top =
-      target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
-    window.scrollTo({ top, behavior: reducedMotion ? "auto" : "smooth" });
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      headerHeight -
+      12;
+
+    window.scrollTo({
+      top,
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
   };
 
   return (
-    <section id="hero" ref={sectionRef} className="hero-section">
-      <div className="hero-image-wrapper" aria-hidden="true">
+    <section
+      id="hero"
+      ref={sectionRef}
+      className="hero-section"
+    >
+      <div
+        className="hero-image-wrapper"
+        aria-hidden="true"
+      >
         <Image
           src={mainImage}
           alt=""
@@ -68,47 +97,132 @@ export default function Hero() {
 
       <motion.div
         className="hero-inner"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
         viewport={VIEWPORT_ONCE}
-        transition={resolveTransition(reducedMotion, transitionEntrance)}
+        transition={resolveTransition(
+          reducedMotion,
+          transitionEntrance
+        )}
       >
         <div className="hero-glass-box">
           <div className="hero-glass-content">
+            <motion.div
+              className="hero-brand"
+              initial={{
+                opacity: 0,
+                y: 14,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={VIEWPORT_ONCE}
+              transition={resolveTransition(
+                reducedMotion,
+                transitionChild
+              )}
+            >
+              <div className="hero-brand-logo-wrap">
+                <Image
+                  src={heroLogo}
+                  alt="Luxor Drive"
+                  width={2064}
+                  height={512}
+                  sizes="(max-width: 639px) 10rem, 15rem"
+                  className="hero-brand-logo"
+                  priority
+                />
+              </div>
+
+              <span className="hero-brand-caption">
+                LUXOR DRIVE
+              </span>
+              <span className="hero-brand-tagline">
+                Automobil und Transport
+              </span>
+            </motion.div>
+
             <motion.span
               className="hero-badge"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{
+                opacity: 0,
+                y: 12,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
               viewport={VIEWPORT_ONCE}
-              transition={resolveTransition(reducedMotion, transitionChild)}
+              transition={resolveTransition(
+                reducedMotion,
+                transitionChild
+              )}
             >
               Über 100+ Transporte monatlich in ganz Europa
             </motion.span>
+
             <motion.h1
               className="hero-title"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{
+                opacity: 0,
+                y: 12,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
               viewport={VIEWPORT_ONCE}
-              transition={resolveTransition(reducedMotion, transitionEntrance)}
+              transition={resolveTransition(
+                reducedMotion,
+                transitionEntrance
+              )}
             >
-              Professioneller Fahrzeugtransport in ganz Europa
+              Professioneller <em>Fahrzeugtransport</em> in ganz Europa
             </motion.h1>
+
             <motion.p
               className="hero-body"
-              initial={{ opacity: 0, x: offset }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{
+                opacity: 0,
+                x: offset,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
               viewport={VIEWPORT_ONCE}
-              transition={resolveTransition(reducedMotion, transitionChild)}
+              transition={resolveTransition(
+                reducedMotion,
+                transitionChild
+              )}
             >
-              Sicher, zuverlässig und transparent, von Tür zu Tür. Holen Sie sich
-              in Sekunden ein unverbindliches Angebot basierend auf der Strecke.
+              Sicher, zuverlässig und transparent, von Tür zu Tür.
+              Holen Sie sich in Sekunden ein unverbindliches Angebot
+              basierend auf der Strecke.
             </motion.p>
+
             <motion.div
               className="hero-actions"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{
+                opacity: 0,
+                y: 24,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
               viewport={VIEWPORT_ONCE}
-              transition={resolveTransition(reducedMotion, transitionEntrance)}
+              transition={resolveTransition(
+                reducedMotion,
+                transitionEntrance
+              )}
             >
               <button
                 type="button"
@@ -118,6 +232,7 @@ export default function Hero() {
               >
                 Preis berechnen
               </button>
+
               <Link
                 href="/contact"
                 className="hero-secondary-link"
