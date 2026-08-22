@@ -23,12 +23,11 @@
   position: absolute;
   inset: 12% 0 auto;
   height: 70%;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(197, 165, 114, 0.045),
-      transparent 58%
-    );
+  background: radial-gradient(
+    ellipse at center,
+    rgba(197, 165, 114, 0.045),
+    transparent 58%
+  );
   pointer-events: none;
 }
 
@@ -64,22 +63,14 @@
   content: "";
   width: 1.75rem;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--gold-primary)
-  );
+  background: linear-gradient(90deg, transparent, var(--gold-primary));
 }
 
 .process-flow-badge::after {
   content: "";
   width: 1.75rem;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    var(--gold-primary),
-    transparent
-  );
+  background: linear-gradient(90deg, var(--gold-primary), transparent);
 }
 
 .process-flow-title {
