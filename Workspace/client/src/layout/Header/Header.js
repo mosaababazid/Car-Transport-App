@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUp, Menu, X } from "lucide-react";
 import { transitionIcon, transitionFast, STAGGER, resolveTransition } from "../../constants/animation";
-import logoImage from "../../assets/Images/logo1.png";
+import logoImage from "../../assets/Images/logo.svg";
 
 const links = [
   { href: "/", label: "Übersicht", sectionId: "hero" },
