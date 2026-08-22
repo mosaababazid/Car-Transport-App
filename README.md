@@ -17,7 +17,7 @@ CarTransport/
 │   │       │   ├── app.js         # Central export: all page components
 │   │       │   ├── home.js        # Home page
 │   │       │   ├── [[...slug]]/
-│   │       │   │   └── page.js    # Single route handler: /, /contact, /privacy, /terms, /imprint
+│   │       │   │   └── page.js    # Fallback route handler: /, /contact, /privacy, /terms, /imprint
 │   │       │   ├── contact/       # contact.js, contact.css
 │   │       │   ├── privacy/       # privacy.js
 │   │       │   ├── terms/         # terms.js
@@ -34,7 +34,7 @@ CarTransport/
 └── README.md
 ```
 
-- **client**: Next.js App Router. One route file `[[...slug]]/page.js` serves `/`, `/contact`, `/privacy`, `/terms`, `/imprint`; all page components are exported from `app.js`. Per-page logic lives in `contact/contact.js`, `contact/contact.css`, `privacy/privacy.js`, etc. Global and legal CSS in `app/`.
+- **client**: Next.js App Router. The catch-all route handles `/`, `/contact`, `/privacy`, `/terms`, and `/imprint`; `/gallery` has its own route for its dedicated page metadata. Per-page logic lives in `contact/contact.js`, `contact/contact.css`, `privacy/privacy.js`, etc. Global and legal CSS in `app/`.
 - **API routes**: Next.js server routes for contact submissions and route-based price estimates.
 
 ---

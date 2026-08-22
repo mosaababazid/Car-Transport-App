@@ -132,9 +132,9 @@
   text-decoration: none;
   line-height: 1;
   text-align: center;
-  background: #0f172a;
-  color: #f8fafc;
-  border: 1px solid #64748b;
+  background: var(--accent);
+  color: #14110c;
+  border: 1px solid var(--accent);
   box-shadow: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
@@ -147,9 +147,9 @@
 }
 
 .app-header-cta:hover {
-  color: #e0f2fe;
-  background: #1e293b;
-  border-color: #94a3b8;
+  color: #14110c;
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
   box-shadow: none;
 }
 

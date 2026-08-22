@@ -78,7 +78,6 @@ export default function Services() {
         </header>
 
         <div className="services-deck">
-          <span className="services-ambient" aria-hidden="true" />
           {OFFERINGS.map((item, index) => {
             const Icon = item.icon;
 

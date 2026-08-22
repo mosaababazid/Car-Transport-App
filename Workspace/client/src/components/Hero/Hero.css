@@ -74,6 +74,9 @@
 }
 
 .hero-glass-box {
+  width: 100%;
+  max-width: 40rem;
+  box-sizing: border-box;
   padding: 2rem 2.25rem;
   background: var(--box-bg);
   border: 1px solid var(--box-border);
@@ -210,6 +213,35 @@
     min-height: calc(75svh - 4.5rem);
     min-height: calc(75vh - 4.5rem);
     padding-bottom: 2.5rem;
+  }
+
+  .hero-glass-box {
+    padding: 1.4rem 1rem;
+    border-radius: var(--radius-soft-md);
+  }
+
+  .hero-glass-content {
+    gap: 0.9rem;
+  }
+
+  .hero-badge {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    line-height: 1.18;
+  }
+
+  .hero-body {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .hero-actions {
+    max-width: 18rem;
   }
 }
 

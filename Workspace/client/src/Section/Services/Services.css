@@ -16,12 +16,28 @@
 }
 
 .services-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   margin: 0 0 0.85rem;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+.services-kicker::before,
+.services-kicker::after {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  flex: 0 0 auto;
+  background: linear-gradient(90deg, transparent, var(--accent));
+}
+
+.services-kicker::after {
+  background: linear-gradient(90deg, var(--accent), transparent);
 }
 
 .services-headline {
@@ -51,35 +67,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   padding: 1.5rem 0 0;
-}
-
-.services-ambient {
-  position: absolute;
-  z-index: -1;
-  top: -8rem;
-  left: 34%;
-  width: 24rem;
-  height: 18rem;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse,
-    rgba(197, 165, 114, 0.1),
-    transparent 70%
-  );
-  animation: services-ambient-drift 14s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes services-ambient-drift {
-  from {
-    opacity: 0.55;
-    transform: translateX(-8%) scale(0.94);
-  }
-
-  to {
-    opacity: 0.9;
-    transform: translateX(38%) scale(1.08);
-  }
 }
 
 .services-card {
@@ -307,10 +294,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .services-ambient {
-    animation: none;
-  }
-
   .services-card,
   .services-card--2,
   .services-card:hover,

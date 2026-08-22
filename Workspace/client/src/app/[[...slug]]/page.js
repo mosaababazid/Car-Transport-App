@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import {
   HomePage,
-  GalleryPage,
   ContactPage,
   PrivacyPage,
   TermsPage,
@@ -10,7 +9,6 @@ import {
 import { buildPageMetadata } from "../../lib/seo/metadata";
 
 const ROUTES = {
-  gallery: GalleryPage,
   contact: ContactPage,
   privacy: PrivacyPage,
   terms: TermsPage,

@@ -1,20 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { buildRootMetadata } from "../lib/seo/metadata";
 import { getStructuredDataGraph } from "../lib/seo/structured-data";
 import { LANGUAGE, THEME_COLOR } from "../lib/seo/site";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata = buildRootMetadata();
 
@@ -30,9 +17,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang={LANGUAGE}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         <a href="#main-content" className="skip-link">
           Zum Hauptinhalt springen
         </a>

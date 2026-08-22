@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import "./JoinTeam.css";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import "../../components/Button/Button.css";
 import { transitionEntrance, resolveTransition } from "../../constants/animation";
 

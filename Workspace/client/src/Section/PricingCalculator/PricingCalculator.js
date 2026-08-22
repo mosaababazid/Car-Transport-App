@@ -4,7 +4,7 @@ import "./PricingCalculator.css";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { Map, Clock, ArrowRight } from "lucide-react";
+import { Map, Clock } from "lucide-react";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import "../../components/Button/Button.css";

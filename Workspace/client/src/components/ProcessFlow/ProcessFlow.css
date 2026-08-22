@@ -1,10 +1,10 @@
 .process-flow {
-  --pf-gold: #c5a572;
-  --pf-gold-light: #e8d0a9;
+  --pf-gold: var(--accent);
+  --pf-gold-light: var(--accent-gold);
   --pf-bg: transparent;
   --pf-card: rgba(16, 21, 30, 0.72);
   --pf-border: rgba(255, 255, 255, 0.075);
-  --pf-text: #f3f1ec;
+  --pf-text: var(--text-primary);
   --pf-muted: #8e98a5;
   --pf-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
