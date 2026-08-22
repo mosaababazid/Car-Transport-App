@@ -111,7 +111,7 @@ export default function PricingCalculator() {
             <Input
               id="pickup"
               label="Abholort"
-              placeholder="z. B. Berlin oder Musterstraße 1, 10115"
+              placeholder="z. B. Berlin oder Startstraße 1, 10115"
               value={pickup}
               onChange={(e) => setPickup(e.target.value)}
               maxLength={200}
