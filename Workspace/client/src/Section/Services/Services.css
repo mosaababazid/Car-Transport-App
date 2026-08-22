@@ -67,12 +67,15 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   padding: 1.5rem 0 0;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
 }
 
 .services-card {
   position: relative;
   overflow: hidden;
   min-height: 21rem;
+  height: auto;
   padding: 1.7rem 1.55rem 1.65rem;
   display: flex;
   flex-direction: column;
@@ -96,7 +99,7 @@
 }
 
 .services-card--2 {
-  transform: translateY(-1.5rem);
+  transform: none;
 }
 
 .services-card::after {
@@ -120,7 +123,7 @@
 }
 
 .services-card--2:hover {
-  transform: translateY(-1.85rem);
+  transform: translateY(-0.35rem);
 }
 
 .services-card-top {
@@ -174,11 +177,12 @@
 }
 
 .services-card-copy {
-  margin: auto 0 1.75rem;
+  margin: 2.1rem 0 1.5rem;
 }
 
 .services-card-title {
   margin: 0 0 0.85rem;
+  min-height: 0;
   font-size: clamp(1.55rem, 2.8vw, 2rem);
   font-weight: 450;
   letter-spacing: -0.045em;
@@ -194,7 +198,7 @@
 }
 
 .services-card-tag {
-  margin: 0;
+  margin: auto 0 0;
   display: flex;
   align-items: center;
   gap: 0.55rem;
@@ -318,7 +322,8 @@
 
   .services-card,
   .services-card--2 {
-    min-height: 16rem;
+    height: auto;
+    min-height: 18rem;
     transform: none;
   }
 
@@ -329,8 +334,8 @@
 
   .services-vehicles { width: 100%; min-height: 0; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0; background: transparent; border: 0; border-top: 1px solid rgba(197, 165, 114, 0.26); border-bottom: 1px solid rgba(197, 165, 114, 0.26); overflow: visible; }
   .services-vehicles-label { position: relative; width: auto; height: auto; min-height: 4.75rem; padding: 0; display: flex; align-items: center; justify-content: flex-start; color: var(--text-primary); text-align: left; line-height: 1; transform: none; border: 0; background: transparent; font-size: 1.3rem; font-weight: 450; letter-spacing: -0.045em; text-transform: none; }
-  .services-vehicles-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid rgba(197, 165, 114, 0.14); }
-  .services-vehicles-list li { min-width: 0; min-height: 8.25rem; padding: 1.15rem 0.45rem; flex-direction: column; justify-content: center; align-items: center; gap: 0.9rem; border-right: 0 !important; }
+  .services-vehicles-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 8.25rem; border-top: 1px solid rgba(197, 165, 114, 0.14); }
+  .services-vehicles-list li { min-width: 0; min-height: 0; height: 100%; padding: 1.15rem 0.45rem; flex-direction: column; justify-content: center; align-items: center; gap: 0.9rem; border-right: 0 !important; }
   .services-vehicles-list li:nth-child(odd) { border-right: 1px solid rgba(197, 165, 114, 0.14) !important; }
   .services-vehicles-list li:nth-child(-n + 2) { border-bottom: 1px solid rgba(197, 165, 114, 0.14); }
   .services-vehicle-icon { width: 3.35rem; height: 3.35rem; border: 0; border-radius: 0; background: linear-gradient(var(--accent), var(--accent)) left top / 1.1rem 1px no-repeat, linear-gradient(var(--accent), var(--accent)) left top / 1px 1.1rem no-repeat, linear-gradient(var(--accent), var(--accent)) right bottom / 1.1rem 1px no-repeat, linear-gradient(var(--accent), var(--accent)) right bottom / 1px 1.1rem no-repeat; }
@@ -368,6 +373,14 @@
       linear-gradient(var(--accent), var(--accent)) left top / 1px 0.95rem no-repeat,
       linear-gradient(var(--accent), var(--accent)) right bottom / 0.95rem 1px no-repeat,
       linear-gradient(var(--accent), var(--accent)) right bottom / 1px 0.95rem no-repeat;
+  }
+
+  .services-card-copy {
+    margin: 1.1rem 0 1.3rem;
+  }
+
+  .services-card-title {
+    min-height: 0;
   }
 
   .services-card-icon svg {

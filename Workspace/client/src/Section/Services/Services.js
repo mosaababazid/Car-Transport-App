@@ -27,7 +27,7 @@ const OFFERINGS = [
     kicker: "Sicherheit",
     title: "Vollkaskoversichert mit Rundum-Versicherungsschutz",
     description:
-      "Jedes Fahrzeug ist während des gesamten Transportvorgangs vollkaskoversichert. Von der Abholung bis zur Anlieferung genießt Ihr Fahrzeug lückenlosen Versicherungsschutz. Transparent und rechtlich abgesichert.",
+      "Jedes Fahrzeug ist während des gesamten Transports voll kaskoversichert. Von der Abnahme bis zur schlüsselfertigen Übergabe genießen Sie lückenlosen Schutz nach höchsten Branchenstandards, transparent und rechtlich abgesichert.",
     tag: "Vollkasko",
   },
   {
@@ -35,7 +35,7 @@ const OFFERINGS = [
     kicker: "Transparenz",
     title: "Digitales Übergabeprotokoll",
     description:
-      "Professionelle Dokumentation per digitalem Übergabeprotokoll bei Abholung und Übergabe. So haben Sie den Zustand Ihres Fahrzeugs jederzeit nachvollziehbar.",
+      "Detaillierte Dokumentation des Fahrzeugzustands inklusive Fotos bei Abholung und Zustellung. Das digitale Protokoll wird Ihnen direkt übermittelt, für maximale Transparenz und Nachvollziehbarkeit.",
     tag: "Dokumentiert",
   },
   {
@@ -73,9 +73,7 @@ export default function Services() {
             <h2 className="services-headline">Unsere Leistungen</h2>
           </div>
           <p className="services-intro">
-            Professioneller Fahrzeugtransport in Deutschland und Europa für
-            Gewerbekunden (B2B) und Privatkunden. Von der Abholung bis zur
-            Anlieferung: transparent, vollkaskoversichert und europaweit.
+            Ihr erfahrener Partner für professionelle Fahrzeugüberführungen auf eigener oder fremder Achse. Wir transportieren Fahrzeuge für Autohäuser, Firmenflotten und Privatkunden, schnell, sicher und voll kaskoversichert in Deutschland und ganz Europa. Von der exakten Zustandsdokumentation bei der Abholung bis zur termingerechten Übergabe vor Ort.
           </p>
         </header>
 

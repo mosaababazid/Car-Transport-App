@@ -23,10 +23,19 @@ export default function ImprintPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <div className="legal-inner">
-          <Link href="/" className="back-to-home" aria-label="Zur Startseite">
-            <Undo2 size={18} strokeWidth={2.2} aria-hidden="true" />
-          </Link>
-          <h1 className="legal-title">Impressum</h1>
+          <div className="legal-navigation">
+            <Link href="/" className="back-to-home" aria-label="Zur Startseite">
+              <Undo2 size={18} strokeWidth={2.2} aria-hidden="true" />
+            </Link>
+            <span>Rechtliches</span>
+          </div>
+          <header className="legal-page-header">
+            <p className="legal-eyebrow">Anbieterkennzeichnung</p>
+            <h1 className="legal-title">Impressum</h1>
+            <p className="legal-lede">
+              Angaben zum Anbieter und Kontaktmöglichkeiten gemäß § 5 DDG.
+            </p>
+          </header>
           <div className="legal-content">
             <p>Angaben gemäß § 5 DDG</p>
             <p>
@@ -38,8 +47,8 @@ export default function ImprintPage() {
             </p>
             <h2>Kontakt</h2>
             <p>
-              Telefon: {BUSINESS.phoneDisplay}<br />
-              E-Mail: {BUSINESS.email}
+              Telefon: <a href={`tel:${BUSINESS.phone.replace(/\s/g, "")}`}>{BUSINESS.phoneDisplay}</a><br />
+              E-Mail: <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
             </p>
             <h2>Steuernummer</h2>
             <p>{BUSINESS.taxNumber}</p>

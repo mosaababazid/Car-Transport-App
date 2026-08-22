@@ -15,12 +15,12 @@ const ITEMS = [
   {
     icon: Globe,
     figure: "EU-weit",
-    text: "Fahrzeuglogistik in Deutschland und ganz Europa.",
+    text: "Zuverlässige Logistik in Deutschland & ganz Europa",
   },
   {
     icon: ShieldCheck,
     figure: "Vollkasko",
-    text: "Jedes Fahrzeug während des gesamten Transports versichert.",
+    text: "Rundum abgesichert während des gesamten Transports",
   },
 ];
 
