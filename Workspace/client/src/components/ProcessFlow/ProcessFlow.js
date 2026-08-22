@@ -294,13 +294,6 @@ export default function ProcessFlow() {
                     </div>
 
                     <div className="process-flow-card-main">
-                      <div className="process-flow-card-icon">
-                        <Icon
-                          size={22}
-                          strokeWidth={1.35}
-                        />
-                      </div>
-
                       <div>
                         <h3>{step.title}</h3>
                         <p>{step.text}</p>
