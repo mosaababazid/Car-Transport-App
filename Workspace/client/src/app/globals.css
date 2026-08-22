@@ -209,22 +209,25 @@ body {
 }
 
 .back-to-home {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  margin-bottom: 1rem;
-  width: 2.5rem;
-  min-width: 2.5rem;
-  height: 2.5rem;
-  min-height: 2.5rem;
-  padding: 0;
-  border-radius: 999px;
+  gap: 0.55rem;
+  margin-bottom: 1.25rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem 0.65rem 0.8rem;
+  border-radius: var(--radius-control);
   text-decoration: none;
   color: var(--secondary-text);
-  background: var(--secondary-bg);
+  background: linear-gradient(135deg, rgba(197, 165, 114, 0.12), rgba(16, 18, 22, 0.72));
   border: 1px solid var(--secondary-border);
-  box-shadow: 0 0 0 1px rgba(197, 165, 114, 0.09) inset;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 24px rgba(0, 0, 0, 0.18);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  overflow: hidden;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform var(--duration-smooth) var(--ease-smooth), border-color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth), color var(--duration-smooth) var(--ease-smooth), box-shadow var(--duration-smooth) var(--ease-smooth);
@@ -233,9 +236,22 @@ body {
 .back-to-home:hover {
   border-color: var(--secondary-border-hover);
   color: var(--secondary-text-hover);
-  background: var(--secondary-bg-hover);
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 0 12px var(--glow-accent);
+  background: linear-gradient(135deg, rgba(197, 165, 114, 0.2), rgba(22, 24, 29, 0.86));
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.24), 0 0 18px var(--glow-accent);
+}
+
+.back-to-home svg {
+  flex: 0 0 auto;
+  transition: transform var(--duration-smooth) var(--ease-smooth);
+}
+
+.back-to-home:hover svg {
+  transform: translateX(-3px);
+}
+
+.back-to-home__label {
+  line-height: 1;
 }
 
 .back-to-home:focus-visible {
@@ -248,9 +264,17 @@ body {
 
 @media (max-width: 640px) {
   .back-to-home {
-    position: relative;
     top: -0.32rem;
     margin-bottom: 0.65rem;
+    min-height: 2.625rem;
+    padding: 0.6rem 0.9rem 0.6rem 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-home,
+  .back-to-home svg {
+    transition: none;
   }
 }
 

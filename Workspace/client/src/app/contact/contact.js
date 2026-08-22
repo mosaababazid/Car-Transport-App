@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Undo2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
 import Input from "../../components/Input/Input";
@@ -119,7 +119,8 @@ export default function ContactPage() {
         <section className="contact-section">
           <div className="contact-wrap">
             <Link href="/" className="back-to-home" aria-label="Zur Startseite">
-              <Undo2 size={18} strokeWidth={2.2} aria-hidden="true" />
+              <ArrowLeft size={17} strokeWidth={2.2} aria-hidden="true" />
+              <span className="back-to-home__label">Zurück</span>
             </Link>
             <div className="contact-glass">
               <header className="contact-header">

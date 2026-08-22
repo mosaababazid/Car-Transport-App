@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Undo2 } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import {
   STAGGER,
   VIEWPORT_ONCE,
@@ -103,7 +103,8 @@ export default function Gallery({ variant = "preview" }) {
       >
         {isFullPage && (
           <Link href="/" className="back-to-home" aria-label="Zur Startseite">
-            <Undo2 size={18} strokeWidth={2.2} aria-hidden="true" />
+            <ArrowLeft size={17} strokeWidth={2.2} aria-hidden="true" />
+            <span className="back-to-home__label">Zurück</span>
           </Link>
         )}
 

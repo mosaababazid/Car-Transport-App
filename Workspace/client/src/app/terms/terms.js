@@ -1,7 +1,7 @@
 import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
 import Link from "next/link";
-import { Undo2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { getLegalPageStructuredData } from "../structuredData";
 import "../legal.css";
 
@@ -23,7 +23,8 @@ export default function TermsPage() {
         />
         <div className="legal-inner">
           <Link href="/" className="back-to-home" aria-label="Zur Startseite">
-            <Undo2 size={18} strokeWidth={2.2} aria-hidden="true" />
+            <ArrowLeft size={17} strokeWidth={2.2} aria-hidden="true" />
+            <span className="back-to-home__label">Zurück</span>
           </Link>
           <h1 className="legal-title">Allgemeine Geschäftsbedingungen (AGB)</h1>
           <div className="legal-content">

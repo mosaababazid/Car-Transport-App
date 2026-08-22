@@ -148,9 +148,10 @@
   transition: color var(--duration-smooth) var(--ease-smooth), border-color var(--duration-smooth) var(--ease-smooth);
 }
 
-.app-footer-credit-link:hover {
-  color: var(--text-primary);
-  border-bottom-color: rgba(148, 163, 184, 0.8);
+.app-footer-credit-link:hover,
+.app-footer-credit-link:focus-visible {
+  color: var(--accent-gold);
+  border-bottom-color: var(--accent);
 }
 
 @media (max-width: 640px) {
