@@ -1,12 +1,12 @@
 .app-footer {
-  margin-top: calc(var(--section-pad-y) + 0.5rem);
-  padding: 1.5rem 1rem 1.1rem;
-  background: transparent;
-  border-top: 1px solid var(--bg-slate);
+  margin-top: 0;
+  padding: 4.5rem 1.25rem 1.5rem;
+  background: #07090d;
+  border-top: 1px solid rgba(197, 165, 114, 0.18);
 }
 
 .app-footer-inner {
-  max-width: 72rem;
+  max-width: 78rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -15,15 +15,16 @@
 
 .app-footer-top {
   display: grid;
-  grid-template-columns: 1.5fr 1fr auto;
+  grid-template-columns: 1.6fr 1fr auto;
   align-items: start;
   gap: 1.5rem;
 }
 
 .app-footer-main h2 {
-  margin: 0 0 0.25rem;
-  font-size: 1rem;
-  letter-spacing: -0.03em;
+  margin: 0 0 0.45rem;
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
 }
 
 .app-footer-main p {
@@ -119,8 +120,8 @@
 }
 
 .app-footer-bottom {
-  padding-top: 0.65rem;
-  border-top: 1px solid var(--bg-slate);
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-wrap: nowrap;
   gap: 1rem;
@@ -154,7 +155,7 @@
 
 @media (max-width: 640px) {
   .app-footer {
-    padding: 1.25rem 0.9rem 1rem;
+    padding: 3.25rem 1.15rem 1.25rem;
   }
   .app-footer-top {
     grid-template-columns: 1fr;

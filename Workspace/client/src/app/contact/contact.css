@@ -1,63 +1,64 @@
 .contact-main {
   flex: 1;
-  padding-top: 2rem;
-  padding-bottom: 4rem;
+  padding-top: 3rem;
+  padding-bottom: 6rem;
 }
 
 .contact-section {
-  padding: 2rem 1rem 4rem;
+  padding: 3rem 1.25rem 5rem;
   background: transparent;
 }
 
 .contact-wrap {
-  max-width: 36rem;
+  max-width: 72rem;
   margin: 0 auto;
 }
 
 .contact-glass {
-  max-width: 36rem;
+  max-width: 72rem;
   margin: 0 auto;
-  border-radius: var(--radius-soft-lg);
-  border-top-left-radius: 18px;
-  border-bottom-right-radius: 18px;
-  padding: 1.75rem 2rem 1.5rem;
-  background: var(--box-bg);
-  backdrop-filter: blur(28px) saturate(1.4);
-  -webkit-backdrop-filter: blur(28px) saturate(1.4);
-  border: 1px solid var(--box-border);
-  box-shadow: var(--box-shadow-glass);
-  transition: box-shadow var(--duration-ui) var(--ease-smooth), border-color var(--duration-ui) var(--ease-smooth);
-}
-
-.contact-glass:hover {
-  border-color: rgba(197, 165, 114, 0.2);
-  box-shadow: var(--box-shadow-glass-hover);
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.82fr) minmax(24rem, 1.18fr);
+  background: transparent;
+  border-top: 1px solid rgba(197, 165, 114, 0.28);
+  border-bottom: 1px solid rgba(197, 165, 114, 0.28);
 }
 
 .contact-header {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  margin-bottom: 1.5rem;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 3.5rem 3.5rem 3.5rem 0;
+  grid-row: 1 / span 3;
+  border-right: 1px solid rgba(197, 165, 114, 0.16);
 }
 
 .contact-kicker {
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
+.contact-kicker::before { content: ""; width: 1.5rem; height: 1px; background: var(--accent); }
+
 .contact-header h1 {
   margin: 0;
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 450;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
   color: var(--text-primary);
 }
 
 .contact-header p {
   margin: 0;
-  font-size: clamp(0.82rem, 2vw, 0.88rem);
+  max-width: 24rem;
+  font-size: 0.98rem;
   color: var(--text-secondary);
   line-height: 1.55;
   text-align: left;
@@ -66,7 +67,10 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.15rem;
+  padding: 1.5rem 0 3.5rem 3.5rem;
+  grid-column: 2;
+  grid-row: 3;
 }
 
 .contact-grid {
@@ -158,21 +162,24 @@
 }
 
 .contact-form-intro {
-  margin: 0 0 1rem;
-  font-size: 0.9rem;
+  margin: 0;
+  padding: 0 0 0 3.5rem;
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.88rem;
   color: var(--text-secondary);
   text-align: left;
 }
 
 .contact-cta-wrap {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  padding-top: 0;
-  padding-bottom: 1rem;
-  border-top: none;
-  border-bottom: 1px solid var(--border-glass);
+  margin: 0;
+  padding: 3.5rem 0 1.5rem 3.5rem;
+  grid-column: 2;
+  grid-row: 1;
+  border-top: 0;
+  border-bottom: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem;
 }
 
@@ -180,7 +187,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: auto;
+  flex: 1;
   min-height: 2.75rem;
   padding: 0.72rem 1.35rem;
   border-radius: var(--radius-control);
@@ -238,6 +246,18 @@
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.09em;
+}
+
+@media (max-width: 700px) {
+  .contact-main { padding-top: 1.5rem; padding-bottom: 4rem; }
+  .contact-section { padding: 2rem 1.15rem 4rem; }
+  .contact-glass { grid-template-columns: 1fr; }
+  .contact-header { grid-row: auto; padding: 2.5rem 0 1.75rem; border-right: 0; border-bottom: 1px solid rgba(197, 165, 114, 0.16); }
+  .contact-header h1 { font-size: 2.45rem; }
+  .contact-cta-wrap { padding: 1.5rem 0 1rem; grid-column: auto; grid-row: auto; }
+  .contact-form-intro { padding: 0; grid-column: auto; grid-row: auto; }
+  .contact-form { padding: 1.25rem 0 2.5rem; grid-column: auto; grid-row: auto; }
+  .contact-cta-link { min-height: 3rem; font-size: 0.74rem; }
 }
 
 .contact-cta-link--secondary:hover,

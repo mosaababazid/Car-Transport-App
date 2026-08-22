@@ -37,7 +37,7 @@
 }
 
 .services-kicker::after {
-  background: linear-gradient(90deg, var(--accent), transparent);
+  display: none;
 }
 
 .services-headline {

@@ -51,11 +51,7 @@
 }
 
 .process-flow-eyebrow span:last-child {
-  background: linear-gradient(
-    90deg,
-    var(--pf-gold),
-    transparent
-  );
+  display: none;
 }
 
 .process-flow-heading h2 {
