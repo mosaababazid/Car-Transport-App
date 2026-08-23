@@ -7,7 +7,7 @@ export const BUSINESS = {
   phone: RAW_PHONE,
   phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY || "+49 176 62581522",
   whatsapp: RAW_WHATSAPP.replace(/\D/g, ""),
-  email: process.env.NEXT_PUBLIC_EMAIL || "anfrage@luxordrive-logistik.de",
+  email: process.env.NEXT_PUBLIC_EMAIL || "kontakt@luxor-drive.de",
   street: process.env.NEXT_PUBLIC_STREET || "Linxweilerstr. 36",
   city: process.env.NEXT_PUBLIC_CITY || "St. Wendel",
   postalCode: process.env.NEXT_PUBLIC_POSTAL || "66606",
