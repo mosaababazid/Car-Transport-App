@@ -85,6 +85,7 @@ export default function Gallery({ variant = "preview" }) {
   };
 
   const isFullPage = variant === "full";
+  const Heading = isFullPage ? "h1" : "h2";
   const portalTarget = typeof document !== "undefined" ? document.body : null;
 
   return (
@@ -108,9 +109,9 @@ export default function Gallery({ variant = "preview" }) {
           </Link>
         )}
 
-        <h2 id="gallery-heading" className="gallery-heading">
-          Galerie
-        </h2>
+        <Heading id="gallery-heading" className="gallery-heading">
+          {isFullPage ? "Fahrzeugtransporte im Einsatz" : "Galerie"}
+        </Heading>
         <p className="gallery-subline">
           Hochwertige Fahrzeuglogistik von modernen Transportern bis zum
           europaweiten Einsatz. Jedes Fahrzeug wird mit höchster Sorgfalt

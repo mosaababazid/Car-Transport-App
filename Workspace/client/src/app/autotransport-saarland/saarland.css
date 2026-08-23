@@ -1,0 +1,304 @@
+.saarland-page {
+  color: var(--text-primary);
+}
+
+.saarland-inner {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+}
+
+.saarland-hero {
+  padding: clamp(3.5rem, 9vw, 7rem) 1.25rem clamp(4.5rem, 10vw, 7.5rem);
+}
+
+.saarland-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: clamp(2.8rem, 6vw, 4.75rem);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.saarland-breadcrumb a {
+  color: var(--accent-gold);
+  text-decoration-color: rgba(220, 198, 160, 0.4);
+  text-underline-offset: 0.2em;
+}
+
+.saarland-eyebrow,
+.saarland-section-kicker {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.saarland-hero h1 {
+  max-width: 58rem;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(2.7rem, 7vw, 5.6rem);
+  font-weight: 450;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.saarland-lede {
+  max-width: 49rem;
+  margin: 1.7rem 0 0;
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 1.7vw, 1.17rem);
+  line-height: 1.75;
+}
+
+.saarland-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.saarland-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.9rem 1.5rem;
+  border: 1px solid var(--secondary-border);
+  border-radius: var(--radius-control);
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition: border-color var(--duration-smooth) var(--ease-smooth), color var(--duration-smooth) var(--ease-smooth), background var(--duration-smooth) var(--ease-smooth), transform var(--duration-smooth) var(--ease-smooth);
+}
+
+.saarland-secondary-link:hover,
+.saarland-secondary-link:focus-visible {
+  border-color: var(--secondary-border-hover);
+  background: var(--secondary-bg-hover);
+  color: var(--secondary-text-hover);
+  transform: translateY(-2px);
+}
+
+.saarland-section {
+  padding: clamp(4rem, 8vw, 6.5rem) 1.25rem;
+}
+
+.saarland-section h2,
+.saarland-cta h2 {
+  max-width: 46rem;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(2rem, 4.8vw, 3.55rem);
+  font-weight: 450;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.saarland-copy-grid,
+.saarland-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.85fr) minmax(20rem, 1.15fr);
+  gap: clamp(2rem, 6vw, 5.5rem);
+  align-items: start;
+}
+
+.saarland-prose p,
+.saarland-process-heading > p:last-child,
+.saarland-highlight > p:last-child,
+.saarland-cta-inner > p {
+  margin: 0 0 1.1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.saarland-prose address {
+  margin-top: 1.75rem;
+  padding: 1.2rem 1.3rem;
+  border-left: 2px solid var(--accent);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--accent-gold);
+  font-size: 0.91rem;
+  font-style: normal;
+  line-height: 1.7;
+}
+
+.saarland-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2.6rem;
+}
+
+.saarland-card-grid article {
+  min-height: 16rem;
+  padding: 1.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.035), transparent 45%), #111318;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22);
+}
+
+.saarland-card-grid article > span,
+.saarland-process-list > li > span {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+}
+
+.saarland-card-grid h3,
+.saarland-process-list h3,
+.saarland-faq-list h3 {
+  margin: 1.5rem 0 0.65rem;
+  color: var(--text-primary);
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.saarland-card-grid p,
+.saarland-process-list p,
+.saarland-faq-list p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.91rem;
+  line-height: 1.7;
+}
+
+.saarland-process-layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.75fr) minmax(24rem, 1.25fr);
+  gap: clamp(2.5rem, 7vw, 6rem);
+}
+
+.saarland-process-heading {
+  position: sticky;
+  top: calc(var(--header-height) + 2rem);
+  align-self: start;
+}
+
+.saarland-process-heading > p:last-child {
+  margin-top: 1.25rem;
+}
+
+.saarland-process-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saarland-process-list li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.saarland-process-list li:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.saarland-process-list h3 {
+  margin-top: 0;
+}
+
+.saarland-highlight {
+  padding: clamp(2rem, 5vw, 4rem);
+  border-top: 1px solid rgba(197, 165, 114, 0.32);
+  border-bottom: 1px solid rgba(197, 165, 114, 0.32);
+}
+
+.saarland-highlight > p:last-child {
+  max-width: 48rem;
+  margin-top: 1.35rem;
+}
+
+.saarland-faq-list article {
+  padding: 0 0 1.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.saarland-faq-list article + article {
+  padding-top: 1.65rem;
+}
+
+.saarland-faq-list h3 {
+  margin-top: 0;
+}
+
+.saarland-cta {
+  padding: clamp(4.5rem, 10vw, 8rem) 1.25rem;
+}
+
+.saarland-cta-inner {
+  padding: clamp(2.3rem, 6vw, 4.5rem);
+  border: 1px solid rgba(197, 165, 114, 0.24);
+  border-radius: var(--radius-soft-lg);
+  background: linear-gradient(145deg, rgba(197, 165, 114, 0.08), rgba(255, 255, 255, 0.018));
+  box-shadow: var(--box-shadow-glass);
+}
+
+.saarland-cta-inner > p {
+  max-width: 48rem;
+  margin-top: 1.35rem;
+}
+
+@media (max-width: 800px) {
+  .saarland-copy-grid,
+  .saarland-faq-layout,
+  .saarland-process-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .saarland-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saarland-card-grid article {
+    min-height: 0;
+  }
+
+  .saarland-process-heading {
+    position: static;
+  }
+}
+
+@media (max-width: 639px) {
+  .saarland-hero,
+  .saarland-section,
+  .saarland-cta {
+    padding-right: 1.15rem;
+    padding-left: 1.15rem;
+  }
+
+  .saarland-breadcrumb {
+    margin-bottom: 2.5rem;
+  }
+
+  .saarland-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .saarland-actions a {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .saarland-highlight,
+  .saarland-cta-inner {
+    padding: 2rem 1.25rem;
+  }
+}

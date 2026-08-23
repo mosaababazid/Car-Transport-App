@@ -2,6 +2,7 @@
 
 import "./Services.css";
 import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import {
   BadgeCheck,
   Route,
@@ -73,7 +74,14 @@ export default function Services() {
             <h2 className="services-headline">Unsere Leistungen</h2>
           </div>
           <p className="services-intro">
-            Ihr erfahrener Partner für professionelle Fahrzeugüberführungen auf eigener oder fremder Achse. Wir transportieren Fahrzeuge für Autohäuser, Firmenflotten und Privatkunden, schnell, sicher und voll kaskoversichert in Deutschland und ganz Europa. Von der exakten Zustandsdokumentation bei der Abholung bis zur termingerechten Übergabe vor Ort.
+            <span>
+              Luxor Drive hat seinen Sitz in{" "}
+              <Link href="/autotransport-saarland">St. Wendel im Saarland</Link>{" "}
+              und transportiert PKW, Transporter, LKW und Busse deutschlandweit und europaweit.
+            </span>
+            <span>
+              Für Privat- und Gewerbekunden – vollkaskoversichert und digital dokumentiert.
+            </span>
           </p>
         </header>
 

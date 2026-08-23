@@ -1,40 +1,43 @@
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://luxor-drive.de";
+const PRODUCTION_SITE_URL = "https://luxor-drive.de";
 
-export const SITE_NAME = "LUXOR DRIVE | AUTOMOBIL UND TRANSPORT";
+function resolveSiteUrl() {
+  if (process.env.NODE_ENV === "production") return PRODUCTION_SITE_URL;
+
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!configuredUrl) return PRODUCTION_SITE_URL;
+
+  try {
+    const url = new URL(configuredUrl);
+    return url.origin;
+  } catch {
+    return PRODUCTION_SITE_URL;
+  }
+}
+
+export const SITE_URL = resolveSiteUrl();
+export const HOME_URL = `${SITE_URL}/`;
+
+export const SITE_NAME = "Luxor Drive";
 export const SITE_NAME_SHORT = "LUXOR DRIVE";
 export const SITE_TAGLINE = "Autotransport & Fahrzeuglogistik";
 
+export const HOME_TITLE =
+  "Autotransport & Fahrzeugtransport deutschlandweit & europaweit | Luxor Drive";
+
 export const DEFAULT_DESCRIPTION =
-  "LUXOR DRIVE ist Ihr Partner für Autotransport und Fahrzeuglogistik in Deutschland und Europa. PKW, LKW, Transporter und Bus sicher, termingerecht und vollkaskoversichert transportieren lassen.";
+  "Luxor Drive transportiert PKW, Transporter, LKW und Busse deutschlandweit und europaweit – vollkaskoversichert, digital dokumentiert und transparent.";
 
 export const DEFAULT_OG_DESCRIPTION =
-  "Autotransport in Deutschland und Europa: Auto transportieren lassen für PKW, LKW, Transporter und Bus. Vollkaskoversichert und professionell abgewickelt.";
+  "Autotransport und Fahrzeugtransport in Deutschland und Europa – für Privat- und Gewerbekunden, vollkaskoversichert und digital dokumentiert.";
 
 export const DEFAULT_TWITTER_DESCRIPTION =
-  "Fahrzeuglogistik für Deutschland und Europa: sicher, vollkaskoversichert und termingerecht.";
+  "Fahrzeugtransport deutschlandweit und europaweit: sicher, vollkaskoversichert und transparent.";
 
-export const DEFAULT_KEYWORDS = [
-  "LUXOR DRIVE",
-  "Autotransport",
-  "Autotransport Deutschland",
-  "Auto transportieren",
-  "Fahrzeuglogistik",
-  "Fahrzeugtransport Deutschland",
-  "KFZ-Transport",
-  "Europaweiter Autotransport",
-  "Auto transportieren lassen",
-  "PKW Transport",
-  "LKW Transport",
-  "Vollkaskoversichert",
-  "B2B Fahrzeuglogistik",
-];
-
-/** Square logo for Google Organization markup (public, crawlable) */
-export const LOGO_PATH = "/logo.png";
+/** Square brand icon derived from the official logo1.png asset */
+export const LOGO_PATH = "/brand-icon-512.png";
 
 /** Social / large preview image (Next.js file route) */
-export const OG_IMAGE_PATH = "/opengraph-image";
+export const OG_IMAGE_PATH = "/social-preview.png";
 
 export const OG_IMAGE = {
   url: OG_IMAGE_PATH,
@@ -50,37 +53,37 @@ export const THEME_COLOR = "#0a0b0d";
 
 export const PAGE_META = {
   gallery: {
-    title: "Galerie",
+    title: "Fahrzeugtransport-Galerie",
     description:
-      "Bilder vom professionellen Fahrzeugtransport in Deutschland und Europa. Moderne Transporter für sicheren und zuverlässigen Autotransport.",
-    keywords: ["Galerie", "Autotransport Bilder", "Transporter", "Fahrzeugtransport"],
+      "Einblicke in den professionellen Fahrzeugtransport von Luxor Drive und den sorgfältigen Transport unterschiedlicher Fahrzeugarten in Deutschland und Europa.",
   },
   contact: {
-    title: "Kontakt",
+    title: "Autotransport anfragen",
     description:
-      "Kontakt zu LUXOR DRIVE: Anfrage per Formular, Telefon oder WhatsApp. Schnelle Rückmeldung für Ihren Fahrzeugtransport.",
-    keywords: ["Kontakt", "Autotransport Kontakt", "Fahrzeuglogistik Anfrage"],
+      "Fragen Sie Ihren deutschlandweiten oder europaweiten Fahrzeugtransport bei Luxor Drive per Formular, Telefon oder WhatsApp an.",
+  },
+  "autotransport-saarland": {
+    title: "Autotransport Saarland & St. Wendel",
+    description:
+      "Luxor Drive mit Sitz in St. Wendel transportiert Fahrzeuge im Saarland sowie deutschlandweit und europaweit – für Privat- und Gewerbekunden.",
   },
   privacy: {
     title: "Datenschutzerklärung",
     description: "Datenschutzerklärung der LUXOR DRIVE.",
-    keywords: ["Datenschutzerklärung", "Datenschutz", "DSGVO"],
   },
   terms: {
     title: "AGB",
     description: "Allgemeine Geschäftsbedingungen der LUXOR DRIVE.",
-    keywords: ["AGB", "Allgemeine Geschäftsbedingungen", "Vertragsbedingungen"],
   },
   imprint: {
     title: "Impressum",
     description: "Impressum und Angaben gemäß § 5 DDG.",
-    keywords: ["Impressum", "Anbieterkennzeichnung", "§ 5 DDG"],
   },
 };
 
 export function absoluteUrl(path = "") {
   const normalized = path.startsWith("/") ? path : `/${path}`;
   return path === "" || path === "/"
-    ? SITE_URL
+    ? HOME_URL
     : `${SITE_URL}${normalized}`;
 }

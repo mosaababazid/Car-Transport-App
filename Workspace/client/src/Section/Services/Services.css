@@ -58,6 +58,27 @@
   font-size: 1.03rem;
   line-height: 1.65;
   color: var(--text-secondary);
+  text-wrap: pretty;
+}
+
+.services-intro > span {
+  display: block;
+}
+
+.services-intro > span + span {
+  margin-top: 0.65rem;
+}
+
+.services-intro a {
+  color: var(--accent-gold);
+  text-decoration-color: rgba(220, 198, 160, 0.4);
+  text-underline-offset: 0.2em;
+}
+
+.services-intro a:hover,
+.services-intro a:focus-visible {
+  color: #f0e6d4;
+  text-decoration-color: currentColor;
 }
 
 .services-deck {
@@ -357,7 +378,9 @@
   }
 
   .services-intro {
-    font-size: 0.96rem;
+    max-width: 31rem;
+    font-size: 0.94rem;
+    line-height: 1.58;
   }
 
   .services-card {

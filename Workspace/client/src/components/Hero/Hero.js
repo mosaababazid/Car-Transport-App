@@ -165,7 +165,7 @@ export default function Hero() {
                 transitionChild
               )}
             >
-              Über 100+ Transporte monatlich in ganz Europa
+              Fahrzeugtransport in Deutschland und Europa
             </motion.span>
 
             <motion.h1
@@ -184,7 +184,7 @@ export default function Hero() {
                 transitionEntrance
               )}
             >
-              Professioneller <em>Fahrzeugtransport</em> in ganz Europa
+              Autotransport &amp; <em>Fahrzeugtransport</em> deutschlandweit &amp; europaweit
             </motion.h1>
 
             <motion.p
@@ -203,9 +203,9 @@ export default function Hero() {
                 transitionChild
               )}
             >
-              Sicher, zuverlässig und transparent, von Tür zu Tür.
-              Holen Sie sich in Sekunden ein unverbindliches Angebot
-              basierend auf der Strecke.
+              Wir transportieren PKW, Transporter, LKW und Busse sicher,
+              zuverlässig und transparent von Tür zu Tür. Berechnen Sie ein
+              unverbindliches Angebot auf Basis der Strecke.
             </motion.p>
 
             <motion.div

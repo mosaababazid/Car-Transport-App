@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="app-footer-top">
           <div className="app-footer-main">
             <h2>LUXOR DRIVE</h2>
-            <p>Professioneller Fahrzeugtransport, sicher und europaweit.</p>
+            <p>Professioneller Fahrzeugtransport, deutschlandweit und europaweit.</p>
             {!isContactPage && (
               <Link href="/contact" className="app-footer-cta">
                 Zum Kontaktformular
@@ -24,6 +24,10 @@ export default function Footer() {
           </div>
 
           <div className="app-footer-columns">
+            <div>
+              <span className="app-footer-label">Standort</span>
+              <Link href="/autotransport-saarland">St. Wendel · Saarland</Link>
+            </div>
             <div>
               <span className="app-footer-label">Telefon</span>
               <a href={`tel:${BUSINESS.phone.replace(/\s/g, "")}`}>{BUSINESS.phoneDisplay}</a>

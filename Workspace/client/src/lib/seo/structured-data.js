@@ -1,16 +1,16 @@
 import { BUSINESS } from "../../constants/business";
 import {
   SITE_URL,
-  SITE_NAME_SHORT,
-  SITE_TAGLINE,
+  HOME_URL,
+  SITE_NAME,
   DEFAULT_DESCRIPTION,
   LOGO_PATH,
   absoluteUrl,
 } from "./site";
 
-/** Crawlable brand logo (public/logo.png) — dimensions for Google Organization markup */
-const LOGO_WIDTH = 2758;
-const LOGO_HEIGHT = 1504;
+/** Crawlable square brand icon derived from the official logo1.png asset */
+const LOGO_WIDTH = 512;
+const LOGO_HEIGHT = 512;
 
 function getLogoImageObject() {
   return {
@@ -20,7 +20,7 @@ function getLogoImageObject() {
     contentUrl: absoluteUrl(LOGO_PATH),
     width: LOGO_WIDTH,
     height: LOGO_HEIGHT,
-    caption: SITE_NAME_SHORT,
+    caption: SITE_NAME,
   };
 }
 
@@ -33,14 +33,9 @@ export function getStructuredDataGraph() {
   const organization = {
     "@type": "Organization",
     "@id": organizationId,
-    name: SITE_NAME_SHORT,
+    name: SITE_NAME,
     legalName: BUSINESS.legalName,
-    alternateName: [
-      "EuroAutomobile & Transport",
-      "LUXOR DRIVE | AUTOMOBIL UND TRANSPORT",
-      "Autotransport Deutschland",
-    ],
-    url: SITE_URL,
+    url: HOME_URL,
     logo,
     image: logo,
     email: BUSINESS.email,
@@ -53,14 +48,13 @@ export function getStructuredDataGraph() {
       addressRegion: "Saarland",
       addressCountry: "DE",
     },
-    sameAs: [],
   };
 
   const webSite = {
     "@type": "WebSite",
     "@id": websiteId,
-    url: SITE_URL,
-    name: `${SITE_NAME_SHORT} – ${SITE_TAGLINE}`,
+    url: HOME_URL,
+    name: SITE_NAME,
     description: DEFAULT_DESCRIPTION,
     inLanguage: "de-DE",
     publisher: { "@id": organizationId },
@@ -70,10 +64,10 @@ export function getStructuredDataGraph() {
   const localBusiness = {
     "@type": ["LocalBusiness", "ProfessionalService"],
     "@id": `${SITE_URL}/#localbusiness`,
-    name: SITE_NAME_SHORT,
+    name: SITE_NAME,
     description:
-      "Autotransport und Fahrzeuglogistik: Auto transportieren lassen in Deutschland und Europa. PKW, LKW, Transporter, Bus. Vollkaskoversichert.",
-    url: SITE_URL,
+      "Autotransport und Fahrzeugtransport für PKW, Transporter, LKW und Busse – deutschlandweit und europaweit, für Privat- und Gewerbekunden.",
+    url: HOME_URL,
     image: absoluteUrl(LOGO_PATH),
     logo: { "@id": logo["@id"] },
     parentOrganization: { "@id": organizationId },
@@ -86,18 +80,75 @@ export function getStructuredDataGraph() {
     ],
     serviceType: [
       "Autotransport",
+      "Fahrzeugtransport",
       "Fahrzeuglogistik",
+      "Fahrzeugüberführung",
       "KFZ-Transport",
       "PKW-Transport",
       "LKW-Transport",
     ],
-    priceRange: "EUR",
-    openingHours: "Mo-Fr 08:00-18:00",
   };
 
   return {
     "@context": "https://schema.org",
     "@graph": [organization, webSite, localBusiness],
+  };
+}
+
+export function getServicePageStructuredData({
+  path,
+  title,
+  description,
+  serviceType,
+  areaServed,
+}) {
+  const pageUrl = absoluteUrl(path);
+  const serviceId = `${pageUrl}#service`;
+  const websiteId = `${SITE_URL}/#website`;
+  const localBusinessId = `${SITE_URL}/#localbusiness`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: title,
+        description,
+        inLanguage: "de-DE",
+        isPartOf: { "@id": websiteId },
+        about: { "@id": serviceId },
+      },
+      {
+        "@type": "Service",
+        "@id": serviceId,
+        name: title,
+        description,
+        serviceType,
+        url: pageUrl,
+        provider: { "@id": localBusinessId },
+        areaServed,
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Startseite",
+            item: HOME_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: title,
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
   };
 }
 
@@ -126,7 +177,7 @@ export function getLegalPageStructuredData({ path, title, description, kind }) {
         "@type": "ListItem",
         position: 1,
         name: "Startseite",
-        item: SITE_URL,
+        item: HOME_URL,
       },
       {
         "@type": "ListItem",

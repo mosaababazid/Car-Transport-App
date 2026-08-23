@@ -1,11 +1,11 @@
 import {
   SITE_URL,
+  HOME_URL,
   SITE_NAME,
-  SITE_NAME_SHORT,
+  HOME_TITLE,
   DEFAULT_DESCRIPTION,
   DEFAULT_OG_DESCRIPTION,
   DEFAULT_TWITTER_DESCRIPTION,
-  DEFAULT_KEYWORDS,
   OG_IMAGE,
   OG_IMAGE_PATH,
   LOCALE,
@@ -41,26 +41,25 @@ function sharedTwitter({ title, description }) {
     card: "summary_large_image",
     title,
     description,
-    images: ["/twitter-image"],
+    images: [OG_IMAGE_PATH],
   };
 }
 
 /** Root layout metadata */
 export function buildRootMetadata() {
-  const title = SITE_NAME;
+  const title = HOME_TITLE;
 
   return {
     metadataBase: new URL(SITE_URL),
-    applicationName: SITE_NAME_SHORT,
+    applicationName: SITE_NAME,
     title: {
       default: title,
       template: `%s | ${SITE_NAME}`,
     },
     description: DEFAULT_DESCRIPTION,
-    keywords: DEFAULT_KEYWORDS,
-    authors: [{ name: SITE_NAME_SHORT, url: SITE_URL }],
-    creator: SITE_NAME_SHORT,
-    publisher: SITE_NAME_SHORT,
+    authors: [{ name: SITE_NAME, url: HOME_URL }],
+    creator: SITE_NAME,
+    publisher: SITE_NAME,
     formatDetection: {
       email: false,
       address: false,
@@ -87,18 +86,21 @@ export function buildRootMetadata() {
       },
     },
     alternates: {
-      canonical: SITE_URL,
+      canonical: HOME_URL,
       languages: {
-        [LOCALE.replace("_", "-")]: SITE_URL,
+        [LOCALE.replace("_", "-")]: HOME_URL,
       },
     },
     icons: {
       icon: [
-        { url: "/icon", sizes: "32x32", type: "image/png" },
-        { url: "/icon", sizes: "16x16", type: "image/png" },
+        { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
+        { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
+        { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
       ],
-      shortcut: "/icon",
-      apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
+      shortcut: "/favicon-48.png",
+      apple: [
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
     },
     manifest: "/manifest.webmanifest",
     ...verificationMeta(),
@@ -112,7 +114,7 @@ export function buildRootMetadata() {
 export function buildPageMetadata({ segment } = {}) {
   if (!segment) {
     return {
-      alternates: { canonical: SITE_URL },
+      alternates: { canonical: HOME_URL },
     };
   }
 
@@ -125,7 +127,6 @@ export function buildPageMetadata({ segment } = {}) {
   return {
     title: pageMeta.title,
     description: pageMeta.description,
-    keywords: pageMeta.keywords,
     openGraph: sharedOpenGraph({
       title: pageTitle,
       description: pageMeta.description,

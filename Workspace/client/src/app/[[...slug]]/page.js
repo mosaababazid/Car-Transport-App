@@ -18,6 +18,7 @@ const ROUTES = {
 export async function generateMetadata({ params }) {
   const resolved = await params;
   const slug = resolved?.slug;
+  if (Array.isArray(slug) && slug.length > 1) return {};
   const segment = Array.isArray(slug) ? slug[0] : slug;
   return buildPageMetadata({ segment });
 }
@@ -25,6 +26,9 @@ export async function generateMetadata({ params }) {
 export default async function RouterPage({ params }) {
   const resolved = await params;
   const slug = resolved?.slug;
+  if (Array.isArray(slug) && slug.length > 1) {
+    notFound();
+  }
   const segment = Array.isArray(slug) ? slug?.[0] : slug ?? null;
 
   if (!segment) {
