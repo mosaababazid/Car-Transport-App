@@ -1,0 +1,67 @@
+name: Deploy to Hetzner
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build on Hetzner
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+
+    steps:
+      - name: Deploy over SSH
+        env:
+          HETZNER_HOST: ${{ secrets.HETZNER_HOST }}
+          HETZNER_USER: ${{ secrets.HETZNER_USER }}
+          HETZNER_PORT: ${{ secrets.HETZNER_PORT }}
+          HETZNER_SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
+        run: |
+          set -Eeuo pipefail
+
+          install -m 700 -d "$RUNNER_TEMP/ssh"
+          printf '%s\n' "$HETZNER_SSH_KEY" > "$RUNNER_TEMP/ssh/deploy_key"
+          chmod 600 "$RUNNER_TEMP/ssh/deploy_key"
+
+          ssh-keyscan -p "$HETZNER_PORT" -H "$HETZNER_HOST" \
+            > "$RUNNER_TEMP/ssh/known_hosts"
+
+          ssh \
+            -i "$RUNNER_TEMP/ssh/deploy_key" \
+            -p "$HETZNER_PORT" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$RUNNER_TEMP/ssh/known_hosts" \
+            "$HETZNER_USER@$HETZNER_HOST" 'bash -se' <<'REMOTE'
+          set -Eeuo pipefail
+
+          cd "$HOME/Car-Transport-App"
+
+          if [ "$(git branch --show-current)" != "main" ]; then
+            echo "Deployment aborted: the server checkout is not on main." >&2
+            exit 1
+          fi
+
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            echo "Deployment aborted: the server has tracked local changes." >&2
+            exit 1
+          fi
+
+          git fetch --prune origin main
+          git merge --ff-only origin/main
+
+          cd Workspace/client
+          npm ci --no-audit --no-fund
+          npm run build
+          REMOTE
