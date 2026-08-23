@@ -127,7 +127,7 @@ export default function PrivacyPage() {
               Website, eingesetzte Dienste oder rechtliche Anforderungen ändern.
             </p>
             <p>
-              <Link href="/imprint">Impressum</Link> · <Link href="/terms">AGB</Link>
+              <Link href="/imprint">Impressum</Link>
             </p>
           </div>
         </div>

@@ -65,7 +65,7 @@ export default function ImprintPage() {
               {BUSINESS.postalCode} {BUSINESS.city}
             </p>
             <p>
-              <Link href="/privacy">Datenschutzerklärung</Link> · <Link href="/terms">AGB</Link>
+              <Link href="/privacy">Datenschutzerklärung</Link>
             </p>
           </div>
         </div>

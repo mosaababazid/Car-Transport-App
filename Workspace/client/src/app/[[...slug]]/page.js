@@ -3,7 +3,6 @@ import {
   HomePage,
   ContactPage,
   PrivacyPage,
-  TermsPage,
   ImprintPage,
 } from "../app";
 import { buildPageMetadata } from "../../lib/seo/metadata";
@@ -11,7 +10,6 @@ import { buildPageMetadata } from "../../lib/seo/metadata";
 const ROUTES = {
   contact: ContactPage,
   privacy: PrivacyPage,
-  terms: TermsPage,
   imprint: ImprintPage,
 };
 

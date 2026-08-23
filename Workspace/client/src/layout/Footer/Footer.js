@@ -41,7 +41,6 @@ export default function Footer() {
           <nav className="app-footer-legal" aria-label="Rechtliche Hinweise">
             <Link href="/imprint">Impressum</Link>
             <Link href="/privacy">Datenschutz</Link>
-            <Link href="/terms">AGB</Link>
           </nav>
         </div>
 

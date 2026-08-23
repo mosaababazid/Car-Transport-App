@@ -71,10 +71,6 @@ export const PAGE_META = {
     title: "Datenschutzerklärung",
     description: "Datenschutzerklärung der LUXOR DRIVE.",
   },
-  terms: {
-    title: "AGB",
-    description: "Allgemeine Geschäftsbedingungen der LUXOR DRIVE.",
-  },
   imprint: {
     title: "Impressum",
     description: "Impressum und Angaben gemäß § 5 DDG.",
