@@ -95,39 +95,6 @@
   min-height: 7rem;
 }
 
-.contact-phone-shell {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding-right: 0.6rem;
-}
-
-.contact-phone-select {
-  max-width: 7.2rem;
-  min-width: 6.1rem;
-  border: none;
-  outline: none;
-  border-right: 1px solid var(--secondary-border);
-  padding-right: 0.45rem;
-  margin-right: 0.05rem;
-  background: transparent;
-  color: var(--text-primary);
-  font-size: 0.86rem;
-  line-height: 1.2;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.contact-phone-select option {
-  background: #0f172a;
-  color: #e2e8f0;
-}
-
-.contact-phone-input {
-  flex: 1;
-  min-width: 0;
-}
-
 .contact-phone-hint {
   margin-top: 0.25rem;
   display: block;

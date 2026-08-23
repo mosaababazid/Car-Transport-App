@@ -67,21 +67,18 @@ export default function PrivacyPage() {
             <h2>4. Kontaktformular und E-Mail</h2>
             <p>
               Wenn Sie uns per Formular oder E-Mail kontaktieren, verarbeiten wir Ihren Namen,
-              Ihre E-Mail-Adresse, Telefonnummer, das ausgewählte Telefonland beziehungsweise die
-              Vorwahl sowie den Inhalt Ihrer Nachricht. Die Angaben sind erforderlich, um Ihre
-              Anfrage zu prüfen und zu beantworten. Die Übermittlung über das Formular erfolgt über
-              den E-Mail-Dienst Resend. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die
+              Ihre E-Mail-Adresse, Telefonnummer und den Inhalt Ihrer Nachricht. Die Angaben sind
+              erforderlich, um Ihre Anfrage zu prüfen und zu beantworten. Die Übermittlung über das
+              Formular erfolgt über den Mailserver unseres Hosting-Dienstleisters. Rechtsgrundlage
+              ist Art. 6 Abs. 1 lit. b DSGVO, soweit die
               Anfrage auf einen Vertragsschluss gerichtet ist, andernfalls Art. 6 Abs. 1 lit. f DSGVO
               für die Bearbeitung von Anfragen.
             </p>
             <h2>5. Empfänger und Übermittlung in Drittländer</h2>
             <p>
-              Empfänger Ihrer Daten können unser Hosting-Dienstleister, der E-Mail-Dienst Resend
-              sowie die unter Ziffer 3 genannten Dienste sein, soweit dies technisch erforderlich
-              ist. Resend verarbeitet Daten nach eigenen Angaben in den USA. Informationen zu
-              dessen Datenschutzmaßnahmen und Übermittlungsgrundlagen finden Sie in den
-              {" "}<a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Datenschutzhinweisen von Resend</a>.
-              Bei einer Übermittlung in ein Drittland achten wir
+              Empfänger Ihrer Daten können unser Hosting-Dienstleister sowie die unter Ziffer 3
+              genannten Dienste sein, soweit dies technisch erforderlich ist. Bei einer
+              Übermittlung in ein Drittland achten wir
               auf die jeweils erforderlichen Garantien nach Art. 44 ff. DSGVO.
             </p>
             <h2>6. Telefon und WhatsApp</h2>

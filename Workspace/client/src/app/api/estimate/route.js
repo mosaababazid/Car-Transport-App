@@ -4,7 +4,7 @@ const RATE_PER_KM = 0.75;
 const NOMINATIM_BASE = "https://nominatim.openstreetmap.org/search";
 const OSRM_BASE = "https://router.project-osrm.org/route/v1/driving";
 
-const USER_AGENT = "LuxorDrive/1.0 (https://luxordrive-logistik.de)";
+const USER_AGENT = "LuxorDrive/1.0 (https://luxor-drive.de)";
 
 function sanitizeAddress(value) {
   return String(value ?? "").trim().slice(0, 200);

@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://luxordrive-logistik.de";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://luxor-drive.de";
 
 export const SITE_NAME = "LUXOR DRIVE | AUTOMOBIL UND TRANSPORT";
 export const SITE_NAME_SHORT = "LUXOR DRIVE";

@@ -7,28 +7,14 @@ import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-import {
-  DEFAULT_PHONE_COUNTRY,
-  PHONE_COUNTRIES,
-  formatInternationalPhone,
-  getPhoneCountry,
-  normalizePhoneDigits,
-  validatePhoneForCountry,
-} from "../../constants/phoneCountries";
 import { BUSINESS, whatsappUrl } from "../../constants/business";
 import "../../components/Button/Button.css";
 import "./contact.css";
 
-function countryCodeToFlag(iso) {
-  return String(iso || "")
-    .toUpperCase()
-    .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
-}
-
 export default function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneCountry, setPhoneCountry] = useState(DEFAULT_PHONE_COUNTRY);
+  const [callingCode, setCallingCode] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
@@ -37,6 +23,7 @@ export default function ContactPage() {
   const [fieldErrors, setFieldErrors] = useState({
     name: "",
     email: "",
+    callingCode: "",
     phone: "",
     message: "",
   });
@@ -48,29 +35,29 @@ export default function ContactPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
-    setFieldErrors({ name: "", email: "", phone: "", message: "" });
+    setFieldErrors({ name: "", email: "", callingCode: "", phone: "", message: "" });
     const safeName = sanitizeField(name, 100);
     const safeEmail = sanitizeField(email, 255).toLowerCase();
-    const safePhoneCountry = sanitizeField(phoneCountry, 2).toUpperCase();
-    const phoneCountryMeta = getPhoneCountry(safePhoneCountry);
-    const safePhoneDigits = normalizePhoneDigits(phone, 20);
-    const safePhone = formatInternationalPhone(safePhoneCountry, safePhoneDigits);
+    const safeCallingCode = sanitizeField(callingCode, 4);
+    const safePhone = sanitizeField(phone, 14);
     const safeMessage = sanitizeField(message, 2000);
 
     const nextErrors = {
       name: "",
       email: "",
+      callingCode: "",
       phone: "",
       message: "",
     };
     if (!safeName) nextErrors.name = "Bitte Namen angeben.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(safeEmail)) nextErrors.email = "Bitte gültige E-Mail angeben.";
-    if (!phoneCountryMeta) {
-      nextErrors.phone = "Bitte ein Land für die Vorwahl auswählen.";
-    } else if (!safePhoneDigits) {
-      nextErrors.phone = "Bitte Telefonnummer angeben.";
-    } else if (!validatePhoneForCountry(safePhoneCountry, safePhoneDigits)) {
-      nextErrors.phone = `Bitte gültige Festnetz- oder Mobilnummer für ${phoneCountryMeta.name} angeben.`;
+    if (!/^\+[1-9]\d{0,2}$/.test(safeCallingCode)) {
+      nextErrors.callingCode = "Bitte Vorwahl mit + und 1 bis 3 Ziffern angeben.";
+    }
+    if (!/^[1-9]\d{4,13}$/.test(safePhone)) {
+      nextErrors.phone = "Bitte 5 bis 14 Ziffern ohne führende 0 angeben.";
+    } else if (`${safeCallingCode.slice(1)}${safePhone}`.length > 15) {
+      nextErrors.phone = "Die vollständige Telefonnummer ist zu lang.";
     }
     if (!safeMessage) nextErrors.message = "Bitte Nachricht angeben.";
 
@@ -88,9 +75,8 @@ export default function ContactPage() {
         body: JSON.stringify({
           name: safeName,
           email: safeEmail,
+          callingCode: safeCallingCode,
           phone: safePhone,
-          phoneCountry: safePhoneCountry,
-          phoneDigits: safePhoneDigits,
           message: safeMessage,
         }),
       });
@@ -102,7 +88,7 @@ export default function ContactPage() {
       setSent(true);
       setName("");
       setEmail("");
-      setPhoneCountry(DEFAULT_PHONE_COUNTRY);
+      setCallingCode("");
       setPhone("");
       setMessage("");
     } catch (err) {
@@ -176,49 +162,39 @@ export default function ContactPage() {
                     required
                   />
                 </div>
-                <div className={`ui-field ${fieldErrors.phone ? "ui-field--error" : ""}`}>
-                  <label className="ui-field-label" htmlFor="phone">
-                    Telefon
-                  </label>
-                  <div className={`ui-field-shell contact-phone-shell ${fieldErrors.phone ? "ui-field-shell--error" : ""}`}>
-                    <select
-                      id="phone-country"
-                      className="contact-phone-select"
-                      value={phoneCountry}
-                      onChange={(e) => setPhoneCountry(e.target.value)}
-                      aria-label="Landesvorwahl wählen"
-                    >
-                      {PHONE_COUNTRIES.map((country) => (
-                        <option key={country.iso} value={country.iso}>
-                          {countryCodeToFlag(country.iso)} {country.iso} ({country.dialCode})
-                        </option>
-                      ))}
-                    </select>
-                    <input
-                      id="phone"
-                      className="ui-field-input contact-phone-input"
-                      type="tel"
-                      placeholder="Nummer"
-                      value={phone}
-                      onChange={(e) => setPhone(normalizePhoneDigits(e.target.value, 20))}
-                      maxLength={20}
-                      autoComplete="tel-national"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      aria-invalid={fieldErrors.phone ? "true" : undefined}
-                      aria-describedby={fieldErrors.phone ? "phone-hint phone-error" : "phone-hint"}
-                      required
-                    />
-                  </div>
-                  <span id="phone-hint" className="contact-phone-hint">
-                    Format: nur Ziffern nach der Vorwahl, Durchwahl optional.
-                  </span>
-                  {fieldErrors.phone && (
-                    <span id="phone-error" className="ui-field-error" role="alert">
-                      {fieldErrors.phone}
-                    </span>
-                  )}
+                <div className="contact-grid">
+                  <Input
+                    id="calling-code"
+                    label="Vorwahl"
+                    type="tel"
+                    placeholder="+49"
+                    value={callingCode}
+                    onChange={(e) => setCallingCode(e.target.value)}
+                    maxLength={4}
+                    inputMode="tel"
+                    pattern="\+[1-9][0-9]{0,2}"
+                    error={fieldErrors.callingCode}
+                    required
+                  />
+                  <Input
+                    id="phone"
+                    label="Telefonnummer"
+                    type="tel"
+                    placeholder="17662581522"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    minLength={5}
+                    maxLength={14}
+                    autoComplete="tel-national"
+                    inputMode="numeric"
+                    pattern="[1-9][0-9]{4,13}"
+                    error={fieldErrors.phone}
+                    required
+                  />
                 </div>
+                <span className="contact-phone-hint">
+                  Beispiel: +49 und 17662581522 (ohne führende 0)
+                </span>
                 <div className="ui-field">
                   <label className="ui-field-label" htmlFor="message">
                     Nachricht
