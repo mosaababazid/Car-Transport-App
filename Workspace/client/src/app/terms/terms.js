@@ -3,6 +3,7 @@ import Footer from "../../layout/Footer/Footer";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getLegalPageStructuredData } from "../structuredData";
+import { BUSINESS } from "../../constants/business";
 import "../legal.css";
 
 export default function TermsPage() {
@@ -31,8 +32,9 @@ export default function TermsPage() {
             <h2>1. Geltungsbereich</h2>
             <p>
               Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge über die
-              Fahrzeuglogistik und den Transport von Kraftfahrzeugen, die zwischen LUXOR DRIVE
-              und dem Kunden geschlossen werden.
+              Fahrzeuglogistik und den Transport von Kraftfahrzeugen, die zwischen
+              {" "}{BUSINESS.legalName}, Inhaber {BUSINESS.owner}, und dem Kunden geschlossen
+              werden.
             </p>
             <h2>2. Vertragsschluss</h2>
             <p>
@@ -58,7 +60,7 @@ export default function TermsPage() {
             <h2>6. Schlussbestimmungen</h2>
             <p>
               Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist, soweit
-              gesetzlich zulässig, der Sitz von LUXOR DRIVE. Sollten einzelne Bestimmungen
+              gesetzlich zulässig, der Sitz von {BUSINESS.legalName}. Sollten einzelne Bestimmungen
               unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
             </p>
             <p>

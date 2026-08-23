@@ -1,5 +1,14 @@
 const buckets = new Map();
 
+function storeBucket(key, bucket, windowMs) {
+  buckets.set(key, bucket);
+
+  const cleanup = setTimeout(() => {
+    if (buckets.get(key) === bucket) buckets.delete(key);
+  }, windowMs);
+  cleanup.unref?.();
+}
+
 function normalizeIp(ip) {
   if (!ip) return "unknown";
   return String(ip).split(",")[0].trim() || "unknown";
@@ -17,7 +26,8 @@ export function checkRateLimit({ key, limit, windowMs }) {
   const now = Date.now();
   const existing = buckets.get(key);
   if (!existing || now >= existing.resetAt) {
-    buckets.set(key, { count: 1, resetAt: now + windowMs });
+    const bucket = { count: 1, resetAt: now + windowMs };
+    storeBucket(key, bucket, windowMs);
     return { allowed: true, remaining: limit - 1, resetAt: now + windowMs };
   }
 

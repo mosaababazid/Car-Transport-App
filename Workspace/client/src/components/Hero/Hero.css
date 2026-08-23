@@ -40,7 +40,7 @@
 .hero-image-inner {
   object-fit: cover;
   object-position: center 42%;
-  filter: brightness(0.62) contrast(1.08) saturate(0.74);
+  filter: brightness(0.68) contrast(1.08) saturate(0.74);
   transform: scale(1.02);
 }
 

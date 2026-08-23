@@ -48,53 +48,63 @@ export default function PrivacyPage() {
             </p>
             <h2>2. Bereitstellung der Website und Server-Logfiles</h2>
             <p>
-              Beim Aufruf der Website verarbeitet der von uns eingesetzte Hosting-Dienstleister
-              technisch erforderliche Verbindungsdaten, insbesondere IP-Adresse, Datum und Uhrzeit,
-              aufgerufene Seite, Referrer-URL sowie Angaben zu Browser und Betriebssystem. Die
-              Verarbeitung dient der sicheren und stabilen Bereitstellung der Website sowie der
-              Abwehr von Missbrauch. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+              Diese Website wird bei der Hetzner Online GmbH gehostet. Beim Aufruf der Website
+              verarbeitet der Hosting-Dienstleister technisch erforderliche Verbindungsdaten,
+              insbesondere IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Referrer-URL sowie
+              Angaben zu Browser und Betriebssystem. Die Verarbeitung dient der sicheren und
+              stabilen Bereitstellung der Website sowie der Abwehr von Missbrauch. Rechtsgrundlage
+              ist Art. 6 Abs. 1 lit. f DSGVO.
             </p>
             <h2>3. Preisrechner und Routenberechnung</h2>
             <p>
               Wenn Sie Abhol- und Zielort in den Preisrechner eingeben, verarbeiten wir diese Angaben,
               um Entfernung, voraussichtliche Fahrzeit und ein unverbindliches Angebot zu berechnen.
-              Die Adressen werden hierfür über unseren Server an die Geocodierung von Nominatim
-              (OpenStreetMap) und an den Routingdienst Project OSRM übermittelt. Wir speichern die
-              eingegebenen Adressen in der Anwendung nicht dauerhaft. Rechtsgrundlage ist Art. 6
-              Abs. 1 lit. b DSGVO zur Durchführung vorvertraglicher Maßnahmen auf Ihre Anfrage.
+              Die Adressen werden hierfür über unseren Server an den Nominatim-Dienst der
+              OpenStreetMap Foundation und an den öffentlichen Routingdienst des Project OSRM
+              übermittelt. Wir speichern die eingegebenen Adressen in der Anwendung nicht dauerhaft.
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO zur Durchführung vorvertraglicher
+              Maßnahmen auf Ihre Anfrage.
             </p>
             <h2>4. Kontaktformular und E-Mail</h2>
             <p>
-              Wenn Sie uns per Formular oder E-Mail kontaktieren, verarbeiten wir Ihren Namen,
-              Ihre E-Mail-Adresse, Telefonnummer und den Inhalt Ihrer Nachricht. Die Angaben sind
-              erforderlich, um Ihre Anfrage zu prüfen und zu beantworten. Die Übermittlung über das
-              Formular erfolgt über den Mailserver unseres Hosting-Dienstleisters. Rechtsgrundlage
-              ist Art. 6 Abs. 1 lit. b DSGVO, soweit die
-              Anfrage auf einen Vertragsschluss gerichtet ist, andernfalls Art. 6 Abs. 1 lit. f DSGVO
-              für die Bearbeitung von Anfragen.
+              Wenn Sie uns über das Formular kontaktieren, verarbeiten wir Ihren Namen, Ihre
+              E-Mail-Adresse und den Inhalt Ihrer Nachricht. Freiwillig können Sie eine Vorwahl und
+              Telefonnummer angeben. Für die Übermittlung einer Telefonnummer müssen beide Felder
+              ausgefüllt sein; andernfalls wird die Anfrage zurückgewiesen. Bei einer direkten
+              Kontaktaufnahme per E-Mail verarbeiten wir die von Ihnen übermittelten Kontaktdaten
+              und Inhalte. Die Daten werden ausschließlich zur Bearbeitung und Beantwortung Ihrer
+              Transport- oder Kontaktanfrage verwendet. Formularanfragen werden über die bei der
+              Hetzner Online GmbH betriebene Hosting- und Mail-Infrastruktur per SMTP an unser
+              geschäftliches Postfach übermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO,
+              soweit die Anfrage auf einen Vertragsschluss gerichtet ist, andernfalls Art. 6 Abs. 1
+              lit. f DSGVO für die Bearbeitung von Anfragen.
             </p>
             <h2>5. Empfänger und Übermittlung in Drittländer</h2>
             <p>
-              Empfänger Ihrer Daten können unser Hosting-Dienstleister sowie die unter Ziffer 3
-              genannten Dienste sein, soweit dies technisch erforderlich ist. Bei einer
-              Übermittlung in ein Drittland achten wir
-              auf die jeweils erforderlichen Garantien nach Art. 44 ff. DSGVO.
+              Empfänger Ihrer Daten können die Hetzner Online GmbH als Hosting- und
+              Mail-Dienstleister sowie die unter Ziffer 3 genannten Dienste sein, soweit dies
+              technisch erforderlich ist. Bei einer Übermittlung in ein Drittland achten wir auf
+              die jeweils erforderlichen Garantien nach Art. 44 ff. DSGVO.
             </p>
             <h2>6. Telefon und WhatsApp</h2>
             <p>
               Sie können uns telefonisch oder über den WhatsApp-Link kontaktieren. Erst wenn Sie
-              den Link aktivieren, wird eine Verbindung zu WhatsApp hergestellt. Für die dortige
-              Verarbeitung personenbezogener Daten gelten die Datenschutzbestimmungen von
-              WhatsApp. Die von Ihnen übermittelten Angaben verarbeiten wir zur Bearbeitung Ihrer
-              Anfrage auf Grundlage von Art. 6 Abs. 1 lit. b oder lit. f DSGVO.
+              den Link aktivieren, wird eine Verbindung zu WhatsApp hergestellt. Der Dienst wird im
+              Europäischen Wirtschaftsraum von der WhatsApp Ireland Limited bereitgestellt. Für die
+              dortige Verarbeitung personenbezogener Daten gelten die{" "}
+              <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener noreferrer">
+                Datenschutzbestimmungen von WhatsApp
+              </a>. Die von Ihnen übermittelten Angaben verarbeiten wir zur Bearbeitung Ihrer Anfrage
+              auf Grundlage von Art. 6 Abs. 1 lit. b oder lit. f DSGVO.
             </p>
             <h2>7. Cookies, Analyse und Sicherheitsmaßnahmen</h2>
             <p>
               Diese Website verwendet derzeit keine eigenen Analyse- oder Werbe-Cookies. Zur
               Absicherung der Formular- und Preisrechner-Endpunkte verarbeiten wir IP-Adressen
-              kurzzeitig zur Begrenzung missbräuchlicher Anfragen. Rechtsgrundlage ist Art. 6 Abs.
-              1 lit. f DSGVO. Eine Zusammenführung dieser Daten mit den Angaben aus dem
-              Kontaktformular erfolgt nicht.
+              vorübergehend zur Begrenzung missbräuchlicher Anfragen. Nach Ablauf des jeweiligen
+              Begrenzungszeitraums wird der zugehörige Eintrag aus dem Arbeitsspeicher entfernt.
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Eine Zusammenführung dieser Daten mit
+              den Angaben aus dem Kontaktformular erfolgt nicht.
             </p>
             <h2>8. Speicherdauer</h2>
             <p>

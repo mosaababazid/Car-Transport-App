@@ -1,6 +1,6 @@
 # CarTransport
 
-**Live demo:** [car-transport-app-mosaab.vercel.app](https://car-transport-app-mosaab.vercel.app/)
+**Production:** [luxor-drive.de](https://luxor-drive.de/)
 
 A full-stack web application for **vehicle logistics and car transport** services in Germany and Europe. It provides a modern landing page with a pricing calculator, contact form, and legal pages (privacy, terms, imprint). The entire application runs on Next.js, including its API routes.
 
@@ -71,7 +71,7 @@ The app is served at [http://localhost:3000](http://localhost:3000) by default.
 
 ## Configuration
 
-- **Client**: Use `.env.local` for `NEXT_PUBLIC_SITE_URL` and the Resend/contact form variables. Copy `.env.example` as a starting point.
+- **Client**: Copy `.env.example` to `.env.local` and configure the documented public values and SMTP variables. Never commit credentials.
 
 ---
 
@@ -81,7 +81,7 @@ The app is served at [http://localhost:3000](http://localhost:3000) by default.
 
 - Single route entry (`[[...slug]]/page.js`) and central page exports (`app.js`) keep routing and page wiring in one place.
 - Per-route logic in named files (`contact.js`, `contact.css`, `privacy.js`, etc.) with shared `legal.css` and `globals.css`.
-- API routes in `app/api/` (contact with Resend, estimate with Nominatim/OSRM). Contact route validates input and escapes HTML; estimate returns structured errors.
+- API routes in `app/api/` (contact delivery through SMTP with Nodemailer, estimate with Nominatim/OSRM). Contact route validates input and escapes HTML; estimate returns structured errors.
 - SEO: `metadata` and `generateMetadata`, `metadataBase`, JSON-LD in layout via `structuredData.js`.
 - Env: `.env.example` documents required vars; `.env*` is gitignored at repo root.
 
@@ -102,7 +102,7 @@ The app is served at [http://localhost:3000](http://localhost:3000) by default.
 
 ## License and credits
 
-- Content and branding (e.g. luxordrive Logistik) are project-specific.
+- Content and Luxor Drive branding are project-specific.
 - Website credit can be kept in the footer (e.g. developer name/link) as desired.
 
 This README is kept in English for a professional, internationally readable repository.

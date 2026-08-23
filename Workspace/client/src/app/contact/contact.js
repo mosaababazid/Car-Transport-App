@@ -230,6 +230,11 @@ export default function ContactPage() {
                     {error}
                   </p>
                 )}
+                <p className="contact-privacy">
+                  Wir verarbeiten Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage.
+                  Weitere Informationen finden Sie in unserer{" "}
+                  <Link href="/privacy">Datenschutzerklärung</Link>.
+                </p>
                 <Button
                   type="submit"
                   disabled={loading || sent}

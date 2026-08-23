@@ -121,6 +121,19 @@
   color: #fee2e2;
 }
 
+.contact-privacy {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.contact-privacy a {
+  color: var(--accent-gold);
+  text-underline-offset: 0.18em;
+}
+
 .contact-hint {
   margin: 0;
   font-size: 0.82rem;
