@@ -28,7 +28,6 @@ export default function ImprintPage() {
               <ArrowLeft size={17} strokeWidth={2.2} aria-hidden="true" />
               <span className="back-to-home__label">Zurück</span>
             </Link>
-            <span>Rechtliches</span>
           </div>
           <header className="legal-page-header">
             <p className="legal-eyebrow">Anbieterkennzeichnung</p>

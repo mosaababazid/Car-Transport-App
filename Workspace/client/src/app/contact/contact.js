@@ -37,9 +37,9 @@ export default function ContactPage() {
     setError("");
     setFieldErrors({ name: "", email: "", callingCode: "", phone: "", message: "" });
     const safeName = sanitizeField(name, 100);
-    const safeEmail = sanitizeField(email, 255).toLowerCase();
-    const safeCallingCode = sanitizeField(callingCode, 4);
-    const safePhone = sanitizeField(phone, 14);
+    const safeEmail = String(email ?? "").trim().toLowerCase();
+    const safeCallingCode = String(callingCode ?? "").trim();
+    const safePhone = String(phone ?? "").trim();
     const safeMessage = sanitizeField(message, 2000);
 
     const nextErrors = {
@@ -50,14 +50,22 @@ export default function ContactPage() {
       message: "",
     };
     if (!safeName) nextErrors.name = "Bitte Namen angeben.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(safeEmail)) nextErrors.email = "Bitte gültige E-Mail angeben.";
-    if (!/^\+[1-9]\d{0,2}$/.test(safeCallingCode)) {
-      nextErrors.callingCode = "Bitte Vorwahl mit + und 1 bis 3 Ziffern angeben.";
+    if (safeEmail.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(safeEmail)) {
+      nextErrors.email = "Bitte gültige E-Mail angeben.";
     }
-    if (!/^[1-9]\d{4,13}$/.test(safePhone)) {
-      nextErrors.phone = "Bitte 5 bis 14 Ziffern ohne führende 0 angeben.";
-    } else if (`${safeCallingCode.slice(1)}${safePhone}`.length > 15) {
-      nextErrors.phone = "Die vollständige Telefonnummer ist zu lang.";
+    if (safeCallingCode || safePhone) {
+      if (!safeCallingCode) {
+        nextErrors.callingCode = "Bitte die Vorwahl ergänzen.";
+      } else if (!/^\+[1-9]\d{0,2}$/.test(safeCallingCode)) {
+        nextErrors.callingCode = "Bitte Vorwahl mit + und 1 bis 3 Ziffern angeben.";
+      }
+      if (!safePhone) {
+        nextErrors.phone = "Bitte die Telefonnummer ergänzen.";
+      } else if (!/^[1-9]\d{4,13}$/.test(safePhone)) {
+        nextErrors.phone = "Bitte 5 bis 14 Ziffern ohne führende 0 angeben.";
+      } else if (`${safeCallingCode.slice(1)}${safePhone}`.length > 15) {
+        nextErrors.phone = "Die vollständige Telefonnummer ist zu lang.";
+      }
     }
     if (!safeMessage) nextErrors.message = "Bitte Nachricht angeben.";
 
@@ -139,7 +147,7 @@ export default function ContactPage() {
                 <div className="contact-grid">
                   <Input
                     id="name"
-                    label="Name"
+                    label="Name *"
                     placeholder="Ihr Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -150,7 +158,7 @@ export default function ContactPage() {
                   />
                   <Input
                     id="email"
-                    label="E-Mail"
+                    label="E-Mail *"
                     type="email"
                     placeholder="ihre@email.de"
                     value={email}
@@ -174,7 +182,6 @@ export default function ContactPage() {
                     inputMode="tel"
                     pattern="\+[1-9][0-9]{0,2}"
                     error={fieldErrors.callingCode}
-                    required
                   />
                   <Input
                     id="phone"
@@ -189,7 +196,6 @@ export default function ContactPage() {
                     inputMode="numeric"
                     pattern="[1-9][0-9]{4,13}"
                     error={fieldErrors.phone}
-                    required
                   />
                 </div>
                 <span className="contact-phone-hint">
@@ -197,7 +203,7 @@ export default function ContactPage() {
                 </span>
                 <div className="ui-field">
                   <label className="ui-field-label" htmlFor="message">
-                    Nachricht
+                    Nachricht *
                   </label>
                   <div className="ui-field-shell ui-field-shell--textarea">
                     <textarea

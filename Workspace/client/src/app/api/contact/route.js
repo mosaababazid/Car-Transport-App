@@ -31,7 +31,8 @@ function hasHeaderControlChars(value) {
 }
 
 function buildEmailBody({ name, email, phone, message }) {
-  const text = [message, "", "---", `Name: ${name}`, `E-Mail: ${email}`, `Telefon: ${phone}`].join("\n");
+  const phoneDisplay = phone || "–";
+  const text = [message, "", "---", `Name: ${name}`, `E-Mail: ${email}`, `Telefon: ${phoneDisplay}`].join("\n");
   const html = `
 <!DOCTYPE html>
 <html>
@@ -41,7 +42,7 @@ function buildEmailBody({ name, email, phone, message }) {
   <hr style="border: none; border-top: 1px solid #eee;">
   <p><strong>Name:</strong> ${escapeHtml(name)}<br>
   <strong>E-Mail:</strong> ${escapeHtml(email)}<br>
-  <strong>Telefon:</strong> ${escapeHtml(phone)}</p>
+  <strong>Telefon:</strong> ${escapeHtml(phoneDisplay)}</p>
 </body>
 </html>`;
   return { text, html };
@@ -85,12 +86,12 @@ export async function POST(request) {
     const email = String(body.email ?? "").trim().toLowerCase();
     const callingCode = String(body.callingCode ?? "").trim();
     const phoneDigits = String(body.phone ?? "").trim();
-    const phone = `${callingCode}${phoneDigits}`;
+    const phone = callingCode && phoneDigits ? `${callingCode}${phoneDigits}` : "";
     const message = sanitize(body.message, 2000);
 
-    if (!name || !email || !callingCode || !phoneDigits || !message) {
+    if (!name || !email || !message) {
       return Response.json(
-        { error: "Name, E-Mail, Telefonnummer und Nachricht sind erforderlich." },
+        { error: "Name, E-Mail und Nachricht sind erforderlich." },
         { status: 400 }
       );
     }
@@ -100,11 +101,17 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-    if (
+    if (Boolean(callingCode) !== Boolean(phoneDigits)) {
+      return Response.json(
+        { error: "Bitte Vorwahl und Telefonnummer entweder beide oder gar nicht angeben." },
+        { status: 400 }
+      );
+    }
+    if (callingCode && (
       !CALLING_CODE_PATTERN.test(callingCode)
       || !PHONE_PATTERN.test(phoneDigits)
       || phone.slice(1).length > 15
-    ) {
+    )) {
       return Response.json(
         { error: "Bitte eine gültige Vorwahl und Telefonnummer ohne führende 0 angeben." },
         { status: 400 }
