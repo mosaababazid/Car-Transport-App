@@ -134,9 +134,7 @@ export async function POST(request) {
     };
     if (
       !smtpConfig.host
-      || !Number.isInteger(smtpPort)
-      || smtpPort < 1
-      || smtpPort > 65_535
+      || smtpPort !== 587
       || !smtpConfig.user
       || !smtpConfig.pass
       || !smtpConfig.to
@@ -153,7 +151,8 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       host: smtpConfig.host,
       port: smtpPort,
-      secure: smtpPort === 465,
+      secure: false,
+      requireTLS: true,
       auth: { user: smtpConfig.user, pass: smtpConfig.pass },
       connectionTimeout: 10_000,
       greetingTimeout: 10_000,
